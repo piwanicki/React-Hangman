@@ -1,0 +1,13 @@
+.PuzzleLetter {
+    width: 30px;
+    font-size: 40px;
+    height:40px;
+    text-align: center;
+    display: inline-block;
+    margin: 0px 10px;
+}
+
+p {
+    width: 30px;
+    display: inline-block;
+}

@@ -1,0 +1,18 @@
+.LanguageSelector {
+    width:50px;
+    display: inline-block;
+    padding: 0px;
+    margin: 10px 20px;
+}
+
+.LanguageSelector:hover {
+    transform: scale(1.15);
+    transition: scale 0.5s;
+}
+
+@media (max-width: 550px) {
+    .LanguageSelector {
+        width:30px;
+        height: auto;
+    }
+}

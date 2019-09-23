@@ -1,0 +1,31 @@
+.NavigationBar {
+    font-size: 30px;
+    width:100%;
+    height: 120px;
+    position:fixed;
+    left: 0;
+    top: 0;
+    background-image: url('../../../assets/img/NavigationBarBackground.jpg');
+    z-index: 100;
+}
+
+.NavigationMenu {
+    margin-top:0;
+    list-style: none;
+    float:right;
+    padding: 0px ;
+}
+
+.NavigationMenu li {
+    text-decoration: none;
+    display: inline-block;
+    margin: 0px 40px;
+}
+
+@media (max-width: 550px) {
+    .DesktopOnly {
+        display: none;
+    }
+}
+
+

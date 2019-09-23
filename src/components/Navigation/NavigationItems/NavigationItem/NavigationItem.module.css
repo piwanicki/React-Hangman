@@ -1,0 +1,26 @@
+.NavigationItem {
+    display: block;
+    width: auto;
+    height:100%;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Indie Flower', cursive;
+    font-size: 30px;
+}
+
+.NavigationItem:hover {
+    cursor: pointer;
+    border-bottom: 3px solid rgba(26, 17, 107, 0.822);
+    transition: border-bottom 0.4s;
+}
+ 
+
+@media (max-width: 550px) {
+    .NavigationItem {
+        padding: 20px;
+        margin-top: 40px;
+        height: 100%;
+        width: auto;
+        align-items: center;
+    }
+}

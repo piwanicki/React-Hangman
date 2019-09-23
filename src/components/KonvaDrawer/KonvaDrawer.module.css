@@ -1,0 +1,9 @@
+.KonvaDrawer {
+    width: 340px;
+    height: 340px;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    padding-left: 40px;
+}
