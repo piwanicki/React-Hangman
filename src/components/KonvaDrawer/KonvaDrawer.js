@@ -5,7 +5,8 @@ import classes from './KonvaDrawer.module.css'
 class KonvaDrawer extends Component  {
 
   state = {
-     hangmanLinesPts: [0, 10, 30,-50,60,10,30,-50,30,-100,10,-60,30,-100,50,-60,30,-100,50,-60],
+    hangmanLinesPts: [0, 10, 30,-50,60,10,30,-50,30,-100,10,-60,30,-100,50,-60,30,-100,50,-60],
+    //  hangmanLinesPts: [0, 10, 30,-50,60,10,30,-50,30,-800,0,-60,30,-100,60,-60]
   }
 
 
@@ -79,12 +80,13 @@ class KonvaDrawer extends Component  {
               offsetY={-250}
               offsetX={-60}
               />
-            { this.props.chances === 0 ? <Circle radius={20} x={90} y={125} stroke='black'/> : null}
+            { this.props.chances === 0 ? <Circle radius={20} x={90} y={125} stroke='black' /> : null}
             <Line 
               points={[0,-15,0,-60,160,-60,160,160,100,190,160,160,220,190,160]}
               offsetX={-90}
               offsetY={-120}
               stroke='brown'
+              strokeWidth={5}
                />
           </Layer>
         </Stage>

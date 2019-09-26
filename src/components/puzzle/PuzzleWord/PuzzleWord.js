@@ -6,6 +6,11 @@ import Auxiliary from '../../../hoc/Auxiliary';
 import KonvaDrawer from '../../../components/KonvaDrawer/KonvaDrawer'
 import LoadingSpinner from '../../../UI/LoadingSpinner/LoadingSpinner'
 
+
+const deadKeys = [
+  'AltLeft', 'AltRight', 'ControlLeft', 'ControlRight'
+]
+
 class PuzzleWord extends Component {
 
   state = {
@@ -24,6 +29,7 @@ class PuzzleWord extends Component {
     if(this.props.lang !== 'en') {
       axios.get(`https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190729T200219Z.af5b237995a37b64.de861d375a64ea3d5d51764c8f5aa22d42d59972&text=${this.state.word}&lang=en-${this.props.lang}`).then(response => {
         this.setupPuzzle(response.data.text.join('').toLowerCase());
+        console.log(this.state.word);
       });
     }   
     console.log(this.state.word);
@@ -57,11 +63,10 @@ class PuzzleWord extends Component {
       word: word,
       puzzle: puzzles,
       chances: 6,
-      guessedLetters: []
-    });
-    this.setState({
+      guessedLetters: [],
       loading: false,
-      gamePlaying: true});
+      gamePlaying: true
+    });
   }
 
 
@@ -78,14 +83,19 @@ class PuzzleWord extends Component {
     }
   }
 
-  // Moved to getPuzzle()
-  translateToPL = (word) => {
-    axios.get(`https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190729T200219Z.af5b237995a37b64.de861d375a64ea3d5d51764c8f5aa22d42d59972&text=${word}&lang=en-pl`).then(response => this.setState({wordPL: response.data.text}));
-  }
+  // // Moved to getPuzzle()
+  // translateToPL = (word) => {
+  //   axios.get(`https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190729T200219Z.af5b237995a37b64.de861d375a64ea3d5d51764c8f5aa22d42d59972&text=${word}&lang=en-pl`).then(response => this.setState({wordPL: response.data.text}));
+  // }
 
   componentDidMount() {
     document.addEventListener('keydown', (event) => {
-      this.guessedLetterHandler(event.key);
+        if(event.code !== 'AltLeft' &&  
+           event.code !== 'AltRight' &&
+           event.code !== 'ControlLeft' &&
+           event.code !== 'ControlRight' ) {
+          this.guessedLetterHandler(event.key);
+      }
     });
     this.getPuzzle();
   }
@@ -100,7 +110,7 @@ class PuzzleWord extends Component {
 
     return (
       <Auxiliary>
-        <button onClick={this.getPuzzle}>Pobierz haslo</button>
+        <div onClick={this.getPuzzle} className={classes.newWordBtn}>Pobierz haslo</div>
             <div className={classes.PuzzleWord} >
               {letters}
             </div>

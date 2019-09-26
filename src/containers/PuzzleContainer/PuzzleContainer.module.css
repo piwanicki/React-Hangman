@@ -1,11 +1,14 @@
 .PuzzleContainer {
-    width: 700px;
-    height: 300px;
-    border: 1px solid brown;
+    width: 80vw;
+    height: 400px;
     margin-top: 200px;
     position: fixed;
-    left:20vw;
+    left:10vw;
     top:75px;
     text-align: center;
+    background-image: url('../../assets/img/papersheet.jpg');
+    border-radius: 20px;
+    box-shadow: 3px black;
+    background-size: cover;
 }
 

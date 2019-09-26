@@ -32,14 +32,14 @@ class Layout extends Component {
 
   render() {
     return(
-      <Auxiliary>
+     <div className={classes.Layout} >
       <MobileMenu close={this.closeMobileMenuHandler} show={this.state.showMobileMenu} />
         <NavigationBar showSideMenu={this.openMobileMenuHandler} languageChanger={e => this.changeLanguageHandler(e)} />
         <PuzzleContainer language={this.state.language}/>
         <main className={classes.Content}>
           {this.props.children}
         </main>
-    </Auxiliary>
+    </div>
     )
   }
 }
