@@ -20,26 +20,15 @@ class PuzzleWord extends Component {
   getPuzzle = () => {
     this.setState({loading: true});
     axios.get(`http://puzzle.mead.io/puzzle?wordCount=1`).then(response => {
-      this.setState({word: response.data.puzzle.toLowerCase()})
-      console.log(this.state.word)
+      this.setupPuzzle(response.data.puzzle.toLowerCase());
     if(this.props.lang !== 'en') {
       axios.get(`https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190729T200219Z.af5b237995a37b64.de861d375a64ea3d5d51764c8f5aa22d42d59972&text=${this.state.word}&lang=en-${this.props.lang}`).then(response => {
-        this.setState({word: response.data.text})
-        console.log(response.data.text);
+        this.setupPuzzle(response.data.text.join('').toLowerCase());
       });
-    }
-    const wordArr = [...this.state.word.split('')];
-    const puzzles = wordArr.map(el => el !== ' ' ? el = '_' : el);
-    this.setState({
-      puzzle: puzzles,
-      chances: 6,
-      guessedLetters: []
-    });
-    this.setState({
-      loading: false,
-      gamePlaying: true})
-    });
-  }
+    }   
+    console.log(this.state.word);
+  });
+}
 
   guessedLetterHandler = (key) => {
     if(this.state.chances > 0 && this.state.gamePlaying) {
@@ -59,6 +48,20 @@ class PuzzleWord extends Component {
       }
       this.checkIfWin();
     }
+  }
+
+  setupPuzzle = (word) => {
+    const wordArr = word.split('');
+    const puzzles = wordArr.map(el => el !== ' ' ? el = '_' : el);
+    this.setState({
+      word: word,
+      puzzle: puzzles,
+      chances: 6,
+      guessedLetters: []
+    });
+    this.setState({
+      loading: false,
+      gamePlaying: true});
   }
 
 
