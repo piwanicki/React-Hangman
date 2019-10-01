@@ -109,6 +109,10 @@ class PuzzleWord extends Component {
   
   render() {
 
+    let downloadBtnString = 'Nowe Hasło'
+    if(this.props.lang === 'en') { downloadBtnString = 'New Word'}
+    if(this.props.lang === 'de') { downloadBtnString = 'Neues Wort'}
+
     let letters = <LoadingSpinner />
 
     if(!this.state.loading) {
@@ -117,7 +121,7 @@ class PuzzleWord extends Component {
 
     return (
       <Auxiliary>
-        <div onClick={this.getPuzzle} className={classes.newWordBtn}>Pobierz haslo</div>
+        <div onClick={this.getPuzzle} className={classes.newWordBtn}>{downloadBtnString}</div>
             <div className={classes.PuzzleWord} >
               {letters}
             </div>
