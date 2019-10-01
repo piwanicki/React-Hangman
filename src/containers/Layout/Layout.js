@@ -10,7 +10,7 @@ class Layout extends Component {
 
   state = {
     showMobileMenu: false,
-    language: 'en'
+    language: 'pl'
   }
 
   openMobileMenuHandler = () => {

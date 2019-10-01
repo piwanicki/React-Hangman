@@ -7,9 +7,9 @@ import KonvaDrawer from '../../../components/KonvaDrawer/KonvaDrawer'
 import LoadingSpinner from '../../../UI/LoadingSpinner/LoadingSpinner'
 
 
-const deadKeys = [
-  'AltLeft', 'AltRight', 'ControlLeft', 'ControlRight'
-]
+// const deadKeys = [
+//   'AltLeft', 'AltRight', 'ControlLeft', 'ControlRight'
+// ]
 
 class PuzzleWord extends Component {
 
@@ -22,6 +22,13 @@ class PuzzleWord extends Component {
     gamePlaying: false
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if(this.props.lang !== prevProps.lang) {
+      this.getPuzzle();
+    }
+  }
+
+
   getPuzzle = () => {
     this.setState({loading: true});
     axios.get(`http://puzzle.mead.io/puzzle?wordCount=1`).then(response => {
@@ -33,8 +40,8 @@ class PuzzleWord extends Component {
       });
     }   
     console.log(this.state.word);
-  });
-}
+    });
+  }
 
   guessedLetterHandler = (key) => {
     if(this.state.chances > 0 && this.state.gamePlaying) {

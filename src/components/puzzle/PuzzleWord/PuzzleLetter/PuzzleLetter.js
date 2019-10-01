@@ -4,7 +4,6 @@ import Auxiliary from '../../../../hoc/Auxiliary';
 
 const PuzzleLetter = (props) => {
 
-
   return (
     <Auxiliary>
     {props.letter !== ' ' ? <div className={classes.PuzzleLetter} onKeyDown={props.keyPressed}>
