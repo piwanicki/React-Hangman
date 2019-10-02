@@ -5,6 +5,7 @@ import axios from 'axios';
 import Auxiliary from '../../../hoc/Auxiliary';
 import KonvaDrawer from '../../../components/KonvaDrawer/KonvaDrawer'
 import LoadingSpinner from '../../../UI/LoadingSpinner/LoadingSpinner'
+import PuzzleHint from './PuzzleHint';
 
 
 // const deadKeys = [
@@ -134,6 +135,7 @@ class PuzzleWord extends Component {
 
     return (
       <Auxiliary>
+        <PuzzleHint hintString={this.state.hint} />
         <div onClick={this.getPuzzle} className={classes.newWordBtn}>{downloadBtnString}</div>
             <div className={classes.PuzzleWord} >
               {letters}

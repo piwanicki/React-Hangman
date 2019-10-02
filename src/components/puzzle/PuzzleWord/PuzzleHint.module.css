@@ -1,0 +1,15 @@
+.PuzzleHint {
+  width: auto;
+  height: 40px;
+  position: fixed;
+  left: 12vmax;
+  margin: 20px 10px;
+  display: inline-block;
+  font-size: 50px;
+  color: #03067e;
+}
+
+.PuzzleHint:hover {
+  transform: scale(1.1);
+  transition: scale 0.5s;
+}
