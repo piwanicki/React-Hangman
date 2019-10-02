@@ -19,7 +19,8 @@ class PuzzleWord extends Component {
     chances: 6,
     puzzle: [],
     loading: false,
-    gamePlaying: false
+    gamePlaying: false,
+    hint: '',
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -27,6 +28,17 @@ class PuzzleWord extends Component {
       this.getPuzzle();
     }
   }
+
+  getDefinitionHint = () => {
+
+    axios.get(`https://api.datamuse.com/words?ml=${this.state.word}&md=d&max=1`)
+      .then(response => {
+        let hint = response.data[0].defs[0].split('n	');
+        this.setState({hint: hint[1]})
+        console.log(this.state.hint)
+      })
+      .catch(error => console.log(error));
+    };
 
 
   getPuzzle = () => {
@@ -40,6 +52,7 @@ class PuzzleWord extends Component {
       });
     }   
     console.log(this.state.word);
+    this.getDefinitionHint();
     });
   }
 
