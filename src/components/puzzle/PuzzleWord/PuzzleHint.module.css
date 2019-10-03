@@ -1,4 +1,4 @@
-.PuzzleHint {
+.PuzzleHintContainer {
   width: auto;
   height: 40px;
   position: fixed;
@@ -9,7 +9,24 @@
   color: #03067e;
 }
 
-.PuzzleHint:hover {
+.PuzzleHintContainer:hover {
   transform: scale(1.1);
   transition: scale 0.5s;
+}
+
+
+.hover {
+  background-color: papayawhip;   
+  width: 300px;
+  height: auto; 
+  border: 2px black solid;
+  border-radius: 10px;
+  border-color: rgb(161, 75, 13);
+}
+
+.quote {
+  font-size: 15px;
+  font-family: 'India Flower', cursive;
+  text-align: left;
+  /* padding: 10px 15px; */
 }

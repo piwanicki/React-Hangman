@@ -7,7 +7,6 @@ import KonvaDrawer from '../../../components/KonvaDrawer/KonvaDrawer'
 import LoadingSpinner from '../../../UI/LoadingSpinner/LoadingSpinner'
 import PuzzleHint from './PuzzleHint';
 
-
 // const deadKeys = [
 //   'AltLeft', 'AltRight', 'ControlLeft', 'ControlRight'
 // ]
