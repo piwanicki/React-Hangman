@@ -21,6 +21,7 @@ class PuzzleWord extends Component {
     loading: false,
     gamePlaying: false,
     hint: '',
+    wordEng: ''
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -29,22 +30,24 @@ class PuzzleWord extends Component {
     }
   }
 
-  getDefinitionHint = () => {
+   getDefinitionHint = () => {
 
-    axios.get(`https://api.datamuse.com/words?ml=${this.state.word}&md=d&max=1`)
-      .then(response => {
-        let hint = response.data[0].defs[0].split('n	');
-        this.setState({hint: hint[1]})
-        console.log(this.state.hint)
-      })
-      .catch(error => console.log(error));
-    };
+  //   axios.get(`https://api.datamuse.com/words?ml=${this.state.word}&md=d&max=1`)
+  //     .then(response => {
+  //       let hint = response.data[0].defs[0].split('n	');
+  //       this.setState({hint: hint[1]})
+  //       console.log(this.state.hint)
+  //     })
+  //     .catch(error => console.log(error));
+     };
 
 
   getPuzzle = () => {
     this.setState({loading: true});
     axios.get(`http://puzzle.mead.io/puzzle?wordCount=1`).then(response => {
       this.setupPuzzle(response.data.puzzle.toLowerCase());
+      this.setState({wordEng: response.data.puzzle.toLowerCase()})
+      console.log(`wordEng: ${this.state.wordEng}`);
     if(this.props.lang !== 'en') {
       axios.get(`https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190729T200219Z.af5b237995a37b64.de861d375a64ea3d5d51764c8f5aa22d42d59972&text=${this.state.word}&lang=en-${this.props.lang}`).then(response => {
         this.setupPuzzle(response.data.text.join('').toLowerCase());
@@ -85,7 +88,8 @@ class PuzzleWord extends Component {
       chances: 6,
       guessedLetters: [],
       loading: false,
-      gamePlaying: true
+      gamePlaying: true,
+      hint: ''
     });
   }
 
@@ -134,7 +138,7 @@ class PuzzleWord extends Component {
 
     return (
       <Auxiliary>
-        <PuzzleHint hintString={this.state.hint} />
+        <PuzzleHint word={this.state.wordEng}/>
         <div onClick={this.getPuzzle} className={classes.newWordBtn}>{downloadBtnString}</div>
             <div className={classes.PuzzleWord} >
               {letters}
