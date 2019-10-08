@@ -6,7 +6,7 @@ import PuzzleWord from '../../components/puzzle/PuzzleWord/PuzzleWord';
 const PuzzleContainer = (props) => {
   return (
     <div className={classes.PuzzleContainer}>
-      <PuzzleWord lang={props.language}/>
+      <PuzzleWord lang={props.language} showHints={props.showDefinitions}/>
       {props.children}
     </div>
   )

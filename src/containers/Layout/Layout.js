@@ -4,13 +4,14 @@ import classes from './Layout.module.css';
 import NavigationBar from '../../components/Navigation/NavigationBar/NavigationBar';
 import MobileMenu from '../../components/Navigation/MobileMenu/MobileMenu';
 import PuzzleContainer from '../PuzzleContainer/PuzzleContainer';
+import PuzzleHint from '../../components/puzzle/PuzzleWord/PuzzleHint';
 
 
 class Layout extends Component {
 
   state = {
     showMobileMenu: false,
-    language: 'pl'
+    language: 'pl',
   }
 
   openMobileMenuHandler = () => {
@@ -30,12 +31,17 @@ class Layout extends Component {
     this.setState({language: e.target.id})
   }
 
+  hideHintsHandler = () => {
+    console.log(`klik`)
+    this.setState({showHints: false});
+  }
+
   render() {
     return(
-     <div className={classes.Layout} >
+     <div className={classes.Layout} onClick={this.hideHintsHandler}>
       <MobileMenu close={this.closeMobileMenuHandler} show={this.state.showMobileMenu} />
         <NavigationBar showSideMenu={this.openMobileMenuHandler} languageChanger={e => this.changeLanguageHandler(e)} />
-        <PuzzleContainer language={this.state.language}/>
+        <PuzzleContainer language={this.state.language} showDefinitions={this.state.showHints}/>
         <main className={classes.Content}>
           {this.props.children}
         </main>

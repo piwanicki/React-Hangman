@@ -101,15 +101,16 @@ class PuzzleHint extends Component  {
     )
 
     return (
-      <div className={classes.PuzzleHintContainer} onClickCapture={this.lockHints}>
+      <div className={classes.PuzzleHintContainer} >
         <ReactHover options={optionsCursorHover}>
           <ReactHover.Trigger type='trigger' >
-            <FontAwesomeIcon icon={faInfoCircle} />
+            <FontAwesomeIcon icon={faInfoCircle} className={classes.HintIcon} onClick={this.lockHints}/>
           </ReactHover.Trigger>
           <ReactHover.Hover type='hover'>
             {hoverHints}
           </ReactHover.Hover> }
         </ReactHover>
+        {this.state.hintsShow ? hoverHints : null }
       </div>
     )
   }
