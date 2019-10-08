@@ -10,5 +10,6 @@
     border-radius: 20px;
     box-shadow: 3px black;
     background-size: cover;
+    z-index: 1000;
 }
 

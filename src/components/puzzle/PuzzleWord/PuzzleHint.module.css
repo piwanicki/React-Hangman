@@ -19,10 +19,11 @@
 .hover {
   background-color: papayawhip;   
   width: 300px;
-  height: auto; 
+  height: auto;
   border: 2px black solid;
   border-radius: 10px;
   border-color: rgb(161, 75, 13);
+  z-index: 300;
 }
 
 .quote {

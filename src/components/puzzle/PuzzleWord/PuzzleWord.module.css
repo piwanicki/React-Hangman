@@ -4,6 +4,7 @@
     position: relative;
     width: auto;
     padding-right: 180px;
+    z-index: 50;
 }
 
 

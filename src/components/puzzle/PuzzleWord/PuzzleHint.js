@@ -27,10 +27,17 @@ class PuzzleHint extends Component  {
     // axios.get(`https://api.datamuse.com/words?ml=notepad&md=d&max=1`)
       .then(response => {
         let hints = response.data[0].defs;
-        this.setState({definitions: hints})
+        this.setState({
+          definitions: hints,
+          hintIndex: 0
+          })
         console.log(hints)
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        this.setState({
+          definitions: ['No definitions is available']
+        })
+      });
   }
 
   nextHint = () => {
@@ -56,14 +63,20 @@ class PuzzleHint extends Component  {
   lockHints = () => {
     const clicked = this.state.hintsShow;
     this.setState({hintsShow: !clicked});
-    console.log(this.state.hintsShow)
   }
 
   render() {
 
     const index = this.state.hintIndex;
-    let hint = this.state.definitions[index];
-    if(hint ) {
+    let hint = '';
+
+    try {
+      hint = this.state.definitions[index];
+    } catch (error) {
+      hint = 'No hint is available ;(';
+    }
+    
+    if(hint) {
       if(hint.startsWith('n') ){
         hint = hint.replace('n	','noun / ');
       }
@@ -80,7 +93,7 @@ class PuzzleHint extends Component  {
         <button className={classes.NavArrow} onClick={this.previousHint} disabled={this.state.hintIndex === 0}>
           <FontAwesomeIcon icon={faChevronLeft} />
         </button>
-        <button className={classes.NavArrow} onClick={this.nextHint} disabled={this.state.hintIndex === this.state.definitions.length-1}>
+        <button className={classes.NavArrow} onClick={this.nextHint} disabled={this.state.definitions ? this.state.hintIndex === this.state.definitions.length-1 : true}>
           <FontAwesomeIcon icon={faChevronRight} />
         </button>
         <blockquote className={classes.quote}>{hint}</blockquote>
