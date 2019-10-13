@@ -138,7 +138,7 @@ class PuzzleWord extends Component {
 
     return (
       <Auxiliary>
-        <PuzzleHint word={this.state.wordEng} hints={this.props.showHints}/>
+        <PuzzleHint word={this.state.wordEng} showHints={this.props.showHints}/>
         <div onClick={this.getPuzzle} className={classes.newWordBtn}>{downloadBtnString}</div>
             <div className={classes.PuzzleWord} >
               {letters}

@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faInfoCircle , faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 import ReactHover from 'react-hover';
 import axios from 'axios';
+import ReactDOM from 'react-dom';
+import Layout from '../../../containers/Layout/Layout';
 
 
 const optionsCursorHover = {
@@ -17,7 +19,7 @@ class PuzzleHint extends Component  {
   state = {
     definitions : [],
     hintIndex: 0,
-    hintsShow: false
+    hintsShow: true,
   }
 
 
@@ -29,9 +31,9 @@ class PuzzleHint extends Component  {
         let hints = response.data[0].defs;
         this.setState({
           definitions: hints,
-          hintIndex: 0
+          hintIndex: 0,
           })
-        console.log(hints)
+        console.log(`Definicje : ${hints}`);
       })
       .catch(error => {
         this.setState({
@@ -52,6 +54,14 @@ class PuzzleHint extends Component  {
 
   componentDidMount() {
     this.getDefinitions();
+    window.addEventListener('click', (event) => {
+      console.log(event.target)
+      console.log(ReactDOM.findDOMNode(this));
+      console.log(event.target === ReactDOM.findDOMNode(this).childNodes[0])
+      if(event.target !== ReactDOM.findDOMNode(this)){
+        this.setState({hintsShow: false})
+      }
+    })
   }
 
   componentDidUpdate(prevProps,prevState) {
@@ -63,6 +73,7 @@ class PuzzleHint extends Component  {
   lockHints = () => {
     const clicked = this.state.hintsShow;
     this.setState({hintsShow: !clicked});
+    console.log(this.state.hintsShow)
   }
 
   render() {
