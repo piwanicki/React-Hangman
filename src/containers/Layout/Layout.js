@@ -12,7 +12,6 @@ class Layout extends Component {
   state = {
     showMobileMenu: false,
     language: 'pl',
-    hideHints: false,
   }
 
   openMobileMenuHandler = () => {
@@ -32,16 +31,12 @@ class Layout extends Component {
     this.setState({language: e.target.id})
   }
 
-  hideHintsHandler = () => {
-    this.setState({hideHints: false})
-  }
-
   render() {
     return(
      <div className={classes.Layout} onClick={this.hideHintsHandler}>
       <MobileMenu close={this.closeMobileMenuHandler} show={this.state.showMobileMenu} />
         <NavigationBar showSideMenu={this.openMobileMenuHandler} languageChanger={e => this.changeLanguageHandler(e)} />
-        <PuzzleContainer language={this.state.language} showHints={this.state.hideHints}/>
+        <PuzzleContainer language={this.state.language}/>
         <main className={classes.Content}>
           {this.props.children}
         </main>

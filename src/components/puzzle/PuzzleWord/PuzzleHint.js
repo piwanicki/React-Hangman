@@ -4,12 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faInfoCircle , faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 import ReactHover from 'react-hover';
 import axios from 'axios';
-import ReactDOM from 'react-dom';
-import Layout from '../../../containers/Layout/Layout';
 
 
 const optionsCursorHover = {
-  followCursor:false,
+  followCursor: false,
   shiftX: 0,
   shiftY: 0
 }
@@ -19,7 +17,7 @@ class PuzzleHint extends Component  {
   state = {
     definitions : [],
     hintIndex: 0,
-    hintsShow: true,
+    hintsShow: false,
   }
 
 
@@ -33,7 +31,6 @@ class PuzzleHint extends Component  {
           definitions: hints,
           hintIndex: 0,
           })
-        console.log(`Definicje : ${hints}`);
       })
       .catch(error => {
         this.setState({
@@ -55,13 +52,8 @@ class PuzzleHint extends Component  {
   componentDidMount() {
     this.getDefinitions();
     window.addEventListener('click', (event) => {
-      console.log(event.target)
-      console.log(ReactDOM.findDOMNode(this));
-      console.log(event.target === ReactDOM.findDOMNode(this).childNodes[0])
-      if(event.target !== ReactDOM.findDOMNode(this)){
-        this.setState({hintsShow: false})
-      }
-    })
+      if(!(event.target.className instanceof SVGAnimatedString)) { this.setState({hintsShow: false}) }  
+    });
   }
 
   componentDidUpdate(prevProps,prevState) {
@@ -73,7 +65,6 @@ class PuzzleHint extends Component  {
   lockHints = () => {
     const clicked = this.state.hintsShow;
     this.setState({hintsShow: !clicked});
-    console.log(this.state.hintsShow)
   }
 
   render() {
@@ -115,7 +106,7 @@ class PuzzleHint extends Component  {
       <div className={classes.PuzzleHintContainer} >
         <ReactHover options={optionsCursorHover}>
           <ReactHover.Trigger type='trigger' >
-            <FontAwesomeIcon icon={faInfoCircle} className={classes.HintIcon} onClick={this.lockHints}/>
+            <FontAwesomeIcon icon={faInfoCircle} className={classes.HintIcon} onClick={this.lockHints} />
           </ReactHover.Trigger>
           <ReactHover.Hover type='hover'>
             {hoverHints}

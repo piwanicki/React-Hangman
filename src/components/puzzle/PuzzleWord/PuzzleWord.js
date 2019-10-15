@@ -107,11 +107,6 @@ class PuzzleWord extends Component {
     }
   }
 
-  // // Moved to getPuzzle()
-  // translateToPL = (word) => {
-  //   axios.get(`https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190729T200219Z.af5b237995a37b64.de861d375a64ea3d5d51764c8f5aa22d42d59972&text=${word}&lang=en-pl`).then(response => this.setState({wordPL: response.data.text}));
-  // }
-
   componentDidMount() {
     document.addEventListener('keydown', (event) => {
         if(event.code !== 'AltLeft' &&  
@@ -138,7 +133,7 @@ class PuzzleWord extends Component {
 
     return (
       <Auxiliary>
-        <PuzzleHint word={this.state.wordEng} showHints={this.props.showHints}/>
+        <PuzzleHint word={this.state.wordEng}/>
         <div onClick={this.getPuzzle} className={classes.newWordBtn}>{downloadBtnString}</div>
             <div className={classes.PuzzleWord} >
               {letters}
