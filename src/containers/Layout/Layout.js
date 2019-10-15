@@ -1,10 +1,8 @@
 import React , {Component} from 'react';
-import Auxiliary from '../../hoc/Auxiliary'
 import classes from './Layout.module.css';
 import NavigationBar from '../../components/Navigation/NavigationBar/NavigationBar';
 import MobileMenu from '../../components/Navigation/MobileMenu/MobileMenu';
 import PuzzleContainer from '../PuzzleContainer/PuzzleContainer';
-import PuzzleHint from '../../components/puzzle/PuzzleWord/PuzzleHint';
 
 
 class Layout extends Component {
