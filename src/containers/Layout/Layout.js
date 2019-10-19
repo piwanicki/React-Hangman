@@ -3,6 +3,8 @@ import classes from './Layout.module.css';
 import NavigationBar from '../../components/Navigation/NavigationBar/NavigationBar';
 import MobileMenu from '../../components/Navigation/MobileMenu/MobileMenu';
 import PuzzleContainer from '../PuzzleContainer/PuzzleContainer';
+import Footer from '../../components/Navigation/Footer/Footer';
+import Auxiliary from '../../hoc/Auxiliary';
 
 
 class Layout extends Component {
@@ -31,14 +33,17 @@ class Layout extends Component {
 
   render() {
     return(
-     <div className={classes.Layout} onClick={this.hideHintsHandler}>
-      <MobileMenu close={this.closeMobileMenuHandler} show={this.state.showMobileMenu} />
-        <NavigationBar showSideMenu={this.openMobileMenuHandler} languageChanger={e => this.changeLanguageHandler(e)} />
-        <PuzzleContainer language={this.state.language}/>
-        <main className={classes.Content}>
-          {this.props.children}
-        </main>
-    </div>
+      <Auxiliary>
+        <div className={classes.Layout}>
+         <MobileMenu close={this.closeMobileMenuHandler} show={this.state.showMobileMenu} />
+           <NavigationBar showSideMenu={this.openMobileMenuHandler} languageChanger={e => this.changeLanguageHandler(e)} />
+           <PuzzleContainer language={this.state.language}/>
+           <main className={classes.Content}>
+             {this.props.children}
+           </main>
+        </div>
+        <Footer /> 
+      </Auxiliary>
     )
   }
 }
