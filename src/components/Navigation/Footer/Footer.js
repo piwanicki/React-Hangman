@@ -22,7 +22,6 @@ const Footer = (props) => {
           <li><img src={hangmanLogo} alt="hangman logo" />Hangman</li>
         </ul>
       </div>
-    
     </footer>
   )
 }
