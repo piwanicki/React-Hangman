@@ -1,6 +1,8 @@
 .Footer {
   color: antiquewhite;
   background-color: #03067e;
+  background: rgb(34,193,195);
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(3,6,126,1) 100%);
   min-height: 150px;
   width:100%;
   margin: 0;

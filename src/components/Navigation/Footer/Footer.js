@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Footer.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCodeBranch, faEnvelope, faHome, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import hangmanLogo from '../../../assets/img/hangmanIconColor.png';
+import hangmanLogo from '../../../assets/img/hangTransparent.png';
 import ticTacToeLogo from '../../../assets/img/tictactoe-icon2.png'
 
 const Footer = (props) => {
