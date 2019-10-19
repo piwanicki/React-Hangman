@@ -1,9 +1,33 @@
 .Footer {
   color: antiquewhite;
   background-color: #03067e;
-  height: 150px;
+  min-height: 150px;
   width:100%;
-  margin-top: 0;
-  display: block;
+  margin: 0;
+  padding:0;
+  position: absolute;
+  top:100vh;
+  text-align: justify;
 }
 
+.Footer div {
+  display: inline-block;
+}
+
+.Footer ul {
+  list-style: none;
+  padding: 0px 20px;
+}
+
+.Footer li {
+  padding: 5px 0;
+}
+
+.InfoSection {
+  margin-left:65%;
+}
+
+.QuickNav {
+  margin-left:60px;
+
+}
