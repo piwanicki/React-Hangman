@@ -3,17 +3,17 @@
   background-color: #03067e;
   background: rgb(6,117,109);
   background: linear-gradient(0deg, rgba(6,117,109,1) 0%, rgba(36,3,126,1) 100%);
-  min-height: 150px;
+  height: auto;
   width:100%;
   margin: 0;
   padding:0;
   position: absolute;
   top:100vh;
-  text-align: justify;
 }
 
 .Footer div {
   display: inline-block;
+  height: 100%;
 }
 
 .Footer ul {
@@ -23,13 +23,57 @@
 
 .Footer li {
   padding: 5px 0;
+  white-space: nowrap;
 }
 
 .InfoSection {
+  margin-top: 0;
   margin-left:65%;
 }
 
 .QuickNav {
   margin-left:60px;
 
+}
+
+.GitIcon {
+  color:black;
+  font-size: 40px;
+}
+
+.GitIcon:hover {
+  color:grey;
+  transition: color 0.5s;
+  cursor: pointer;
+}
+
+.ContactIcon {
+  transition: transform 0.5s;
+}
+
+.ContactIcon:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+li p {
+  font-size: 10px;
+  color: whitesmoke;
+}
+
+li a {
+  text-decoration: none;
+}
+
+a:active,
+a:visited,
+a:hover {
+  color: inherit;
+}
+
+h4 {
+  margin: 10px 0px;
+  color: grey;
+  font-family: 'Dosis' , sans-serif;
+  text-align: center;
 }

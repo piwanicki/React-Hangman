@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.module.css';
 import Layout from '../src/containers/Layout/Layout'
-import Footer from './components/Navigation/Footer/Footer'
+import {BrowserRouter} from 'react-router-dom';
 
 
 class App extends Component {
@@ -9,9 +9,11 @@ class App extends Component {
   render() {
 
     return (
-      <Layout >
-        {/* some props */}
-      </Layout>
+      <BrowserRouter>
+        <Layout >
+          {/* some props */}
+        </Layout>
+      </BrowserRouter>
     )
   };
 }
