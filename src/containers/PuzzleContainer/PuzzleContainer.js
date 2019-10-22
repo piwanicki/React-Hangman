@@ -7,7 +7,7 @@ const PuzzleContainer = (props) => {
 
   return (
     <div className={classes.PuzzleContainer}>
-      <PuzzleWord lang={props.language}/>
+      <PuzzleWord lang={props.language} mailOpened={props.showMailDialog}/>
       {props.children}
     </div>
   )

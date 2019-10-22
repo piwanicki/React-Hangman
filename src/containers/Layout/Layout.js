@@ -5,6 +5,7 @@ import MobileMenu from '../../components/Navigation/MobileMenu/MobileMenu';
 import PuzzleContainer from '../PuzzleContainer/PuzzleContainer';
 import Footer from '../../components/Navigation/Footer/Footer';
 import Auxiliary from '../../hoc/Auxiliary';
+import MailDialog from '../../components/MailDialog/MailDialog';
 
 
 class Layout extends Component {
@@ -12,6 +13,7 @@ class Layout extends Component {
   state = {
     showMobileMenu: false,
     language: 'pl',
+    showMailDialog: true,
   }
 
   openMobileMenuHandler = () => {
@@ -37,11 +39,11 @@ class Layout extends Component {
         <div className={classes.Layout}>
          <MobileMenu close={this.closeMobileMenuHandler} show={this.state.showMobileMenu} />
            <NavigationBar showSideMenu={this.openMobileMenuHandler} languageChanger={e => this.changeLanguageHandler(e)} />
-           <PuzzleContainer language={this.state.language}/>
+           <PuzzleContainer language={this.state.language} showMailDialog={this.state.showMailDialog}/>
            <main className={classes.Content}>
              {this.props.children}
            </main>
-    
+            { this.state.showMailDialog ? <MailDialog /> : null }
         </div>
         <Footer /> 
       </Auxiliary>

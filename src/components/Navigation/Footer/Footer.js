@@ -18,7 +18,7 @@ const Footer = (props) => {
               <FontAwesomeIcon icon={faGithub} /> <p>Github</p>
             </a>
           </li>
-          <li className={classes.ContactIcon}><FontAwesomeIcon icon={faEnvelope} /> <p>Contact Me</p></li>
+          <li className={classes.ContactIcon} ><FontAwesomeIcon icon={faEnvelope} /> <p>Contact Me</p></li>
         </ul>
       </div>
       <div className={classes.QuickNav}>

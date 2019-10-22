@@ -107,8 +107,9 @@ class PuzzleWord extends Component {
     }
   }
 
-  componentDidMount() {
-    document.addEventListener('keydown', (event) => {
+  componentDidMount() { 
+    if(!this.props.mailOpened) {
+      document.addEventListener('keydown', (event) => {
         if(event.code !== 'AltLeft' &&  
            event.code !== 'AltRight' &&
            event.code !== 'ControlLeft' &&
@@ -116,6 +117,7 @@ class PuzzleWord extends Component {
           this.guessedLetterHandler(event.key);
       }
     });
+    }
     this.getPuzzle();
   }
   

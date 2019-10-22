@@ -15,6 +15,7 @@
     "konva": "^4.0.10",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-draggable": "^4.0.3",
     "react-hover": "^1.4.0",
     "react-konva": "^16.9.0-0",
     "react-router-dom": "^5.1.2",
