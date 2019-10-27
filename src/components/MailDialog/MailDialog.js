@@ -12,7 +12,6 @@ class MailDialog extends Component {
 
     state = {
         sending: false,
-        showMailer: false
   }
 
   sendHandler = () => {
@@ -55,14 +54,6 @@ class MailDialog extends Component {
               sended: false});
           });
     }
-  
-
-    closeMailerHandler =  () => {
-      this.setState({
-        showMailer:false
-      })
-    }
-
 
   render() {
 
