@@ -37,7 +37,7 @@ class MailDialog extends Component {
     })
 
     const templateId = 'template_uMFom1rL';
-    this.sendFeedback(templateId, {message_html: [message,emailAddress], from_name: name, from_email: emailAddress}) 
+    this.sendFeedback(templateId, {message_html: message, from_name: name, from_email: emailAddress}) 
     }
 
 
