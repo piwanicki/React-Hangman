@@ -1,5 +1,5 @@
 .MailDialog {
-  height: 300px;
+  height: 350px;
   width: 500px;
   position:fixed;
   top:40%;
@@ -14,9 +14,11 @@ border-radius: 10px;
 }
 
 input {
-  margin: 20px 120px;
-  width:50%;
+  margin: 20px 20px;
+  width:auto;
   height: 30px;
+  display: inline-block;
+  text-align: center;
 }
 
 textarea {
@@ -25,7 +27,35 @@ textarea {
   height: 60%;
 }
 
-.Button {
+.SubmitButton {
   display: inline-block;
-  color: blue;
+  color: green;
+  position:relative;
+  bottom:5px;
+  left: 230px;
+  font-size: 20px;
+  width:70px;
+  border: none;
+  background-color: rgba(240, 248, 255, 0);
+}
+
+.SubmitButton:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 0.4s;
+  border-radius: 50%;
+}
+
+
+.CancelIcon {
+  font-size: 25px;
+  color: #020e3b;
+  position:absolute;
+  margin-top: 5px;
+  right: 10px;
+}
+
+.CancelIcon:hover {
+  transform: scale(1.4);
+  transition: transform 0.5s;
 }
