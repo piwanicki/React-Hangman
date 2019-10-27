@@ -4,14 +4,26 @@
   position:fixed;
   top:40%;
   left: 35%;
-  border: 2px solid;
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-z-index: 1000;
-background-color:whitesmoke;
-border-radius: 10px;
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  z-index: 1000;
+  background-color:whitesmoke;
+  border-radius: 10px;
+
 }
+
+.SlideTop {
+  animation:SlideTop .8s cubic-bezier(.25,.46,.45,.94) both
+}
+
+.SlideBottom {
+  animation:SlideBottom .8s cubic-bezier(.25,.46,.45,.94) both
+}
+
+@keyframes SlideTop{0%{transform:translateY(0)}100%{transform:translateY(-80px)}}
+@keyframes SlideBottom{0%{transform:translateY(0)}100%{transform:translateY(80px)}}
+
 
 input {
   margin: 20px 20px;
@@ -46,6 +58,12 @@ textarea {
   border-radius: 50%;
 }
 
+.SubmitButton:disabled {
+  color:grey;
+  transform: none;
+}
+
+.slide-top{animation:slide-top .8s cubic-bezier(.25,.46,.45,.94) both}
 
 .CancelIcon {
   font-size: 25px;
@@ -58,4 +76,8 @@ textarea {
 .CancelIcon:hover {
   transform: scale(1.4);
   transition: transform 0.5s;
+}
+
+.LoadingSpinner {
+  margin-top: 50px;
 }

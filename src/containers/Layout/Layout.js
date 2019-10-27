@@ -13,7 +13,6 @@ class Layout extends Component {
   state = {
     showMobileMenu: false,
     language: 'pl',
-    showMailDialog: true,
   }
 
   openMobileMenuHandler = () => {
@@ -43,7 +42,6 @@ class Layout extends Component {
            <main className={classes.Content}>
              {this.props.children}
            </main>
-            { this.state.showMailDialog ? <MailDialog /> : null }
         </div>
         <Footer /> 
       </Auxiliary>
