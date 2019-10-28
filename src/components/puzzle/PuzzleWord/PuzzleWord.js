@@ -107,7 +107,7 @@ class PuzzleWord extends Component {
     }
   }
 
-  componentDidMount() { 
+  componentDidMount() {
     if(!this.props.mailOpened) {
       document.addEventListener('keydown', (event) => {
         if(event.code !== 'AltLeft' &&  

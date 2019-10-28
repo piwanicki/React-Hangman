@@ -13,6 +13,7 @@ class Layout extends Component {
   state = {
     showMobileMenu: false,
     language: 'pl',
+    showMailDialog: false, 
   }
 
   openMobileMenuHandler = () => {
@@ -32,6 +33,12 @@ class Layout extends Component {
     this.setState({language: e.target.id})
   }
 
+  showMailDialogHandler = () => {
+    const isShowing = this.state.showMailDialog; 
+    this.setState({showMailDialog: !isShowing});
+    console.log(this.state.showMailDialog )
+  }
+
   render() {
     return(
       <Auxiliary>
@@ -43,7 +50,8 @@ class Layout extends Component {
              {this.props.children}
            </main>
         </div>
-        <Footer /> 
+         <MailDialog  mailerParentUpdate={this.showMailDialogHandler} showMailer={this.state.showMailDialog}/>
+        <Footer showMailerHandler={this.showMailDialogHandler}/> 
       </Auxiliary>
     )
   }

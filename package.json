@@ -18,6 +18,7 @@
     "react-dom": "^16.9.0",
     "react-draggable": "^4.0.3",
     "react-hover": "^1.4.0",
+    "react-keyboard-event-handler": "^1.5.1",
     "react-konva": "^16.9.0-0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.1"

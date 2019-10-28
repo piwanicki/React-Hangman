@@ -11,21 +11,9 @@ import Auxiliary from '../../../hoc/Auxiliary';
 
 class Footer extends Component  {
 
-  state = {
-    showMailer: false,
-  }
-
-  showMailerHandler = () => {
-    const showing = this.state.showMailer;
-    this.setState({
-      showMailer: !showing,
-    })
-  }
-
   render(){
     return (
       <Auxiliary>
-      <MailDialog showMailer={this.state.showMailer} mailerParentUpdate={this.showMailerHandler}/>
       <footer className={classes.Footer}>
         <div className={classes.InfoSection}>
         <h4>Info</h4>
@@ -35,7 +23,7 @@ class Footer extends Component  {
                 <FontAwesomeIcon icon={faGithub} /> <p>Github</p>
               </a>
             </li>
-            <li className={classes.ContactIcon} onClick={this.showMailerHandler}><FontAwesomeIcon icon={faEnvelope} /> <p>Contact Me</p></li>
+            <li className={classes.ContactIcon} onClick={this.props.showMailerHandler}><FontAwesomeIcon icon={faEnvelope} /> <p>Contact Me</p></li>
           </ul>
         </div>
         <div className={classes.QuickNav}>
