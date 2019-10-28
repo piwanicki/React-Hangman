@@ -6,7 +6,6 @@ import {faGithub} from '@fortawesome/free-brands-svg-icons';
 import hangmanLogo from '../../../assets/img/hangTransparent.png';
 import ticTacToeLogo from '../../../assets/img/tictactoe-icon2.png'
 import { Link } from 'react-router-dom';
-import MailDialog from '../../MailDialog/MailDialog';
 import Auxiliary from '../../../hoc/Auxiliary';
 
 class Footer extends Component  {

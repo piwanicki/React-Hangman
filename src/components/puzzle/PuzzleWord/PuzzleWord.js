@@ -6,6 +6,7 @@ import Auxiliary from '../../../hoc/Auxiliary';
 import KonvaDrawer from '../../../components/KonvaDrawer/KonvaDrawer'
 import LoadingSpinner from '../../../UI/LoadingSpinner/LoadingSpinner'
 import PuzzleHint from './PuzzleHint';
+import KeyboardEventHandler from 'react-keyboard-event-handler';
 
 // const deadKeys = [
 //   'AltLeft', 'AltRight', 'ControlLeft', 'ControlRight'
@@ -108,16 +109,6 @@ class PuzzleWord extends Component {
   }
 
   componentDidMount() {
-    if(!this.props.mailOpened) {
-      document.addEventListener('keydown', (event) => {
-        if(event.code !== 'AltLeft' &&  
-           event.code !== 'AltRight' &&
-           event.code !== 'ControlLeft' &&
-           event.code !== 'ControlRight' ) {
-          this.guessedLetterHandler(event.key);
-      }
-    });
-    }
     this.getPuzzle();
   }
   
@@ -137,6 +128,12 @@ class PuzzleWord extends Component {
       <Auxiliary>
         <PuzzleHint word={this.state.wordEng}/>
         <div onClick={this.getPuzzle} className={classes.newWordBtn}>{downloadBtnString}</div>
+        <KeyboardEventHandler  
+          handleKeys={['alphabetic', 'alt+a','alt+l','alt+n','alt+s','alt+x','alt+z','alt+e','alt+o']}
+          handleEventType={'keydown'}
+          onKeyEvent={(key,e) => this.guessedLetterHandler(e.key) }
+          isDisabled={this.props.mailOpened} >
+        </KeyboardEventHandler>
             <div className={classes.PuzzleWord} >
               {letters}
             </div>
