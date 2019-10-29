@@ -11,6 +11,9 @@ class MailDialog extends Component {
     state = {
         sending: false,
         status: null,
+        emailForm: '',
+        whoForm: '',
+        message: '',
   }
 
   sendHandler = () => {
@@ -26,7 +29,11 @@ class MailDialog extends Component {
     if(emailAddress !== '' && message !=='' && name !== '' ){
       this.setState({
         sending: true,
+        message: message,
+        whoForm: name,
+        emailForm: emailAddress
       })
+      
       this.sendFeedback('badID', {message_html: message, from_name: name, from_email: emailAddress}) 
     }
   
@@ -34,37 +41,32 @@ class MailDialog extends Component {
 
 
     sendFeedback (templateId, variables ) {
-      window.emailjs.send(
-        'gmail',templateId,variables)
+      window.emailjs.send('gmail',templateId,variables)
           .then(res => {
-              console.log('Mail sended succesfully!');
               this.setState({
                 sending: false,
                 status: true,
                 sended: true,
+                emailForm:'',
+                whoForm: '',
+                message: ''
               });
-              this.inputRef.value='';
-              this.emailRef.value='';
-              this.nameRef.value='';
           })
           .catch(error => {
-            console.log('Error with sending email', error);
             this.setState({
               sending: false,
               status: false,
               sended: true});
-          });   
+           });
+
+          setTimeout(() => {
+            this.setState({
+              sended: null
+            })
+          },2000)
     }
 
   render() {
-
-    let status;
-
-    if (this.state.status) {
-      status='Email send successfully!'
-    } else {
-      status='Something went wrong with sending email. Please try again... ;( '
-    }
 
     let form = (       
        <Auxiliary>      
@@ -78,11 +80,8 @@ class MailDialog extends Component {
        </Auxiliary>
     )
 
-
-    form = this.state.sended ? <StatusMail status={this.state.status}>{status}</StatusMail>  : form;
+    form = this.state.sended ? <StatusMail status={this.state.status} />  : form;
     
-
-
     return ( 
       <Auxiliary> 
       { this.props.showMailer ? 
