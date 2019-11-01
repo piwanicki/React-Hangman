@@ -8,6 +8,7 @@ import LoadingSpinner from '../../../UI/LoadingSpinner/LoadingSpinner'
 import PuzzleHint from './PuzzleHint';
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 
+
 // const deadKeys = [
 //   'AltLeft', 'AltRight', 'ControlLeft', 'ControlRight'
 // ]

@@ -1,10 +1,23 @@
 .PuzzleWord {
-    margin-top: 17%;
+
     height: 60px;
-    position: relative;
-    width: auto;
-    padding-right: 180px;
+    width: 500px;
+    padding-right: 200px;
     z-index: 50;
+    margin: 150px 200px
+}
+
+
+@media (min-width: 1081px){
+    .PuzzleWord {
+        width:900px;
+    }
+}
+
+@media (max-width: 1441px) {
+    .PuzzleWord{
+        margin-left:50px;
+    }
 }
 
 

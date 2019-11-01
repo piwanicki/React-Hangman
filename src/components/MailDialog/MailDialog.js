@@ -18,6 +18,7 @@ class MailDialog extends Component {
 
   sendHandler = () => {
 
+    //paste to senFeedback (template , ...)
     const templateId = 'template_uMFom1rL';
 
     const emailAddress = this.inputRef.value;
@@ -34,7 +35,7 @@ class MailDialog extends Component {
         emailForm: emailAddress
       })
       
-      this.sendFeedback('badID', {message_html: message, from_name: name, from_email: emailAddress}) 
+      this.sendFeedback(templateId, {message_html: message, from_name: name, from_email: emailAddress}) 
     }
   
     }
