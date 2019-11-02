@@ -6,14 +6,12 @@ const GameSelector = (props) => {
 
   return (
     <div className={classes.GameSelector}>
-      <ul>
         <GameLink 
           to='/tictactoe' 
           linkInfo='TIC TAC TOE' />
         <GameLink 
           to='/hangman' 
           linkInfo='HANGMAN' />
-      </ul>
     </div>
   )
 }
