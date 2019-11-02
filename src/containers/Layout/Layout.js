@@ -12,7 +12,7 @@ class Layout extends Component {
 
   state = {
     showMobileMenu: false,
-    language: 'pl',
+    language: 'en',
     showMailDialog: false, 
   }
 

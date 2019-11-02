@@ -64,7 +64,7 @@ class MailDialog extends Component {
             this.setState({
               sended: null
             })
-          },2000)
+          },3000)
     }
 
   render() {
@@ -72,11 +72,11 @@ class MailDialog extends Component {
     let form = (       
        <Auxiliary>      
           <div>
-            <input type='text' placeholder='Name' required ref={el => this.nameRef = el}/>
-            <input type='text' placeholder='Your email address' name='emailAddress' required ref={el => this.inputRef = el}/>
+            <input type='text' placeholder='Name' required ref={el => this.nameRef = el} defaultValue={this.state.whoForm}/>
+            <input type='text' placeholder='Your email address' name='emailAddress' required ref={el => this.inputRef = el} defaultValue={this.state.emailForm}/>
             <FontAwesomeIcon icon={faTimes} className={classes.CancelIcon} onClick={this.props.mailerParentUpdate}/>
           </div>
-          <textarea placeholder='Type your message here...' name='message' required ref={el => this.emailRef = el}></textarea>
+          <textarea placeholder='Type your message here...' name='message' required ref={el => this.emailRef = el} defaultValue={this.state.message}></textarea>
           <button type='submit' className={classes.SubmitButton} onClick={this.sendHandler} >Send</button>
        </Auxiliary>
     )
