@@ -16,6 +16,13 @@
   height: 100%;
 }
 
+.YandexAdnotation {
+  float:left;
+  padding-top: 150px;
+  color:grey;
+  margin-left: 20px;
+}
+
 .Footer ul {
   list-style: none;
   padding: 0px 10px;

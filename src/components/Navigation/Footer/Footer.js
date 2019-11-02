@@ -14,6 +14,7 @@ class Footer extends Component  {
     return (
       <Auxiliary>
       <footer className={classes.Footer}>
+      <span className={classes.YandexAdnotation}>Powered by Yandex API</span>
         <div className={classes.InfoSection}>
         <h4>Info</h4>
           <ul>
