@@ -8,12 +8,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ReactHover from "react-hover";
 import axios from "axios";
+import optionsCursorHover from '../../../componentOptions/ReactHoverOptions';
 
-const optionsCursorHover = {
-  followCursor: false,
-  shiftX: 0,
-  shiftY: 0
-};
+
 
 class PuzzleHint extends Component {
   state = {
