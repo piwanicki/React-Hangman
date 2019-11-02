@@ -1,6 +1,6 @@
 .Layout {
-    min-height: 950px;
-    width:100%;
-    background-image: url('../../assets/img/table.jpg');
-    background-size: cover;
+  min-height: 900px;
+  width: 100%;
+  background-image: url("../../assets/img/table.jpg");
+  background-size: cover;
 }

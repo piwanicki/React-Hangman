@@ -1,33 +1,45 @@
 .MailDialog {
   height: 350px;
   width: 500px;
-  position:fixed;
-  top:40%;
+  position: fixed;
+  top: 40%;
   left: 35%;
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   z-index: 1000;
-  background-color:whitesmoke;
+  background-color: whitesmoke;
   border-radius: 10px;
-
 }
 
 .SlideTop {
-  animation:SlideTop .8s cubic-bezier(.25,.46,.45,.94) both
+  animation: SlideTop 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .SlideBottom {
-  animation:SlideBottom .8s cubic-bezier(.25,.46,.45,.94) both
+  animation: SlideBottom 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
-@keyframes SlideTop{0%{transform:translateY(0)}100%{transform:translateY(-80px)}}
-@keyframes SlideBottom{0%{transform:translateY(0)}100%{transform:translateY(80px)}}
-
+@keyframes SlideTop {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-80px);
+  }
+}
+@keyframes SlideBottom {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(80px);
+  }
+}
 
 input {
   margin: 20px 20px;
-  width:auto;
+  width: auto;
   height: 30px;
   display: inline-block;
   text-align: center;
@@ -42,11 +54,11 @@ textarea {
 .SubmitButton {
   display: inline-block;
   color: green;
-  position:relative;
-  bottom:5px;
+  position: relative;
+  bottom: 5px;
   left: 230px;
   font-size: 20px;
-  width:70px;
+  width: 70px;
   border: none;
   background-color: rgba(240, 248, 255, 0);
 }
@@ -59,16 +71,18 @@ textarea {
 }
 
 .SubmitButton:disabled {
-  color:grey;
+  color: grey;
   transform: none;
 }
 
-.slide-top{animation:slide-top .8s cubic-bezier(.25,.46,.45,.94) both}
+.slide-top {
+  animation: slide-top 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
 
 .CancelIcon {
   font-size: 25px;
   color: #020e3b;
-  position:absolute;
+  position: absolute;
   margin-top: 5px;
   right: 10px;
 }

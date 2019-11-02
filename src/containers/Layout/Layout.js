@@ -36,7 +36,6 @@ class Layout extends Component {
   showMailDialogHandler = () => {
     const isShowing = this.state.showMailDialog; 
     this.setState({showMailDialog: !isShowing});
-    console.log(this.state.showMailDialog )
   }
 
   render() {

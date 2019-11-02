@@ -1,40 +1,37 @@
 .PuzzleWord {
-
-    height: 60px;
-    width: 500px;
-    padding-right: 200px;
-    z-index: 50;
-    margin: 150px 200px
+  height: 60px;
+  width: 500px;
+  padding-right: 200px;
+  z-index: 50;
+  margin: 150px 200px;
 }
 
-
-@media (min-width: 1081px){
-    .PuzzleWord {
-        width:900px;
-    }
+@media (min-width: 1081px) {
+  .PuzzleWord {
+    width: 900px;
+  }
 }
 
 @media (max-width: 1441px) {
-    .PuzzleWord{
-        margin-left:50px;
-    }
+  .PuzzleWord {
+    margin-left: 50px;
+  }
 }
 
-
 .newWordBtn {
-    font-family: 'Indie Flower', cursive;
-    background-color:transparent;
-    font-weight: bold;
-	display:inline-block;
-	cursor:pointer;
-	color:#03067e;
-	font-size:45px;
-	/* padding-top:20px; */
-	text-decoration:none;
-    text-shadow:0px 1px 0px #ffffff;
+  font-family: "Indie Flower", cursive;
+  background-color: transparent;
+  font-weight: bold;
+  display: inline-block;
+  cursor: pointer;
+  color: #03067e;
+  font-size: 45px;
+  /* padding-top:20px; */
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
 }
 
 .newWordBtn:active {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
 }
