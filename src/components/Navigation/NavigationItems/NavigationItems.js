@@ -14,14 +14,14 @@ const NavigationItems = props => {
       <LanguageSelector countryID="de" clicked={props.changeLang} />
       
       <div className={classes.GameSelector}>
-      <ReactHover options={optionsCursorHover}>
-        <ReactHover.Trigger type='trigger' >
-          <NavigationItem>GAME</NavigationItem>
-        </ReactHover.Trigger>
-        <ReactHover.Hover type='hover'>
-          <GameSelector />
-        </ReactHover.Hover>
-      </ReactHover>
+        <ReactHover options={optionsCursorHover}>
+          <ReactHover.Trigger type='trigger' >
+            <NavigationItem>GAME</NavigationItem>
+          </ReactHover.Trigger>
+          <ReactHover.Hover type='hover'>
+            <GameSelector />
+          </ReactHover.Hover>
+        </ReactHover>
       </div>
 
 
@@ -31,15 +31,3 @@ const NavigationItems = props => {
 };
 
 export default NavigationItems;
-
-
-{/* <ReactHover options={optionsCursorHover}> */}
-{/* <ReactHover.Trigger type="trigger"> */}
-  {/* <FontAwesomeIcon */}
-    // icon={faInfoCircle}
-    // className={classes.HintIcon}
-    // onClick={this.lockHints}
-  // />
-// </ReactHover.Trigger>
-{/* <ReactHover.Hover type="hover">{hoverHints}</ReactHover.Hover> } */}
-// </ReactHover>

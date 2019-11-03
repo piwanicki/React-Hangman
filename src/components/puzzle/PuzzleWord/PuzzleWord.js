@@ -101,13 +101,23 @@ class PuzzleWord extends Component {
   };
 
   checkIfWin = () => {
-    const puzzles = [...this.state.puzzle];
+    let puzzles = [...this.state.puzzle];
+    const word = this.state.word;
+
     if (this.state.chances > 0 && puzzles.indexOf("_") === -1) {
-      alert(`wygrales!`);
-      this.setState({ gamePlaying: false });
+      this.setState({ 
+        gamePlaying: false,
+      });
     }
     if (this.state.chances === 0) {
-      alert(`przegrales`);
+      puzzles = word
+      .split("")
+      .map(el => el);
+      this.setState({
+        puzzle: puzzles,
+        gamePlaying: false,
+      })
+      
       console.log(`Haslo to : ${this.state.word}`);
       this.setState({ gamePlaying: false });
     }
