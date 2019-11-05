@@ -1,3 +1,7 @@
 .GameSelector {
   display:inline-block;
 }
+
+.HighScore {
+  display: inline-block;
+}

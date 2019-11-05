@@ -5,6 +5,7 @@ import LanguageSelector from "../../LanguageSelector/LanguageSelector";
 import ReactHover from 'react-hover';
 import GameSelector from "../GameSelector/GameSelector";
 import optionsCursorHover from '../../../componentOptions/ReactHoverOptions'
+import HighScore from "../../Highscore/Highscore";
 
 const NavigationItems = props => {
   return (
@@ -24,8 +25,16 @@ const NavigationItems = props => {
         </ReactHover>
       </div>
 
-
-      <NavigationItem>HIGHSCORE</NavigationItem>
+      <div className={classes.HighScore}>
+      <ReactHover options={optionsCursorHover}>
+          <ReactHover.Trigger type='trigger' >
+          <NavigationItem>HIGHSCORE</NavigationItem>
+          </ReactHover.Trigger>
+          <ReactHover.Hover type='hover'>
+            <HighScore />
+          </ReactHover.Hover>
+        </ReactHover>
+      </div>
     </div>
   );
 };
