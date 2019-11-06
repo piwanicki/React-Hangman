@@ -7,11 +7,20 @@ import {faTrophy} from '@fortawesome/free-solid-svg-icons';
 class HighScore extends Component {
 
   state = {
-    highscoreArr: []
+    highscoreArr: new Map(),
   }
+
+  addScore = () => {
+    
+  }
+  
 
 
   render() {
+
+    let scores = this.state.highscoreArr; 
+    console.log(scores);
+
 
     return (
       <div className={classes.HighScore}>

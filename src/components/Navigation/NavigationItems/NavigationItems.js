@@ -31,7 +31,7 @@ const NavigationItems = props => {
           <NavigationItem>HIGHSCORE</NavigationItem>
           </ReactHover.Trigger>
           <ReactHover.Hover type='hover'>
-            <HighScore />
+            <HighScore score={props.score}/>
           </ReactHover.Hover>
         </ReactHover>
       </div>

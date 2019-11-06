@@ -11,7 +11,7 @@ const NavigationBar = props => {
           <MobileMenuBtn clicked={props.showSideMenu} />
           <ul className={classes.NavigationMenu}>
             <div className={classes.DesktopOnly}>
-              <NavigationItems changeLang={props.languageChanger} />
+              <NavigationItems changeLang={props.languageChanger} score={props.score}/>
             </div>
           </ul>
         </nav>

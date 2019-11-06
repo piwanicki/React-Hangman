@@ -21,7 +21,9 @@ class PuzzleWord extends Component {
     loading: false,
     gamePlaying: false,
     hint: "",
-    wordEng: ""
+    wordEng: "",
+    scoreStrike: 0,
+    score: new Map(),
   };
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -29,16 +31,6 @@ class PuzzleWord extends Component {
       this.getPuzzle();
     }
   }
-
-  getDefinitionHint = () => {
-    //   axios.get(`https://api.datamuse.com/words?ml=${this.state.word}&md=d&max=1`)
-    //     .then(response => {
-    //       let hint = response.data[0].defs[0].split('n	');
-    //       this.setState({hint: hint[1]})
-    //       console.log(this.state.hint)
-    //     })
-    //     .catch(error => console.log(error));
-  };
 
   getPuzzle = () => {
     this.setState({ loading: true });
@@ -53,11 +45,10 @@ class PuzzleWord extends Component {
           )
           .then(response => {
             this.setupPuzzle(response.data.text.join("").toLowerCase());
-            console.log(this.state.word);
           });
       }
       console.log(this.state.word);
-      this.getDefinitionHint();
+
     });
   };
 
@@ -96,27 +87,44 @@ class PuzzleWord extends Component {
       guessedLetters: [],
       loading: false,
       gamePlaying: true,
-      hint: ""
+      hint: "",
     });
   };
 
   checkIfWin = () => {
     let puzzles = [...this.state.puzzle];
     const word = this.state.word;
+    let scoreStrike = this.state.scoreStrike;
+    let userName;
+    let scoreMap = this.state.score;
 
     if (this.state.chances > 0 && puzzles.indexOf("_") === -1) {
       this.setState({ 
         gamePlaying: false,
+        scoreStrike: scoreStrike+1
       });
+      console.log(`masz już ${this.state.scoreStrike} punkt/ów! Tak trzymaj!`);
     }
     if (this.state.chances === 0) {
+
+      if(scoreStrike > 0) {
+        userName = prompt("Gratulacje! Podaj swoje imie!")
+        scoreMap.set(userName, this.state.scoreStrike)
+        this.setState({score: scoreMap});
+        console.log(this.state.score);
+      }
+
+      console.log(userName)
       puzzles = word
       .split("")
       .map(el => el);
       this.setState({
         puzzle: puzzles,
         gamePlaying: false,
+        scoreStrike: 0
       })
+
+
       
       console.log(`Haslo to : ${this.state.word}`);
       this.setState({ gamePlaying: false });
