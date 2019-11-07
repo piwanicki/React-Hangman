@@ -109,8 +109,12 @@ class PuzzleWord extends Component {
 
       if(scoreStrike > 0) {
         userName = prompt("Gratulacje! Podaj swoje imie!")
-        scoreMap.set(userName, this.state.scoreStrike)
-        this.setState({score: scoreMap});
+
+        if (scoreMap.size < 3) {
+          scoreMap.set(userName, this.state.scoreStrike)
+          this.setState({score: scoreMap});
+        }
+      
         console.log(this.state.score);
       }
 
