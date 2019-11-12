@@ -11,7 +11,7 @@ class HighScore extends Component {
     let scores = this.props.score; 
     console.log(scores);
 
-
+    
     return (
       <div className={classes.HighScore}>
         <p style={{fontSize:'1.2em'}}><FontAwesomeIcon icon={faTrophy} className={classes.FirstPlace}/> 1. Miejsce</p>

@@ -109,23 +109,23 @@ class PuzzleWord extends Component {
         if (scoreMap.size < 3 && scoreStrike > 0) {
           userName = prompt("Gratulacje! Podaj swoje imie!")
           scoreMap.set(userName, this.state.scoreStrike)
-          // this.setState({score: scoreMap});
-          const test = updateHighscoreBoard(scoreMap);
-          console.log(test)
+          this.setState({score: scoreMap});
         }
+
+        puzzles = word
+        .split("")
+        .map(el => el);
+        this.setState({
+          puzzle: puzzles,
+          gamePlaying: false,
+          scoreStrike: 0
+        })
+  
+        console.log(`Haslo to : ${this.state.word}`);
+        this.setState({ gamePlaying: false });
       }
 
-      puzzles = word
-      .split("")
-      .map(el => el);
-      this.setState({
-        puzzle: puzzles,
-        gamePlaying: false,
-        scoreStrike: 0
-      })
-
-      console.log(`Haslo to : ${this.state.word}`);
-      this.setState({ gamePlaying: false });
+    
   };
 
   componentDidMount() {
@@ -180,13 +180,10 @@ class PuzzleWord extends Component {
 
 const mapStateToProps = state => {
   return {
-    score: state.score
+    score: updateHighscoreBoard(state.score)
   };
 };
 
 const mapDispatchToProps = { updateHighscoreBoard };
-
-
-//export const AppContainer = connect(mapStateToProps,mapDispatchToProps)(App);
 
 export default PuzzleWord = connect(mapStateToProps,mapDispatchToProps)(PuzzleWord);
