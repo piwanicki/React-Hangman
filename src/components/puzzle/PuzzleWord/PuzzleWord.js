@@ -7,7 +7,8 @@ import KonvaDrawer from "../../../components/KonvaDrawer/KonvaDrawer";
 import LoadingSpinner from "../../../UI/LoadingSpinner/LoadingSpinner";
 import PuzzleHint from "./PuzzleHint";
 import KeyboardEventHandler from "react-keyboard-event-handler";
-import {updateHighscoreBoard} from '../../../actions/index'
+import {updateHighscoreBoard} from '../../../actions/index';
+import {connect} from 'react-redux';
 
 
 class PuzzleWord extends Component {
@@ -103,12 +104,10 @@ class PuzzleWord extends Component {
       });
       console.log(`masz już ${this.state.scoreStrike} punkt/ów! Tak trzymaj!`);
     }
+
     if (this.state.chances === 0) {
-
-      if(scoreStrike > 0) {
-        userName = prompt("Gratulacje! Podaj swoje imie!")
-
-        if (scoreMap.size < 3) {
+        if (scoreMap.size < 3 && scoreStrike > 0) {
+          userName = prompt("Gratulacje! Podaj swoje imie!")
           scoreMap.set(userName, this.state.scoreStrike)
           // this.setState({score: scoreMap});
           const test = updateHighscoreBoard(scoreMap);
@@ -125,11 +124,8 @@ class PuzzleWord extends Component {
         scoreStrike: 0
       })
 
-
-      
       console.log(`Haslo to : ${this.state.word}`);
       this.setState({ gamePlaying: false });
-    }
   };
 
   componentDidMount() {
@@ -182,4 +178,15 @@ class PuzzleWord extends Component {
   }
 }
 
-export default PuzzleWord;
+const mapStateToProps = state => {
+  return {
+    score: state.score
+  };
+};
+
+const mapDispatchToProps = { updateHighscoreBoard };
+
+
+//export const AppContainer = connect(mapStateToProps,mapDispatchToProps)(App);
+
+export default PuzzleWord = connect(mapStateToProps,mapDispatchToProps)(PuzzleWord);

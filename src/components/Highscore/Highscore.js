@@ -6,10 +6,6 @@ import {faTrophy} from '@fortawesome/free-solid-svg-icons';
 
 class HighScore extends Component {
 
-  state = {
-    highscoreArr: new Map(),
-  }
-
   render() {
 
     let scores = this.props.score; 
