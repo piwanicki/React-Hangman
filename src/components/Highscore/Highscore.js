@@ -10,15 +10,9 @@ class HighScore extends Component {
     highscoreArr: new Map(),
   }
 
-  addScore = () => {
-    
-  }
-  
-
-
   render() {
 
-    let scores = this.state.highscoreArr; 
+    let scores = this.props.score; 
     console.log(scores);
 
 

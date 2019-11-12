@@ -7,10 +7,8 @@ import KonvaDrawer from "../../../components/KonvaDrawer/KonvaDrawer";
 import LoadingSpinner from "../../../UI/LoadingSpinner/LoadingSpinner";
 import PuzzleHint from "./PuzzleHint";
 import KeyboardEventHandler from "react-keyboard-event-handler";
+import {updateHighscoreBoard} from '../../../actions/index'
 
-// const deadKeys = [
-//   'AltLeft', 'AltRight', 'ControlLeft', 'ControlRight'
-// ]
 
 class PuzzleWord extends Component {
   state = {
@@ -112,13 +110,12 @@ class PuzzleWord extends Component {
 
         if (scoreMap.size < 3) {
           scoreMap.set(userName, this.state.scoreStrike)
-          this.setState({score: scoreMap});
+          // this.setState({score: scoreMap});
+          const test = updateHighscoreBoard(scoreMap);
+          console.log(test)
         }
-      
-        console.log(this.state.score);
       }
 
-      console.log(userName)
       puzzles = word
       .split("")
       .map(el => el);
