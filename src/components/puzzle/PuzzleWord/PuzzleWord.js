@@ -178,12 +178,7 @@ class PuzzleWord extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    score: updateHighscoreBoard(state.score)
-  };
-};
 
 const mapDispatchToProps = { updateHighscoreBoard };
 
-export default PuzzleWord = connect(mapStateToProps,mapDispatchToProps)(PuzzleWord);
+export default PuzzleWord = connect(null,mapDispatchToProps)(PuzzleWord);

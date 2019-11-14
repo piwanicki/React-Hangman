@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import classes from './Highscore.module.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTrophy} from '@fortawesome/free-solid-svg-icons';
-
+import {connect} from 'react-redux';
 
 class HighScore extends Component {
 
@@ -20,8 +20,13 @@ class HighScore extends Component {
       </div>
     )
   }
-
-
 }
 
-export default HighScore;
+const mapPropsToState = state => {
+  return {
+    score: state.score
+  }
+}
+
+
+export default connect(mapPropsToState,null)(HighScore);

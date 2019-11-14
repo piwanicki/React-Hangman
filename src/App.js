@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import './App.module.css';
 import Layout from '../src/containers/Layout/Layout'
 import {BrowserRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {updateHighscoreBoard} from './actions';
-
 
 class App extends Component {
 
@@ -20,13 +17,5 @@ class App extends Component {
   };
 }
 
-const mapStateToProps = (state) => {
-  return {
-    highscore: state.highscore
-  }
-};
-
-const mapDispatchToProps = { updateHighscoreBoard };
-
-export const AppContainer = connect(mapStateToProps,mapDispatchToProps)(App);
+export default App;
 
