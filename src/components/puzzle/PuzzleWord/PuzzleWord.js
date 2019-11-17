@@ -7,7 +7,7 @@ import KonvaDrawer from "../../../components/KonvaDrawer/KonvaDrawer";
 import LoadingSpinner from "../../../UI/LoadingSpinner/LoadingSpinner";
 import PuzzleHint from "./PuzzleHint";
 import KeyboardEventHandler from "react-keyboard-event-handler";
-import {updateHighscoreBoard} from '../../../actions/index';
+//import {updateHighscoreBoard} from '../../../actions/index';
 import {connect} from 'react-redux';
 
 
@@ -22,7 +22,7 @@ class PuzzleWord extends Component {
     hint: "",
     wordEng: "",
     scoreStrike: 0,
-    score: new Map(),
+    scoreMap: new Map()
   };
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -95,7 +95,7 @@ class PuzzleWord extends Component {
     const word = this.state.word;
     let scoreStrike = this.state.scoreStrike;
     let userName;
-    let scoreMap = this.state.score;
+    let scoreMap = this.state.scoreMap;
 
     if (this.state.chances > 0 && puzzles.indexOf("_") === -1) {
       this.setState({ 
@@ -109,7 +109,7 @@ class PuzzleWord extends Component {
         if (scoreMap.size < 3 && scoreStrike > 0) {
           userName = prompt("Gratulacje! Podaj swoje imie!")
           scoreMap.set(userName, this.state.scoreStrike)
-          this.setState({score: scoreMap});
+          this.props.updateHighscoreBoard(userName, this.state.scoreStrike);
         }
 
         puzzles = word
@@ -178,7 +178,12 @@ class PuzzleWord extends Component {
   }
 }
 
+// const mapDispatchToProps = { updateHighscoreBoard };
 
-const mapDispatchToProps = { updateHighscoreBoard };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateHighscoreBoard : (name,score) => dispatch({type: 'UPDATE_HIGHSCORE_BOARD', name: name, score: score})
+  }
+}
 
-export default PuzzleWord = connect(null,mapDispatchToProps)(PuzzleWord);
+export default connect(null,mapDispatchToProps)(PuzzleWord);
