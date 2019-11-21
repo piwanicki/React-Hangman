@@ -15,13 +15,11 @@ class HighScore extends Component {
       scoreArr.push(`${el[0]}  ${el[1]}.Pts`);
     }
 
-
-
     return (
       <div className={classes.HighScore}>
-        <p style={{fontSize:'1.2em'}}><FontAwesomeIcon icon={faTrophy} className={classes.FirstPlace}/> {scoreArr.length > 0 ? scoreArr[0] : null}</p>
-        <p style={{fontSize:'1em'}}><FontAwesomeIcon icon={faTrophy} className={classes.SecondPlace}/> {scoreArr.length > 1 ? scoreArr[1] : null}</p>
-        <p style={{fontSize:'0.75em'}}><FontAwesomeIcon icon={faTrophy} className={classes.ThirdPlace}/> {scoreArr.length > 2 ? scoreArr[2] : null}</p>
+        <p style={{fontSize:'1.05em'}}><FontAwesomeIcon icon={faTrophy} className={classes.FirstPlace}/> {scoreArr.length > 0 ? scoreArr[0] : null}</p>
+        <p style={{fontSize:'0.8em'}}><FontAwesomeIcon icon={faTrophy} className={classes.SecondPlace}/> {scoreArr.length > 1 ? scoreArr[1] : null}</p>
+        <p style={{fontSize:'0.7em'}}><FontAwesomeIcon icon={faTrophy} className={classes.ThirdPlace}/> {scoreArr.length > 2 ? scoreArr[2] : null}</p>
       </div>
     )
   }
@@ -32,5 +30,7 @@ const mapPropsToState = state => {
     score: state.score
   }
 }
+
+
 
 export default connect(mapPropsToState,null)(HighScore);

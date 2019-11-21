@@ -9,6 +9,7 @@ import PuzzleHint from "./PuzzleHint";
 import KeyboardEventHandler from "react-keyboard-event-handler";
 //import {updateHighscoreBoard} from '../../../actions/index';
 import {connect} from 'react-redux';
+import highscoreInstance from '../../../axios-highscore';
 
 
 class PuzzleWord extends Component {
@@ -90,12 +91,22 @@ class PuzzleWord extends Component {
     });
   };
 
+  sendHighscoreToDB = (name, score) => {
+    const highscore = {
+      name: name,
+      score: score
+    }
+    highscoreInstance.post('/highscrore.json', highscore)
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
+  }
+
   checkIfWin = () => {
     let puzzles = [...this.state.puzzle];
     const word = this.state.word;
     let scoreStrike = this.state.scoreStrike;
     let userName;
-    let scoreMap = this.state.scoreMap;
+    let scoreMap = this.props.score;
 
     if (this.state.chances > 0 && puzzles.indexOf("_") === -1) {
       this.setState({ 
@@ -109,7 +120,8 @@ class PuzzleWord extends Component {
         if (scoreMap.size < 3 && scoreStrike > 0) {
           userName = prompt("Gratulacje! Podaj swoje imie!")
           scoreMap.set(userName, this.state.scoreStrike)
-          this.props.updateHighscoreBoard(userName, this.state.scoreStrike);
+          this.props.updateHighscoreBoard(userName, scoreStrike);
+          this.sendHighscoreToDB(userName, scoreStrike);
         }
 
         puzzles = word
@@ -180,10 +192,18 @@ class PuzzleWord extends Component {
 
 // const mapDispatchToProps = { updateHighscoreBoard };
 
+const mapStateToProps = (state) => {
+  return {
+    score: state.score,
+  }
+}
+
+
 const mapDispatchToProps = (dispatch) => {
   return {
     updateHighscoreBoard : (name,score) => dispatch({type: 'UPDATE_HIGHSCORE_BOARD', name: name, score: score})
   }
 }
 
-export default connect(null,mapDispatchToProps)(PuzzleWord);
+
+export default connect(mapStateToProps,mapDispatchToProps)(PuzzleWord);
