@@ -3,23 +3,40 @@ import classes from './Highscore.module.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTrophy} from '@fortawesome/free-solid-svg-icons';
 import {connect} from 'react-redux';
+import highscoreDB from '../../axios-highscore';
 
 class HighScore extends Component {
 
+  state = {
+   scoreArr: [] 
+  }
+
+  getDBHighscores = () => {
+    let scoreArr = this.state.scoreArr;
+    highscoreDB.get('/highscore.json')
+      .then(response => {
+        for(const el of Object.values(response.data)) {
+          scoreArr.push(`${el.name} - ${el.score} Pts.`);
+          this.setState({scoreArr : scoreArr});
+        }
+      })
+      .catch(error => console.log(error));
+  } 
+
+
+  componentDidMount() {
+    this.getDBHighscores();
+  }
+
+
   render() {
-
-    const scores = this.props.score; 
-    let scoreArr = [];
-
-    for( const el of scores) {
-      scoreArr.push(`${el[0]}  ${el[1]}.Pts`);
-    }
+    const scoreArr = this.state.scoreArr;
 
     return (
       <div className={classes.HighScore}>
-        <p style={{fontSize:'1.05em'}}><FontAwesomeIcon icon={faTrophy} className={classes.FirstPlace}/> {scoreArr.length > 0 ? scoreArr[0] : null}</p>
-        <p style={{fontSize:'0.8em'}}><FontAwesomeIcon icon={faTrophy} className={classes.SecondPlace}/> {scoreArr.length > 1 ? scoreArr[1] : null}</p>
-        <p style={{fontSize:'0.7em'}}><FontAwesomeIcon icon={faTrophy} className={classes.ThirdPlace}/> {scoreArr.length > 2 ? scoreArr[2] : null}</p>
+        <p style={{fontSize:'1.05em'}}><FontAwesomeIcon icon={faTrophy} className={classes.FirstPlace}/> { scoreArr[0] }</p>
+        <p style={{fontSize:'0.8em'}}><FontAwesomeIcon icon={faTrophy} className={classes.SecondPlace}/> { scoreArr[1] }</p>
+        <p style={{fontSize:'0.7em'}}><FontAwesomeIcon icon={faTrophy} className={classes.ThirdPlace}/> { scoreArr[2] }</p>
       </div>
     )
   }

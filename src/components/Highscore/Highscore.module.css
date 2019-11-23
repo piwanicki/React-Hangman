@@ -1,6 +1,7 @@
 .HighScore {
   width: 220px;
-  height: 200px;
+  min-height: 200px;
+  height: auto;
   background-color: papayawhip;
   border: 2px rgb(161, 75, 13) solid;
   border-radius: 10px;

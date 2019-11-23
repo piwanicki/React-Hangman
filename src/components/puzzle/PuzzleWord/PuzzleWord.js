@@ -96,7 +96,7 @@ class PuzzleWord extends Component {
       name: name,
       score: score
     }
-    highscoreInstance.post('/highscrore.json', highscore)
+    highscoreInstance.post('/highscore.json', highscore)
       .then(response => console.log(response))
       .catch(error => console.log(error));
   }
