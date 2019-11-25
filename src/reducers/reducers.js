@@ -1,5 +1,6 @@
 const initialState = {
   score: new Map(),
+  fetching: false,
 }
 
 const reducers = (state = initialState, action ) => {
@@ -10,6 +11,14 @@ const reducers = (state = initialState, action ) => {
       return {
         ...state,
         score: updatedHSMap
+      }
+
+      case 'FETCH_HIGHSCORE_BOARD' :
+        const fetch = state.fetching;
+        console.log(state.fetching);
+      return {
+        ...state,
+        fetching: !fetch,
       }
 
       default: {

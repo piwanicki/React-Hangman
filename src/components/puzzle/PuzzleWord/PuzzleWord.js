@@ -94,10 +94,14 @@ class PuzzleWord extends Component {
   sendHighscoreToDB = (name, score) => {
     const highscore = {
       name: name,
-      score: score
+      score: score,
     }
+
+
     highscoreInstance.post('/highscore.json', highscore)
-      .then(response => console.log(response))
+      .then(response => {
+        console.log(response)
+        this.props.fetchHighscoreBoard()})
       .catch(error => console.log(error));
   }
 
@@ -201,7 +205,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateHighscoreBoard : (name,score) => dispatch({type: 'UPDATE_HIGHSCORE_BOARD', name: name, score: score})
+    updateHighscoreBoard : (name,score) => dispatch({type: 'UPDATE_HIGHSCORE_BOARD', name: name, score: score}),
+    fetchHighscoreBoard: () => dispatch({type: 'FETCH_HIGHSCORE_BOARD'})
   }
 }
 
