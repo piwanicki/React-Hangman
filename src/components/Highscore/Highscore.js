@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import classes from './Highscore.module.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTrophy} from '@fortawesome/free-solid-svg-icons';
+import {faTrophy, faSync} from '@fortawesome/free-solid-svg-icons';
 import {connect} from 'react-redux';
 import highscoreDB from '../../axios-highscore';
 import LoadingSpinner from '../../UI/LoadingSpinner/LoadingSpinner';
@@ -15,23 +15,25 @@ class HighScore extends Component {
   }
 
   getDBHighscores = () => {
-    let scoreArr = this.state.scoreArr;
+    this.setState({
+      fetching: true
+    })
+    let scoreArr = [];
     highscoreDB.get('/highscore.json')
       .then(response => {
-        let highscoreJSON = Object.values(response.data);
-        highscoreJSON.sort((a,b) => (a.score < b.score) ? 1 : -1);
-        console.log(highscoreJSON);
-        highscoreJSON.splice(3); 
-        for(let el of highscoreJSON){
-          scoreArr.push(`${el.name} - ${el.score} Pts.`);
-          
-        }
-        this.setState({scoreArr: scoreArr});
-        this.props.fetchingDone();
-      })
+          let highscoreJSON = Object.values(response.data);
+          highscoreJSON.sort((a,b) => (a.score < b.score) ? 1 : -1).splice(3);
+          for(let el of highscoreJSON){
+            scoreArr.push(`${el.name} - ${el.score} Pts.`);
+          }
+          this.setState({
+            scoreArr: scoreArr,
+            fetching: false});
+        })
       .catch(error => {
-        this.props.fetchingDone();
         console.log(error)
+        this.setState({
+          fetching: false})
       });
   } 
 
@@ -39,20 +41,17 @@ class HighScore extends Component {
     this.getDBHighscores();
   }
 
-  componentDidUpdate() {
-    
-  }
-
   render() {
     const scoreArr = this.state.scoreArr;
 
     return (
       <div className={classes.HighScore}>
-        {this.props.fetching ? <LoadingSpinner /> : 
+        {this.state.fetching ? <LoadingSpinner /> : 
         <Auxiliary>
         <p style={{fontSize:'1.05em'}}><FontAwesomeIcon icon={faTrophy} className={classes.FirstPlace}/> { scoreArr[0] }</p>
         <p style={{fontSize:'0.8em'}}><FontAwesomeIcon icon={faTrophy} className={classes.SecondPlace}/> { scoreArr[1] }</p>
-        <p style={{fontSize:'0.7em'}}><FontAwesomeIcon icon={faTrophy} className={classes.ThirdPlace}/> { scoreArr[2] }</p>
+        <p style={{fontSize:'0.7em'}}><FontAwesomeIcon icon={faTrophy} className={classes.ThirdPlace}/> { scoreArr[2]}</p>
+        <div className={classes.Refresh} onClick={this.getDBHighscores}><FontAwesomeIcon icon={faSync} /></div>
         </Auxiliary>
       }  
       </div>
@@ -63,15 +62,9 @@ class HighScore extends Component {
 const mapPropsToState = state => {
   return {
     score: state.score,
-    fetching: state.fetching
-  }
-}
-
-const mapDispatchToprops = (dispatch) => {
-  return {
-    fetchingDone : () => dispatch({type: 'FETCH_HIGHSCORE_BOARD'})
   }
 }
 
 
-export default connect(mapPropsToState,mapDispatchToprops)(HighScore);
+
+export default connect(mapPropsToState,null)(HighScore);

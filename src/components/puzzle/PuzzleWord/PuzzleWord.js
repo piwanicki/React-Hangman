@@ -8,9 +8,8 @@ import LoadingSpinner from "../../../UI/LoadingSpinner/LoadingSpinner";
 import PuzzleHint from "./PuzzleHint";
 import KeyboardEventHandler from "react-keyboard-event-handler";
 //import {updateHighscoreBoard} from '../../../actions/index';
-import {connect} from 'react-redux';
-import highscoreInstance from '../../../axios-highscore';
-
+import { connect } from "react-redux";
+import highscoreInstance from "../../../axios-highscore";
 
 class PuzzleWord extends Component {
   state = {
@@ -23,7 +22,6 @@ class PuzzleWord extends Component {
     hint: "",
     wordEng: "",
     scoreStrike: 0,
-    scoreMap: new Map()
   };
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -48,7 +46,6 @@ class PuzzleWord extends Component {
           });
       }
       console.log(this.state.word);
-
     });
   };
 
@@ -68,10 +65,10 @@ class PuzzleWord extends Component {
         indices.forEach(el => (puzzles[el] = key));
         this.setState({ puzzle: puzzles });
       } else if (this.state.guessedLetters.indexOf(key) > -1) {
-        console.log("Podales już tą litere, podaj inną.");
+        console.log("You typed this char : " + key);
       } else {
         this.setState({ chances: chances - 1 });
-        console.log(`Pozostale szanse: ${this.state.chances}`);
+        console.log(`Left chances:  ${this.state.chances}`);
       }
       this.checkIfWin();
     }
@@ -87,61 +84,55 @@ class PuzzleWord extends Component {
       guessedLetters: [],
       loading: false,
       gamePlaying: true,
-      hint: "",
+      hint: ""
     });
   };
 
   sendHighscoreToDB = (name, score) => {
     const highscore = {
       name: name,
-      score: score,
-    }
+      score: score
+    };
 
-
-    highscoreInstance.post('/highscore.json', highscore)
+    highscoreInstance
+      .post("/highscore.json", highscore)
       .then(response => {
-        console.log(response)
-        this.props.fetchHighscoreBoard()})
+        console.log(response);
+        this.props.fetchHighscoreBoard();
+      })
       .catch(error => console.log(error));
-  }
+  };
 
   checkIfWin = () => {
     let puzzles = [...this.state.puzzle];
     const word = this.state.word;
     let scoreStrike = this.state.scoreStrike;
-    let userName;
-    let scoreMap = this.props.score;
 
     if (this.state.chances > 0 && puzzles.indexOf("_") === -1) {
-      this.setState({ 
+      this.setState({
         gamePlaying: false,
-        scoreStrike: scoreStrike+1
+        scoreStrike: scoreStrike + 1
       });
-      console.log(`masz już ${this.state.scoreStrike} punkt/ów! Tak trzymaj!`);
+      console.log(`You have ${this.state.scoreStrike} points!! keep going!!`);
     }
 
     if (this.state.chances === 0) {
-        if (scoreMap.size < 3 && scoreStrike > 0) {
-          userName = prompt("Gratulacje! Podaj swoje imie!")
-          scoreMap.set(userName, this.state.scoreStrike)
-          this.props.updateHighscoreBoard(userName, scoreStrike);
-          this.sendHighscoreToDB(userName, scoreStrike);
-        }
-
-        puzzles = word
-        .split("")
-        .map(el => el);
-        this.setState({
-          puzzle: puzzles,
-          gamePlaying: false,
-          scoreStrike: 0
-        })
-  
-        console.log(`Haslo to : ${this.state.word}`);
-        this.setState({ gamePlaying: false });
+      if (scoreStrike > 0) {
+        let userName = prompt("Congrats! Your name...");
+        this.props.updateHighscoreBoard(userName, scoreStrike);
+        this.sendHighscoreToDB(userName, scoreStrike);
       }
 
-    
+      puzzles = word.split("").map(el => el);
+      this.setState({
+        puzzle: puzzles,
+        gamePlaying: false,
+        scoreStrike: 0
+      });
+
+      console.log(`Haslo to : ${this.state.word}`);
+      this.setState({ gamePlaying: false });
+    }
   };
 
   componentDidMount() {
@@ -194,21 +185,20 @@ class PuzzleWord extends Component {
   }
 }
 
+export default PuzzleWord;
+
 // const mapDispatchToProps = { updateHighscoreBoard };
 
-const mapStateToProps = (state) => {
-  return {
-    score: state.score,
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     score: state.score,
+//   }
+// }
 
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     updateHighscoreBoard : (name,score) => dispatch({type: 'UPDATE_HIGHSCORE_BOARD', name: name, score: score}),
+//   }
+// }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateHighscoreBoard : (name,score) => dispatch({type: 'UPDATE_HIGHSCORE_BOARD', name: name, score: score}),
-    fetchHighscoreBoard: () => dispatch({type: 'FETCH_HIGHSCORE_BOARD'})
-  }
-}
-
-
-export default connect(mapStateToProps,mapDispatchToProps)(PuzzleWord);
+// export default connect(mapStateToProps,mapDispatchToProps)(PuzzleWord);

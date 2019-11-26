@@ -22,3 +22,15 @@
 .ThirdPlace {
   color: #a5682a;
 }
+
+.Refresh {
+  margin-left:190px;
+  margin-top: 10px;
+  margin-bottom:10px;
+  font-size: 20px;
+  color:#03067e;
+}
+
+.Refresh:hover{
+  cursor: pointer;
+}
