@@ -1,31 +1,27 @@
 const initialState = {
   score: new Map(),
-  fetching: false,
-}
+  fetching: true
+};
 
-const reducers = (state = initialState, action ) => {
+const reducers = (state = initialState, action) => {
   switch (action.type) {
-    case 'UPDATE_HIGHSCORE_BOARD' : 
-      const updatedHSMap = new Map(state.score);
-      updatedHSMap.set(action.name,action.score);
+    case "UPDATE_HS_BOARD": {
       return {
         ...state,
-        score: updatedHSMap
-      }
+        fetching: action.fetching
+      };
+    }
 
-      case 'FETCH_HIGHSCORE_BOARD' :
-        const fetch = state.fetching;
-        console.log(state.fetching);
+    case "FETCH_DB_SCORES":
       return {
         ...state,
-        fetching: !fetch,
-      }
+        score: action.scores
+      };
 
-      default: {
-        return state 
-      }
+    default: {
+      return state;
+    }
   }
-   
-}
+};
 
 export default reducers;

@@ -21,7 +21,7 @@ class PuzzleWord extends Component {
     gamePlaying: false,
     hint: "",
     wordEng: "",
-    scoreStrike: 0,
+    scoreStrike: 0
   };
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -98,7 +98,7 @@ class PuzzleWord extends Component {
       .post("/highscore.json", highscore)
       .then(response => {
         console.log(response);
-        this.props.fetchHighscoreBoard();
+        this.props.updateHighscoreBoard(true);
       })
       .catch(error => console.log(error));
   };
@@ -117,9 +117,15 @@ class PuzzleWord extends Component {
     }
 
     if (this.state.chances === 0) {
-      if (scoreStrike > 0) {
+      let minScoreInDB = this.props.score;
+      let minScore =
+        minScoreInDB.size > 0
+          ? minScoreInDB
+              .sort((a, b) => (a.score > b.score ? 1 : -1))
+              .splice(1)[0].score
+          : 0;
+      if (minScore < scoreStrike) {
         let userName = prompt("Congrats! Your name...");
-        this.props.updateHighscoreBoard(userName, scoreStrike);
         this.sendHighscoreToDB(userName, scoreStrike);
       }
 
@@ -130,7 +136,7 @@ class PuzzleWord extends Component {
         scoreStrike: 0
       });
 
-      console.log(`Haslo to : ${this.state.word}`);
+      console.log(`Word : ${this.state.word}`);
       this.setState({ gamePlaying: false });
     }
   };
@@ -185,20 +191,18 @@ class PuzzleWord extends Component {
   }
 }
 
-export default PuzzleWord;
-
 // const mapDispatchToProps = { updateHighscoreBoard };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     score: state.score,
-//   }
-// }
+const mapStateToProps = state => {
+  return {
+    score: state.score
+  };
+};
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     updateHighscoreBoard : (name,score) => dispatch({type: 'UPDATE_HIGHSCORE_BOARD', name: name, score: score}),
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    updateHighscoreBoard: () => dispatch({ type: "UPDATE_HS_BOARD" })
+  };
+};
 
-// export default connect(mapStateToProps,mapDispatchToProps)(PuzzleWord);
+export default connect(mapStateToProps, mapDispatchToProps)(PuzzleWord);

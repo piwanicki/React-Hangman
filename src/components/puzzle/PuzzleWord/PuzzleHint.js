@@ -8,9 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ReactHover from "react-hover";
 import axios from "axios";
-import optionsCursorHover from '../../../componentOptions/ReactHoverOptions';
-
-
+import optionsCursorHover from "../../../componentOptions/ReactHoverOptions";
 
 class PuzzleHint extends Component {
   state = {
@@ -57,7 +55,7 @@ class PuzzleHint extends Component {
     });
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.word !== this.props.word) {
       this.getDefinitions();
     }
