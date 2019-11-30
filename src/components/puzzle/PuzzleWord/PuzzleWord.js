@@ -9,7 +9,6 @@ import PuzzleHint from "./PuzzleHint";
 import KeyboardEventHandler from "react-keyboard-event-handler";
 //import {updateHighscoreBoard} from '../../../actions/index';
 import { connect } from "react-redux";
-import highscoreInstance from "../../../axios-highscore";
 import HighscoreDialog from "../../Highscore/HighscoreDialog/HighscoreDialog";
 
 class PuzzleWord extends Component {
@@ -106,7 +105,6 @@ class PuzzleWord extends Component {
     if (this.state.chances === 0) {
       if (scoreStrike > 0) {
         this.props.showHighscoreDialog();
-        //this.sendHighscoreToDB(userName, scoreStrike);
       }
 
       puzzles = word.split("").map(el => el);

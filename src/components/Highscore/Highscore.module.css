@@ -10,13 +10,13 @@
 .HighScore p {
   margin: 10px 10px;
   text-align: left;
-} 
+}
 
 .FirstPlace {
   color: #ffbf00;
 }
 .SecondPlace {
-  color:#c0c0c0;
+  color: #c0c0c0;
 }
 
 .ThirdPlace {
@@ -24,13 +24,13 @@
 }
 
 .Refresh {
-  margin-left:190px;
+  margin-left: 190px;
   margin-top: 10px;
-  margin-bottom:10px;
+  margin-bottom: 10px;
   font-size: 20px;
-  color:#03067e;
+  color: #03067e;
 }
 
-.Refresh:hover{
+.Refresh:hover {
   cursor: pointer;
 }

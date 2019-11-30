@@ -7,7 +7,8 @@ const initialState = {
   score: 0
 }
 
-const reducers = (state = initialState, action ) => {
+
+const reducers = (state = initialState, action) => {
   switch (action.type) {
     case 'SWITCH_BACKDROP' :
     if(action.event.target.className.includes('Backdrop')) {
@@ -16,12 +17,14 @@ const reducers = (state = initialState, action ) => {
        showBackrop: !state.showBackrop
       }
     }
-      case 'FETCH_HIGHSCORE_BOARD' :
-        const fetch = state.fetching;
+
+    case "UPDATE_HS_BOARD": {
       return {
         ...state,
-        fetching: !fetch,
-      }
+        fetching: action.fetching
+      };
+    }
+
 
       case 'UPDATE_SCORESTRIKE' : {
         return {
@@ -33,8 +36,8 @@ const reducers = (state = initialState, action ) => {
       default: {
         return state 
       }
+
   }
-   
-}
+};
 
 export default reducers;
