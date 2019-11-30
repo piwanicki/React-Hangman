@@ -1,24 +1,33 @@
+import Backdrop from "../UI/Backdrop/Backdrop";
+import React,{ReactChild} from 'react';
+
 const initialState = {
-  score: new Map(),
   fetching: false,
+  showBackrop: true,
+  score: 0
 }
 
 const reducers = (state = initialState, action ) => {
   switch (action.type) {
-    case 'UPDATE_HIGHSCORE_BOARD' : 
-      const updatedHSMap = new Map(state.score);
-      updatedHSMap.set(action.name,action.score);
+    case 'SWITCH_BACKDROP' :
+    if(action.event.target.className.includes('Backdrop')) {
       return {
         ...state,
-        score: updatedHSMap
+       showBackrop: !state.showBackrop
       }
-
+    }
       case 'FETCH_HIGHSCORE_BOARD' :
         const fetch = state.fetching;
-        console.log(state.fetching);
       return {
         ...state,
         fetching: !fetch,
+      }
+
+      case 'UPDATE_SCORESTRIKE' : {
+        return {
+          ...state,
+          score: action.score
+        }
       }
 
       default: {

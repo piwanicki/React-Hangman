@@ -10,6 +10,7 @@ import KeyboardEventHandler from "react-keyboard-event-handler";
 //import {updateHighscoreBoard} from '../../../actions/index';
 import { connect } from "react-redux";
 import highscoreInstance from "../../../axios-highscore";
+import HighscoreDialog from "../../Highscore/HighscoreDialog/HighscoreDialog";
 
 class PuzzleWord extends Component {
   state = {
@@ -22,6 +23,7 @@ class PuzzleWord extends Component {
     hint: "",
     wordEng: "",
     scoreStrike: 0,
+    showHighscoreDialog: false
   };
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -88,21 +90,6 @@ class PuzzleWord extends Component {
     });
   };
 
-  sendHighscoreToDB = (name, score) => {
-    const highscore = {
-      name: name,
-      score: score
-    };
-
-    highscoreInstance
-      .post("/highscore.json", highscore)
-      .then(response => {
-        console.log(response);
-        this.props.fetchHighscoreBoard();
-      })
-      .catch(error => console.log(error));
-  };
-
   checkIfWin = () => {
     let puzzles = [...this.state.puzzle];
     const word = this.state.word;
@@ -118,9 +105,8 @@ class PuzzleWord extends Component {
 
     if (this.state.chances === 0) {
       if (scoreStrike > 0) {
-        let userName = prompt("Congrats! Your name...");
-        this.props.updateHighscoreBoard(userName, scoreStrike);
-        this.sendHighscoreToDB(userName, scoreStrike);
+        this.props.showHighscoreDialog();
+        //this.sendHighscoreToDB(userName, scoreStrike);
       }
 
       puzzles = word.split("").map(el => el);
@@ -157,6 +143,7 @@ class PuzzleWord extends Component {
     }
 
     return (
+      <> { this.props.show ? <HighscoreDialog /> : null } 
       <Auxiliary>
         <PuzzleHint word={this.state.wordEng} />
         <div onClick={this.getPuzzle} className={classes.newWordBtn}>
@@ -181,24 +168,24 @@ class PuzzleWord extends Component {
         <div className={classes.PuzzleWord}>{letters}</div>
         <KonvaDrawer chances={this.state.chances} />
       </Auxiliary>
+      </>
     );
   }
 }
 
-export default PuzzleWord;
+//export default PuzzleWord;
 
-// const mapDispatchToProps = { updateHighscoreBoard };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     score: state.score,
-//   }
-// }
+const mapStateToProps = (state) => {
+  return {
+    show: state.showBackrop,
+  }
+}
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     updateHighscoreBoard : (name,score) => dispatch({type: 'UPDATE_HIGHSCORE_BOARD', name: name, score: score}),
-//   }
-// }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showHighscoreDialog: () => dispatch({type: 'SWITCH_BACKDROP'})
+  }
+}
 
-// export default connect(mapStateToProps,mapDispatchToProps)(PuzzleWord);
+export default connect(mapStateToProps,mapDispatchToProps)(PuzzleWord);

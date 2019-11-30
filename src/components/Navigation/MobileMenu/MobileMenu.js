@@ -1,5 +1,4 @@
 import React from "react";
-
 import classes from "./MobileMenu.module.css";
 import Backdrop from "../../../UI/Backdrop/Backdrop";
 import Auxiliary from "../../../hoc/Auxiliary";

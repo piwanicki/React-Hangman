@@ -5,6 +5,9 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import LoadingSpinner from "../../UI/LoadingSpinner/LoadingSpinner";
 import Auxiliary from "../../hoc/Auxiliary";
 import StatusMail from "./StatusMail/StatusMail";
+import {connect} from 'react-redux';
+import PuzzleHint from "../puzzle/PuzzleWord/PuzzleHint";
+import Backdrop from "../../UI/Backdrop/Backdrop";
 
 class MailDialog extends Component {
   state = {
@@ -117,14 +120,22 @@ class MailDialog extends Component {
 
     return (
       <Auxiliary>
-        {this.props.showMailer ? (
-          <form className={[classes.MailDialog, classes.SlideTop].join(" ")}>
-            {this.state.sending ? <LoadingSpinner /> : form}
-          </form>
-        ) : null}
+        {this.props.showMailer ? 
+          <Backdrop show={true} clicked={this.props.mailerParentUpdate}>
+            <form className={[classes.MailDialog, classes.SlideTop].join(" ")}>
+              {this.state.sending ? <LoadingSpinner /> : form}
+            </form>
+          </Backdrop>
+         : null}
       </Auxiliary>
     );
   }
 }
 
-export default MailDialog;
+const mapPropsToState = (state) => {
+  return {
+    show: state.showBackdrop,
+  }
+}
+
+export default connect(mapPropsToState,null)(MailDialog);
