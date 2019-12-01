@@ -50,7 +50,7 @@ class Layout extends Component {
            </main>
         </div>
          <MailDialog  mailerParentUpdate={this.showMailDialogHandler} showMailer={this.state.showMailDialog}/>
-        <Footer showMailerHandler={this.showMailDialogHandler}/> 
+        <Footer /> 
       </Auxiliary>
     )
   }

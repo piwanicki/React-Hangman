@@ -7,6 +7,7 @@ import hangmanLogo from "../../../assets/img/hangTransparent.png";
 import ticTacToeLogo from "../../../assets/img/tictactoe-icon2.png";
 import { Link } from "react-router-dom";
 import Auxiliary from "../../../hoc/Auxiliary";
+import {connect} from 'react-redux';
 
 class Footer extends Component {
   render() {
@@ -30,7 +31,7 @@ class Footer extends Component {
               </li>
               <li
                 className={classes.ContactIcon}
-                onClick={this.props.showMailerHandler}
+                onClick={this.props.showMailDialog}
               >
                 <FontAwesomeIcon icon={faEnvelope} /> <p>Contact Me</p>
               </li>
@@ -65,4 +66,13 @@ class Footer extends Component {
   }
 }
 
-export default Footer;
+// export default Footer;
+
+
+const mapDispatchToProps = dispatch => {
+  return {
+    showMailDialog: () => dispatch({type:'SHOW_MAIL_DIALOG'}),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Footer); 

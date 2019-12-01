@@ -22,7 +22,7 @@ class PuzzleWord extends Component {
     hint: "",
     wordEng: "",
     scoreStrike: 0,
-    showHighscoreDialog: false
+    showHighscoreDialog: true
   };
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -104,7 +104,7 @@ class PuzzleWord extends Component {
 
     if (this.state.chances === 0) {
       if (scoreStrike > 0) {
-        this.props.showHighscoreDialog();
+        this.setState({showHighscoreDialog:true});
       }
 
       puzzles = word.split("").map(el => el);
@@ -122,6 +122,12 @@ class PuzzleWord extends Component {
   componentDidMount() {
     this.getPuzzle();
   }
+
+  closeHighscoreDialogHandler = () => {
+    console.log('Backdrop clicked?')
+    this.setState({showHighscoreDialog:false})
+  }
+  
 
   render() {
     let downloadBtnString = "Nowe Hasło";
@@ -141,7 +147,8 @@ class PuzzleWord extends Component {
     }
 
     return (
-      <> { this.props.show ? <HighscoreDialog /> : null } 
+     
+     
       <Auxiliary>
         <PuzzleHint word={this.state.wordEng} />
         <div onClick={this.getPuzzle} className={classes.newWordBtn}>
@@ -166,24 +173,23 @@ class PuzzleWord extends Component {
         <div className={classes.PuzzleWord}>{letters}</div>
         <KonvaDrawer chances={this.state.chances} />
       </Auxiliary>
-      </>
     );
   }
 }
 
-//export default PuzzleWord;
+export default PuzzleWord;
 
 
-const mapStateToProps = (state) => {
-  return {
-    show: state.showBackrop,
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     show: state.showBackrop,
+//   }
+// }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    showHighscoreDialog: () => dispatch({type: 'SWITCH_BACKDROP'})
-  }
-}
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     showHighscoreDialog: () => dispatch({type: 'SWITCH_BACKDROP'})
+//   }
+// }
 
-export default connect(mapStateToProps,mapDispatchToProps)(PuzzleWord);
+// export default connect(mapStateToProps,mapDispatchToProps)(PuzzleWord);

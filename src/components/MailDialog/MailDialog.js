@@ -5,8 +5,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import LoadingSpinner from "../../UI/LoadingSpinner/LoadingSpinner";
 import Auxiliary from "../../hoc/Auxiliary";
 import StatusMail from "./StatusMail/StatusMail";
-import {connect} from 'react-redux';
-import PuzzleHint from "../puzzle/PuzzleWord/PuzzleHint";
+import { connect } from "react-redux";
 import Backdrop from "../../UI/Backdrop/Backdrop";
 
 class MailDialog extends Component {
@@ -46,11 +45,10 @@ class MailDialog extends Component {
     window.emailjs
       .send("gmail", templateId, variables)
       .then(res => {
-        if (res.status !== 200) {
+        if (res.text == "OK") {
           this.setState({
             sending: false,
             status: true,
-            sended: true,
             emailForm: "",
             whoForm: "",
             message: ""
@@ -60,16 +58,14 @@ class MailDialog extends Component {
       .catch(error => {
         this.setState({
           sending: false,
-          status: false,
-          sended: true
+          status: false
         });
-
         console.log(error);
       });
 
     setTimeout(() => {
       this.setState({
-        sended: null
+        status: null
       });
     }, 3000);
   }
@@ -96,7 +92,7 @@ class MailDialog extends Component {
           <FontAwesomeIcon
             icon={faTimes}
             className={classes.CancelIcon}
-            onClick={this.props.mailerParentUpdate}
+            onClick={this.props.closeMailDialog}
           />
         </div>
         <textarea
@@ -116,26 +112,41 @@ class MailDialog extends Component {
       </Auxiliary>
     );
 
-    form = this.state.sended ? <StatusMail status={this.state.status} /> : form;
+    if (this.state.sending) {
+      form = <LoadingSpinner />;
+    }
+    if (this.state.status) {
+      form = <StatusMail status={this.state.status} />;
+    }
 
     return (
-      <Auxiliary>
-        {this.props.showMailer ? 
-          <Backdrop show={true} clicked={this.props.mailerParentUpdate}>
+      <>
+        {this.props.show ? (
+          <>
+            <Backdrop
+              show={this.props.show}
+              clicked={this.props.closeMailDialog}
+            />
             <form className={[classes.MailDialog, classes.SlideTop].join(" ")}>
-              {this.state.sending ? <LoadingSpinner /> : form}
+              {form}
             </form>
-          </Backdrop>
-         : null}
-      </Auxiliary>
+          </>
+        ) : null}
+      </>
     );
   }
 }
 
-const mapPropsToState = (state) => {
+const mapPropsToState = state => {
   return {
-    show: state.showBackdrop,
-  }
-}
+    show: state.showMailDialog
+  };
+};
 
-export default connect(mapPropsToState,null)(MailDialog);
+const mapDispatchToProps = dispatch => {
+  return {
+    closeMailDialog: () => dispatch({ type: "SHOW_MAIL_DIALOG" })
+  };
+};
+
+export default connect(mapPropsToState, mapDispatchToProps)(MailDialog);

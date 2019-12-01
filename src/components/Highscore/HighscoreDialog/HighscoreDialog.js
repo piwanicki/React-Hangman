@@ -31,31 +31,35 @@ class HighscoreDialog extends Component  {
 
 
   render() {
+
     return (
-      <Backdrop show={this.props.show} clicked={this.props.closeBackdrop}>
+      <>
+      <Backdrop show={this.props.show} clicked={this.props.closeDialog} />
         <div className={classes.HighscoreDialog} >
           <p className={classes.ScoreInfo}>Congrats! You scored {this.props.score} points!</p>
           <FontAwesomeIcon icon={faThumbsUp} className={[classes.Like,classes.ScaleInCenter].join(" ")}/>
           <input type='text' placeholder='Type you name...' ref={this.inputRef} maxLength={8}></input>
           <p className={classes.SendBtn}  onClick={this.sendHighscoreToDB}>SEND</p>
         </div>
-      </Backdrop>
+      </>
       )
    }
 
 }
 
+// export default HighscoreDialog;
+
 const mapStateToProps = (state) => {
   return {
-    show: state.showBackrop,
+    show: state.showHighscoreDialog,
     score: state.score
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    closeBackdrop: (e) => dispatch({type: 'SWITCH_BACKDROP',event: e}),
-    fetchHighscoreBoard: () => dispatch({type: 'FETCH_HIGHSCORE_BOARD'})
+    closeHighscoreDialog: () => dispatch({type: 'SHOW_HIGHSCORE_DIALOG'}),
+    fetchHighscoreBoard: () => dispatch({type: 'FETCH_HIGHSCORE_BOARD'}),
   }
 }
 

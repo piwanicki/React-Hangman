@@ -1,22 +1,30 @@
-import Backdrop from "../UI/Backdrop/Backdrop";
-import React,{ReactChild} from 'react';
 
 const initialState = {
   fetching: false,
-  showBackrop: true,
+  showMailDialog: false,
+  showHighscoreDialog:false,
   score: 0
 }
 
-
 const reducers = (state = initialState, action) => {
   switch (action.type) {
-    case 'SWITCH_BACKDROP' :
-    if(action.event.target.className.includes('Backdrop')) {
+
+    case 'SHOW_MAIL_DIALOG' : {
+      console.log('SHOW_MAIL_DIALOG') ;
       return {
         ...state,
-       showBackrop: !state.showBackrop
+        showMailDialog: !state.showMailDialog
       }
     }
+ 
+    case 'SHOW_HIGHSCORE_DIALOG' : {
+      console.log('SHOW_HIGHSCORE_DIALOG') ;
+      return {
+        ...state,
+        showHighscoreDialog: !state.showHighscoreDialog
+      }
+    }
+
 
     case "UPDATE_HS_BOARD": {
       return {
