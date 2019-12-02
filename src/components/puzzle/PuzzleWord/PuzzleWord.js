@@ -101,27 +101,31 @@ class PuzzleWord extends Component {
       console.log(`You have ${this.state.scoreStrike} points!! keep going!!`);
     }
 
-    if (this.state.chances === 0 ) {
-      if (scoreStrike > 0) {
-        this.props.showHighscoreDialog();
+    if (this.state.chances === 0) {
+      let minScoreInDB = this.props.score;
+      let minScore =
+        minScoreInDB.size > 0
+          ? minScoreInDB
+              .sort((a, b) => (a.score > b.score ? 1 : -1))
+              .splice(1)[0].score
+          : 0;
+        if (scoreStrike > minScore) {
+          this.props.showHighscoreDialog();
+        }
+        puzzles = word.split("").map(el => el);
+        this.setState({
+          puzzle: puzzles,
+          gamePlaying: false,
+          scoreStrike: 0
+        });
+        console.log(`The word is : ${this.state.word}`);
+        this.setState({ gamePlaying: false });
       }
-
-      puzzles = word.split("").map(el => el);
-      this.setState({
-        puzzle: puzzles,
-        gamePlaying: false,
-        scoreStrike: 0
-      });
-
-      console.log(`Haslo to : ${this.state.word}`);
-      this.setState({ gamePlaying: false });
     }
-  };
 
   componentDidMount() {
     this.getPuzzle();
   }
-
 
   render() {
     let downloadBtnString = "Nowe Hasło";
@@ -141,8 +145,6 @@ class PuzzleWord extends Component {
     }
 
     return (
-     
-     
       <Auxiliary>
         <PuzzleHint word={this.state.wordEng} />
         <div onClick={this.getPuzzle} className={classes.newWordBtn}>
@@ -171,16 +173,16 @@ class PuzzleWord extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    show: state.showHighscoreDialog,
-  }
-}
+    show: state.showHighscoreDialog
+  };
+};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    showHighscoreDialog: () => dispatch({type: 'SHOW_HIGHSCORE_DIALOG'})
-  }
-}
+    showHighscoreDialog: () => dispatch({ type: "SHOW_HIGHSCORE_DIALOG" })
+  };
+};
 
-export default connect(mapStateToProps,mapDispatchToProps)(PuzzleWord);
+export default connect(mapStateToProps, mapDispatchToProps)(PuzzleWord);
