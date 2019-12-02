@@ -9,7 +9,6 @@ import PuzzleHint from "./PuzzleHint";
 import KeyboardEventHandler from "react-keyboard-event-handler";
 //import {updateHighscoreBoard} from '../../../actions/index';
 import { connect } from "react-redux";
-import HighscoreDialog from "../../Highscore/HighscoreDialog/HighscoreDialog";
 
 class PuzzleWord extends Component {
   state = {
@@ -25,7 +24,7 @@ class PuzzleWord extends Component {
     showHighscoreDialog: true
   };
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps) {
     if (this.props.lang !== prevProps.lang) {
       this.getPuzzle();
     }
@@ -102,9 +101,9 @@ class PuzzleWord extends Component {
       console.log(`You have ${this.state.scoreStrike} points!! keep going!!`);
     }
 
-    if (this.state.chances === 0) {
+    if (this.state.chances === 0 ) {
       if (scoreStrike > 0) {
-        this.setState({showHighscoreDialog:true});
+        this.props.showHighscoreDialog();
       }
 
       puzzles = word.split("").map(el => el);
@@ -123,11 +122,6 @@ class PuzzleWord extends Component {
     this.getPuzzle();
   }
 
-  closeHighscoreDialogHandler = () => {
-    console.log('Backdrop clicked?')
-    this.setState({showHighscoreDialog:false})
-  }
-  
 
   render() {
     let downloadBtnString = "Nowe Hasło";
@@ -177,19 +171,16 @@ class PuzzleWord extends Component {
   }
 }
 
-export default PuzzleWord;
+const mapStateToProps = (state) => {
+  return {
+    show: state.showHighscoreDialog,
+  }
+}
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showHighscoreDialog: () => dispatch({type: 'SHOW_HIGHSCORE_DIALOG'})
+  }
+}
 
-// const mapStateToProps = (state) => {
-//   return {
-//     show: state.showBackrop,
-//   }
-// }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     showHighscoreDialog: () => dispatch({type: 'SWITCH_BACKDROP'})
-//   }
-// }
-
-// export default connect(mapStateToProps,mapDispatchToProps)(PuzzleWord);
+export default connect(mapStateToProps,mapDispatchToProps)(PuzzleWord);
