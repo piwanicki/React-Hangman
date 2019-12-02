@@ -6,6 +6,8 @@ import PuzzleContainer from '../PuzzleContainer/PuzzleContainer';
 import Footer from '../../components/Navigation/Footer/Footer';
 import Auxiliary from '../../hoc/Auxiliary';
 import MailDialog from '../../components/MailDialog/MailDialog';
+import HighscoreDialog from '../../components/Highscore/HighscoreDialog/HighscoreDialog';
+import {connect} from 'react-redux';
 
 
 class Layout extends Component {
@@ -42,6 +44,7 @@ class Layout extends Component {
     return(
       <Auxiliary>
         <div className={classes.Layout}>
+        
          <MobileMenu close={this.closeMobileMenuHandler} show={this.state.showMobileMenu} />
            <NavigationBar showSideMenu={this.openMobileMenuHandler} languageChanger={e => this.changeLanguageHandler(e)} />
            <PuzzleContainer language={this.state.language} showMailDialog={this.state.showMailDialog}/>
@@ -49,11 +52,20 @@ class Layout extends Component {
              {this.props.children}
            </main>
         </div>
-         <MailDialog  mailerParentUpdate={this.showMailDialogHandler} showMailer={this.state.showMailDialog}/>
+         <MailDialog  mailerParentUpdate={this.showMailDialogHandler} showMailer={this.props.showMailDialog}/>
+         <HighscoreDialog show={this.props.show} />
         <Footer /> 
       </Auxiliary>
     )
   }
 }
 
-export default Layout;
+
+const mapStateToProps = (state) => {
+  return {
+    showMailer: state.showMailDialog,
+    showHighscoreDialog: state.showHighscoreDialog
+  }
+}
+
+export default connect(mapStateToProps,null)(Layout);

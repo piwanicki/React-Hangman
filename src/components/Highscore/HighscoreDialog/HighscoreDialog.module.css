@@ -1,8 +1,10 @@
 .HighscoreDialog {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 75%);
   width: 400px;
   height:300px;
-  margin: 50vh auto 0;
-  transform: translateY(-50%);
   border-radius: 10px;
   background-color: whitesmoke;
   z-index: 1000;
@@ -10,6 +12,7 @@
 
 .ScoreInfo {
   font-size: 20px;
+  margin-left: 60px;
 }
 
 .Like {
@@ -22,10 +25,12 @@
 
 .HighscoreDialog input {
   margin-top: 40px;
+  margin-left: 120px;
 }
 
 .SendBtn {
   margin-top:5px;
+  margin-left:180px;
   color: green;
   font-weight: bold;
 }

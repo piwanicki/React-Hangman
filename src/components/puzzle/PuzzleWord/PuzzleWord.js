@@ -9,6 +9,7 @@ import PuzzleHint from "./PuzzleHint";
 import KeyboardEventHandler from "react-keyboard-event-handler";
 //import {updateHighscoreBoard} from '../../../actions/index';
 import { connect } from "react-redux";
+import HighscoreDialog from "../../Highscore/HighscoreDialog/HighscoreDialog";
 
 class PuzzleWord extends Component {
   state = {
@@ -102,15 +103,16 @@ class PuzzleWord extends Component {
     }
 
     if (this.state.chances === 0) {
-      let minScoreInDB = this.props.score;
-      let minScore =
-          minScoreInDB.size > 0
-          ? minScoreInDB
+      let minScoreInDB = this.props.highscore;
+      let minScore = 
+      minScoreInDB !== undefined ?
+         minScoreInDB
               .sort((a, b) => (a.score > b.score ? 1 : -1))
               .splice(1)[0].score
-          : 0;
+         : 0 ;
         if (scoreStrike > minScore) {
           this.props.showHighscoreDialog();
+          this.props.updateScoreStrike(this.state.scoreStrike);
         }
         puzzles = word.split("").map(el => el);
         this.setState({
@@ -169,19 +171,21 @@ class PuzzleWord extends Component {
         <div className={classes.PuzzleWord}>{letters}</div>
         <KonvaDrawer chances={this.state.chances} />
       </Auxiliary>
+
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    show: state.showHighscoreDialog
+    highscore: state.highscore
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    showHighscoreDialog: () => dispatch({ type: "SHOW_HIGHSCORE_DIALOG" })
+    showHighscoreDialog: () => dispatch({ type: "SHOW_HIGHSCORE_DIALOG" }),
+    updateScoreStrike: scoreStrike => dispatch({type: 'UPDATE_SCORESTRIKE', score: scoreStrike})
   };
 };
 

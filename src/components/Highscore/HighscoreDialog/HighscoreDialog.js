@@ -5,6 +5,7 @@ import Backdrop from '../../../UI/Backdrop/Backdrop';
 import highscoreInstance from '../../../axios-highscore';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faThumbsUp} from '@fortawesome/free-regular-svg-icons';
+import Auxiliary from '../../../hoc/Auxiliary';
 
 class HighscoreDialog extends Component  {
 
@@ -13,7 +14,6 @@ class HighscoreDialog extends Component  {
     this.inputRef = React.createRef();
   }
 
-  //  sendHighscoreToDB = (name, score) => {
   sendHighscoreToDB = () => {
     const input = this.inputRef.current;
     const highscore = {
@@ -34,20 +34,22 @@ class HighscoreDialog extends Component  {
 
     return (
       <>
-      <Backdrop show={this.props.show} clicked={this.props.closeDialog} />
+      { this.props.show ?  
+      <Auxiliary>
+      <Backdrop show={true} clicked={this.props.closeHighscoreDialog} />
         <div className={classes.HighscoreDialog} >
           <p className={classes.ScoreInfo}>Congrats! You scored {this.props.score} points!</p>
           <FontAwesomeIcon icon={faThumbsUp} className={[classes.Like,classes.ScaleInCenter].join(" ")}/>
           <input type='text' placeholder='Type you name...' ref={this.inputRef} maxLength={8}></input>
           <p className={classes.SendBtn}  onClick={this.sendHighscoreToDB}>SEND</p>
-        </div>
+        </div> 
+        </Auxiliary>
+        : null
+      }
       </>
       )
    }
-
 }
-
-// export default HighscoreDialog;
 
 const mapStateToProps = (state) => {
   return {

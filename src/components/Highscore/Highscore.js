@@ -25,13 +25,13 @@ class HighScore extends Component {
           scoreArr.push(`${el.name} - ${el.score} Pts.`);
         }
         this.props.updateHighscoreBoard(false);
+        
         this.setState({
           scoreArr: scoreArr,
           fetching: false
         });
       })
       .catch(error => {
-        console.log(error);
         this.props.updateHighscoreBoard(false);
         this.setState({
           fetching: false
