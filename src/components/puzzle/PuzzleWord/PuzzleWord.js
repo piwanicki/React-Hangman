@@ -104,7 +104,7 @@ class PuzzleWord extends Component {
     if (this.state.chances === 0) {
       let minScoreInDB = this.props.score;
       let minScore =
-        minScoreInDB.size > 0
+          minScoreInDB.size > 0
           ? minScoreInDB
               .sort((a, b) => (a.score > b.score ? 1 : -1))
               .splice(1)[0].score
