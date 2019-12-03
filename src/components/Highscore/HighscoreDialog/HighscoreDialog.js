@@ -25,6 +25,7 @@ class HighscoreDialog extends Component  {
       .then(response => {
         console.log(response);
         this.props.fetchHighscoreBoard();
+        this.props.closeHighscoreDialog();
       })
       .catch(error => console.log(error));
    };
@@ -54,14 +55,14 @@ class HighscoreDialog extends Component  {
 const mapStateToProps = (state) => {
   return {
     show: state.showHighscoreDialog,
-    score: state.score
+    // score: state.score
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     closeHighscoreDialog: () => dispatch({type: 'SHOW_HIGHSCORE_DIALOG'}),
-    fetchHighscoreBoard: () => dispatch({type: 'FETCH_HIGHSCORE_BOARD'}),
+    fetchHighscoreBoard: () => dispatch({type: 'UPDATE_HS_BOARD'}),
   }
 }
 

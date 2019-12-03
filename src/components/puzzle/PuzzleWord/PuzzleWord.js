@@ -112,13 +112,12 @@ class PuzzleWord extends Component {
          : 0 ;
         if (scoreStrike > minScore) {
           this.props.showHighscoreDialog();
-          this.props.updateScoreStrike(this.state.scoreStrike);
+          // this.props.updateScoreStrike(this.state.scoreStrike);
         }
         puzzles = word.split("").map(el => el);
         this.setState({
           puzzle: puzzles,
           gamePlaying: false,
-          scoreStrike: 0
         });
         console.log(`The word is : ${this.state.word}`);
         this.setState({ gamePlaying: false });
@@ -148,6 +147,7 @@ class PuzzleWord extends Component {
 
     return (
       <Auxiliary>
+        <HighscoreDialog show={this.props.show} score={this.state.scoreStrike}/>
         <PuzzleHint word={this.state.wordEng} />
         <div onClick={this.getPuzzle} className={classes.newWordBtn}>
           {downloadBtnString}
@@ -185,7 +185,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     showHighscoreDialog: () => dispatch({ type: "SHOW_HIGHSCORE_DIALOG" }),
-    updateScoreStrike: scoreStrike => dispatch({type: 'UPDATE_SCORESTRIKE', score: scoreStrike})
+    // updateScoreStrike: scoreStrike => dispatch({type: 'UPDATE_SCORESTRIKE', score: scoreStrike})
   };
 };
 

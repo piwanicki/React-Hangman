@@ -44,7 +44,6 @@ class Layout extends Component {
     return(
       <Auxiliary>
         <div className={classes.Layout}>
-        
          <MobileMenu close={this.closeMobileMenuHandler} show={this.state.showMobileMenu} />
            <NavigationBar showSideMenu={this.openMobileMenuHandler} languageChanger={e => this.changeLanguageHandler(e)} />
            <PuzzleContainer language={this.state.language} showMailDialog={this.state.showMailDialog}/>
@@ -52,8 +51,7 @@ class Layout extends Component {
              {this.props.children}
            </main>
         </div>
-         <MailDialog  mailerParentUpdate={this.showMailDialogHandler} showMailer={this.props.showMailDialog}/>
-         <HighscoreDialog show={this.props.show} />
+         <MailDialog />
         <Footer /> 
       </Auxiliary>
     )

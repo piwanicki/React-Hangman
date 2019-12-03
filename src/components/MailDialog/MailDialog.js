@@ -45,7 +45,7 @@ class MailDialog extends Component {
     window.emailjs
       .send("gmail", templateId, variables)
       .then(res => {
-        if (res.text == "OK") {
+        if (res.text === "OK") {
           this.setState({
             sending: false,
             status: true,
