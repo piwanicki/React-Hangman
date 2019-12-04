@@ -1,6 +1,6 @@
 .PuzzleHintContainer {
   width: 50px;
-  height: 40px;
+  height: 100%;
   position: absolute;
   left: 2vmax;
   margin: 20px 10px;
@@ -46,4 +46,11 @@
 .NavArrow:disabled {
   color: grey;
   opacity: 0.9;
+}
+
+
+.UseHint:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 0.5s;
 }

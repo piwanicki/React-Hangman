@@ -1,15 +1,13 @@
 .PuzzleContainer {
-    width: 80vw;
-    height: 400px;
-    margin-top: 200px;
-    position: absolute;
-    left:10vw;
-    top:75px;
-    text-align: center;
-    background-image: url('../../assets/img/papersheet.jpg');
-    border-radius: 20px;
-    box-shadow: 3px black;
-    background-size: cover;
-
+  width: 80vw;
+  min-height: 400px;
+  margin-top: 200px;
+  position: absolute;
+  left: 10vw;
+  top: 75px;
+  text-align: center;
+  background-image: url("../../assets/img/papersheet.jpg");
+  border-radius: 20px;
+  box-shadow: 3px black;
+  background-size: cover;
 }
-

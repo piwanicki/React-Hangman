@@ -2,7 +2,6 @@ const initialState = {
   fetching: false,
   showMailDialog: false,
   showHighscoreDialog: false,
-  // score: 0
 };
 
 const reducers = (state = initialState, action) => {
@@ -27,13 +26,6 @@ const reducers = (state = initialState, action) => {
         fetching: action.fetching
       };
     }
-
-    // case "UPDATE_SCORESTRIKE": {
-    //   return {
-    //     ...state,
-    //     score: action.score
-    //   };
-    // }
 
     case 'FETCH_DB_SCORES' : {
       return {

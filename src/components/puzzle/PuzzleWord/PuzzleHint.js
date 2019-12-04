@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInfoCircle,
   faChevronRight,
-  faChevronLeft
+  faChevronLeft,
+  faQuestion
 } from "@fortawesome/free-solid-svg-icons";
 import ReactHover from "react-hover";
 import axios from "axios";
 import optionsCursorHover from "../../../componentOptions/ReactHoverOptions";
+import { LightTooltip, HintTooltip } from "./HintTooltip/HintTooltip";
 
 class PuzzleHint extends Component {
   state = {
@@ -18,10 +20,8 @@ class PuzzleHint extends Component {
   };
 
   getDefinitions = () => {
-    //notepad
     axios
       .get(`https://api.datamuse.com/words?ml=${this.props.word}&md=d&max=1`)
-      // axios.get(`https://api.datamuse.com/words?ml=notepad&md=d&max=1`)
       .then(response => {
         let hints = response.data[0].defs;
         this.setState({
@@ -112,6 +112,15 @@ class PuzzleHint extends Component {
       </div>
     );
 
+    const useHintBtn = (
+      <FontAwesomeIcon
+        icon={faQuestion}
+        style={{ marginTop: "270px" }}
+        onClick={this.props.hintUsed}
+        className={classes.UseHint}
+      />
+    );
+
     return (
       <div className={classes.PuzzleHintContainer}>
         <ReactHover options={optionsCursorHover}>
@@ -125,6 +134,12 @@ class PuzzleHint extends Component {
           <ReactHover.Hover type="hover">{hoverHints}</ReactHover.Hover> }
         </ReactHover>
         {this.state.hintsShow ? hoverHints : null}
+        <LightTooltip
+          title={"Use hint? You'll loose one chance."}
+          placement="right-end"
+        >
+          <HintTooltip>{useHintBtn}</HintTooltip>
+        </LightTooltip>
       </div>
     );
   }

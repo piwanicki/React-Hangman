@@ -41,7 +41,7 @@ class HighscoreDialog extends Component  {
         <div className={classes.HighscoreDialog} >
           <p className={classes.ScoreInfo}>Congrats! You scored {this.props.score} points!</p>
           <FontAwesomeIcon icon={faThumbsUp} className={[classes.Like,classes.ScaleInCenter].join(" ")}/>
-          <input type='text' placeholder='Type you name...' ref={this.inputRef} maxLength={8}></input>
+          <input type='text' placeholder='Type you name...' ref={this.inputRef} maxLength={5}></input>
           <p className={classes.SendBtn}  onClick={this.sendHighscoreToDB}>SEND</p>
         </div> 
         </Auxiliary>

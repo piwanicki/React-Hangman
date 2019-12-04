@@ -104,25 +104,36 @@ class PuzzleWord extends Component {
 
     if (this.state.chances === 0) {
       let minScoreInDB = this.props.highscore;
-      let minScore = 
-      minScoreInDB !== undefined ?
-         minScoreInDB
+      let minScore =
+        minScoreInDB !== undefined
+          ? minScoreInDB
               .sort((a, b) => (a.score > b.score ? 1 : -1))
               .splice(1)[0].score
-         : 0 ;
-        if (scoreStrike > minScore) {
-          this.props.showHighscoreDialog();
-          // this.props.updateScoreStrike(this.state.scoreStrike);
-        }
-        puzzles = word.split("").map(el => el);
-        this.setState({
-          puzzle: puzzles,
-          gamePlaying: false,
-        });
-        console.log(`The word is : ${this.state.word}`);
-        this.setState({ gamePlaying: false });
+          : 0;
+      if (scoreStrike > minScore) {
+        this.props.showHighscoreDialog();
       }
+      puzzles = word.split("").map(el => el);
+      this.setState({
+        puzzle: puzzles,
+        gamePlaying: false
+      });
+      console.log(`The word is : ${this.state.word}`);
+      this.setState({ gamePlaying: false });
     }
+  };
+
+  hintUsedHandler = () => {
+    const chances = this.state.chances;
+    const puzzles = this.state.puzzle;
+    const word = this.state.word;
+    const letter = word.split("")[Math.floor(Math.random() * word.length)];
+
+    console.log(letter);
+
+    this.setState({ chances: chances - 1 });
+    console.log(`chances left: ${chances - 1}`);
+  };
 
   componentDidMount() {
     this.getPuzzle();
@@ -147,8 +158,11 @@ class PuzzleWord extends Component {
 
     return (
       <Auxiliary>
-        <HighscoreDialog show={this.props.show} score={this.state.scoreStrike}/>
-        <PuzzleHint word={this.state.wordEng} />
+        <HighscoreDialog
+          show={this.props.show}
+          score={this.state.scoreStrike}
+        />
+        <PuzzleHint word={this.state.wordEng} hintUsed={this.hintUsedHandler} />
         <div onClick={this.getPuzzle} className={classes.newWordBtn}>
           {downloadBtnString}
         </div>
@@ -171,7 +185,6 @@ class PuzzleWord extends Component {
         <div className={classes.PuzzleWord}>{letters}</div>
         <KonvaDrawer chances={this.state.chances} />
       </Auxiliary>
-
     );
   }
 }
@@ -184,8 +197,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    showHighscoreDialog: () => dispatch({ type: "SHOW_HIGHSCORE_DIALOG" }),
-    // updateScoreStrike: scoreStrike => dispatch({type: 'UPDATE_SCORESTRIKE', score: scoreStrike})
+    showHighscoreDialog: () => dispatch({ type: "SHOW_HIGHSCORE_DIALOG" })
   };
 };
 

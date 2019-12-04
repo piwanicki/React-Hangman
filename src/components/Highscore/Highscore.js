@@ -19,11 +19,10 @@ class HighScore extends Component {
       .get("/highscore.json")
       .then(response => {
         let highscoreJSON = Object.values(response.data);
-        highscoreJSON.sort((a, b) => (a.score < b.score ? 1 : -1)).splice(3);
+        highscoreJSON.sort((a, b) => (a.score < b.score ? 1 : -1))
+          .splice(3)
+          .forEach(el => scoreArr.push(`${el.name} - ${el.score} Pts.`));
         this.props.fetchDB(highscoreJSON);
-        for (let el of highscoreJSON) {
-          scoreArr.push(`${el.name} - ${el.score} Pts.`);
-        }
         this.props.updateHighscoreBoard(false);
         
         this.setState({
@@ -59,18 +58,18 @@ class HighScore extends Component {
           <LoadingSpinner />
         ) : (
           <Auxiliary>
-            <p style={{ fontSize: "1.05em" }}>
+            <p style={{ fontSize: "0.85em" }}>
               <FontAwesomeIcon icon={faTrophy} className={classes.FirstPlace} />{" "}
               {scoreArr[0]}
             </p>
-            <p style={{ fontSize: "0.8em" }}>
+            <p style={{ fontSize: "0.75em" }}>
               <FontAwesomeIcon
                 icon={faTrophy}
                 className={classes.SecondPlace}
               />{" "}
               {scoreArr[1]}
             </p>
-            <p style={{ fontSize: "0.7em" }}>
+            <p style={{ fontSize: "0.65em" }}>
               <FontAwesomeIcon icon={faTrophy} className={classes.ThirdPlace} />{" "}
               {scoreArr[2]}
             </p>
