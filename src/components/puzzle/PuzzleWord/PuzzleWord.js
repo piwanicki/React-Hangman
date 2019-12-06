@@ -130,12 +130,12 @@ class PuzzleWord extends Component {
     const chances = this.state.chances;
     const word = this.state.word;
     const gamePlaying = this.state.gamePlaying;
-    const puzzles = this.state.puzzle;
+    const puzzles = [...this.state.puzzle];
     let emptyIdx = [];
 
     puzzles.forEach((el, idx) => (el === "_" ? emptyIdx.push(idx) : null));
     const idx = emptyIdx[Math.floor(Math.random() * emptyIdx.length)];
-    const canUseHint  =  chances === 2 || emptyIdx.length === 1 ? false : true; 
+    const canUseHint  =  chances === 1 || emptyIdx.length === 1 ? false : true; 
     this.setState({canUseHint: canUseHint});
 
     const letter = word.split("")[idx];
