@@ -47,6 +47,9 @@
   color: grey;
   opacity: 0.9;
 }
+.NavArrow:hover {
+  color:rgb(80, 80, 80);
+}
 
 
 .UseHint:hover {
