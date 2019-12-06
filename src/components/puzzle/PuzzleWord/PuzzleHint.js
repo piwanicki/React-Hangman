@@ -121,6 +121,8 @@ class PuzzleHint extends Component {
       />
     );
 
+    const toolTipTitle = this.props.canUseHint ? "Use hint? You'll loose one chance." : "You can't use more hint."
+
     return (
       <div className={classes.PuzzleHintContainer}>
         <ReactHover options={optionsCursorHover}>
@@ -135,7 +137,7 @@ class PuzzleHint extends Component {
         </ReactHover>
         {this.state.hintsShow ? hoverHints : null}
         <LightTooltip
-          title={"Use hint? You'll loose one chance."}
+          title={toolTipTitle}
           placement="right-end"
         >
           <HintTooltip>{useHintBtn}</HintTooltip>

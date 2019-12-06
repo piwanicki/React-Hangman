@@ -7,7 +7,6 @@ import KonvaDrawer from "../../../components/KonvaDrawer/KonvaDrawer";
 import LoadingSpinner from "../../../UI/LoadingSpinner/LoadingSpinner";
 import PuzzleHint from "./PuzzleHint";
 import KeyboardEventHandler from "react-keyboard-event-handler";
-//import {updateHighscoreBoard} from '../../../actions/index';
 import { connect } from "react-redux";
 import HighscoreDialog from "../../Highscore/HighscoreDialog/HighscoreDialog";
 
@@ -22,7 +21,8 @@ class PuzzleWord extends Component {
     hint: "",
     wordEng: "",
     scoreStrike: 0,
-    showHighscoreDialog: true
+    showHighscoreDialog: true,
+    canUseHint: true
   };
 
   componentDidUpdate(prevProps) {
@@ -85,7 +85,8 @@ class PuzzleWord extends Component {
       guessedLetters: [],
       loading: false,
       gamePlaying: true,
-      hint: ""
+      hint: "",
+      canUseHint: true
     });
   };
 
@@ -93,6 +94,8 @@ class PuzzleWord extends Component {
     let puzzles = [...this.state.puzzle];
     const word = this.state.word;
     let scoreStrike = this.state.scoreStrike;
+    const chances = this.state.chances;
+    console.log(`czek win ${chances}`);
 
     if (this.state.chances > 0 && puzzles.indexOf("_") === -1) {
       this.setState({
@@ -100,9 +103,7 @@ class PuzzleWord extends Component {
         scoreStrike: scoreStrike + 1
       });
       console.log(`You have ${this.state.scoreStrike} points!! keep going!!`);
-    }
-
-    if (this.state.chances === 0) {
+    } else if (chances === 0) {
       let minScoreInDB = this.props.highscore;
       let minScore =
         minScoreInDB !== undefined
@@ -120,19 +121,31 @@ class PuzzleWord extends Component {
       });
       console.log(`The word is : ${this.state.word}`);
       this.setState({ gamePlaying: false });
-    }
+    } else if (puzzles.indexOf("_") === -1) {
+      console.log("Koniec");
+    } 
   };
 
   hintUsedHandler = () => {
     const chances = this.state.chances;
-    const puzzles = this.state.puzzle;
     const word = this.state.word;
-    const letter = word.split("")[Math.floor(Math.random() * word.length)];
+    const gamePlaying = this.state.gamePlaying;
+    const puzzles = this.state.puzzle;
+    let emptyIdx = [];
 
-    console.log(letter);
+    puzzles.forEach((el, idx) => (el === "_" ? emptyIdx.push(idx) : null));
+    const idx = emptyIdx[Math.floor(Math.random() * emptyIdx.length)];
+    const canUseHint  =  chances === 2 || emptyIdx.length === 1 ? false : true; 
+    this.setState({canUseHint: canUseHint});
 
-    this.setState({ chances: chances - 1 });
-    console.log(`chances left: ${chances - 1}`);
+    const letter = word.split("")[idx];
+    puzzles[idx] = letter;
+    if (gamePlaying && canUseHint) {
+      this.setState({
+        puzzle: puzzles,
+        chances: chances - 1
+      });
+    }
   };
 
   componentDidMount() {
@@ -162,7 +175,11 @@ class PuzzleWord extends Component {
           show={this.props.show}
           score={this.state.scoreStrike}
         />
-        <PuzzleHint word={this.state.wordEng} hintUsed={this.hintUsedHandler} />
+        <PuzzleHint
+          word={this.state.wordEng}
+          hintUsed={this.hintUsedHandler}
+          canUseHint={this.state.canUseHint}
+        />
         <div onClick={this.getPuzzle} className={classes.newWordBtn}>
           {downloadBtnString}
         </div>
