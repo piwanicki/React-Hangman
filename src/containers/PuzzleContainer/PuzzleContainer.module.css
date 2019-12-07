@@ -1,6 +1,6 @@
 .PuzzleContainer {
   width: 80vw;
-  min-height: 400px;
+  min-height: 435px;
   margin-top: 200px;
   position: absolute;
   left: 10vw;
@@ -8,6 +8,5 @@
   text-align: center;
   background-image: url("../../assets/img/papersheet.jpg");
   border-radius: 20px;
-  box-shadow: 3px black;
   background-size: cover;
 }
