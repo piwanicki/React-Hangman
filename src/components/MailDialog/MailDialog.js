@@ -119,6 +119,12 @@ class MailDialog extends Component {
       form = <StatusMail status={this.state.status} />;
     }
 
+
+    let attachedClasses = [classes.MailDialog,classes.Close].join(' ')
+    if(this.props.show) {
+      attachedClasses = [classes.MailDialog,classes.Open].join(' ')
+    }
+
     return (
       <>
         {this.props.show ? (
@@ -127,7 +133,7 @@ class MailDialog extends Component {
               show={this.props.show}
               clicked={this.props.closeMailDialog}
             />
-            <form className={[classes.MailDialog, classes.SlideTop].join(" ")}>
+            <form className={attachedClasses}>
               {form}
             </form>
           </>

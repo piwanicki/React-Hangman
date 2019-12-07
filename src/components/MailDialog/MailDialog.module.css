@@ -2,7 +2,7 @@
   height: 350px;
   width: 500px;
   position: fixed;
-  top: 40%;
+  top: 30%;
   left: 35%;
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
@@ -10,9 +10,10 @@
   z-index: 1000;
   background-color: whitesmoke;
   border-radius: 10px;
+  transition: transform 1.0s ease-out;
 }
 
-.SlideTop {
+/* .SlideTop {
   animation: SlideTop 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
@@ -35,7 +36,7 @@
   100% {
     transform: translateY(80px);
   }
-}
+} */
 
 input {
   margin: 20px 20px;
@@ -94,4 +95,12 @@ textarea {
 
 .LoadingSpinner {
   margin-top: 50px;
+}
+
+.Close {
+  transform: translateY(-100%);
+}
+
+.Open {
+  transform: translateY(0);
 }
