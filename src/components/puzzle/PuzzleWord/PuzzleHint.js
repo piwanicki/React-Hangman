@@ -115,13 +115,14 @@ class PuzzleHint extends Component {
     const useHintBtn = (
       <FontAwesomeIcon
         icon={faQuestion}
-        style={{ marginTop: "270px" }}
         onClick={this.props.hintUsed}
         className={classes.UseHint}
       />
     );
 
-    const toolTipTitle = this.props.canUseHint ? "Use hint? You'll loose one chance." : "You can't use more hint."
+    const toolTipTitle = this.props.canUseHint
+      ? "Use hint? You'll loose one chance."
+      : "You can't use more hint.";
 
     return (
       <div className={classes.PuzzleHintContainer}>
@@ -133,12 +134,17 @@ class PuzzleHint extends Component {
               onClick={this.lockHints}
             />
           </ReactHover.Trigger>
-          <ReactHover.Hover type="hover">{hoverHints}</ReactHover.Hover> }
+          <ReactHover.Hover type="hover">{hoverHints}</ReactHover.Hover>
         </ReactHover>
-        {this.state.hintsShow ? hoverHints : null}
+
+        <div style={{ height: "250px" }}>
+          {this.state.hintsShow ? hoverHints : null}
+        </div>
+
         <LightTooltip
           title={toolTipTitle}
           placement="right-end"
+          className={classes.HintTooltip}
         >
           <HintTooltip>{useHintBtn}</HintTooltip>
         </LightTooltip>

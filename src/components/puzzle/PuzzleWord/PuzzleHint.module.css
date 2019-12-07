@@ -29,7 +29,6 @@
   font-size: 16px;
   font-family: "India Flower", cursive;
   text-align: left;
-  /* padding: 10px 15px; */
 }
 
 .NavArrow {
@@ -48,9 +47,8 @@
   opacity: 0.9;
 }
 .NavArrow:hover {
-  color:rgb(80, 80, 80);
+  color: rgb(80, 80, 80);
 }
-
 
 .UseHint:hover {
   cursor: pointer;
