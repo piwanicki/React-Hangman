@@ -10,33 +10,8 @@
   z-index: 1000;
   background-color: whitesmoke;
   border-radius: 10px;
-  transition: transform 1.0s ease-out;
+  transition: transform 1.0s, display 2s ;
 }
-
-/* .SlideTop {
-  animation: SlideTop 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
-.SlideBottom {
-  animation: SlideBottom 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
-@keyframes SlideTop {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-80px);
-  }
-}
-@keyframes SlideBottom {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(80px);
-  }
-} */
 
 input {
   margin: 20px 20px;
@@ -98,9 +73,10 @@ textarea {
 }
 
 .Close {
-  transform: translateY(-100%);
+  transform: translateY(100vh);
+  display: none;
 }
 
 .Open {
-  transform: translateY(0);
+  transform: translateY(0)
 }
