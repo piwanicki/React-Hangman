@@ -1,9 +1,36 @@
-.KonvaDrawer {
-  width: 340px;
-  height: 340px;
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  left: 50vw;
-  margin-left: 100px;
+
+
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+  .KonvaDrawer {
+    width: 340px;
+    height: 340px;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 60%;
+    margin-left: 190px;
+  }
+
+
+@media only screen and (min-width:1300px) and (max-width: 1600px) {
+  .KonvaDrawer {
+    width: 150px;
+    top: 0;
+    margin-left: 100px;
+  }
+
+  canvas {
+    width: 200px;
+  }
 }
+
+
+@media only screen and (min-width: 992px) and (max-width:1300px)  {
+  canvas {
+    width: 120px;
+  }
+}
+
+

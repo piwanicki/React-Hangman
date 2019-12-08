@@ -53,7 +53,7 @@ class KonvaDrawer extends Component {
 
     return (
       <div className={classes.KonvaDrawer}>
-        <Stage width={340} height={340}>
+        <Stage width={320} height={340} id={classes.stage} >
           <Layer>
             <Line
               points={hangmanLines}
