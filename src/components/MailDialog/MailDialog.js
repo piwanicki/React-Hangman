@@ -7,8 +7,6 @@ import Auxiliary from "../../hoc/Auxiliary";
 import StatusMail from "./StatusMail/StatusMail";
 import { connect } from "react-redux";
 import Backdrop from "../../UI/Backdrop/Backdrop";
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {CSSTransitionGroup} from 'react-transition-group';
 
 class MailDialog extends Component {
   state = {
@@ -121,31 +119,20 @@ class MailDialog extends Component {
       form = <StatusMail status={this.state.status} />;
     }
 
-
-    let attachedClasses = [classes.MailDialog,classes.Close].join(' ')
-    if(this.props.show) {
-      attachedClasses = [classes.MailDialog,classes.Open].join(' ')
+    let attachedClasses = [classes.MailDialog, classes.Close].join(" ");
+    if (this.props.show) {
+      attachedClasses = [classes.MailDialog, classes.Open].join(" ");
     }
 
     return (
       <>
-          <>
-          
-            <Backdrop
-              show={this.props.show}
-              clicked={this.props.closeMailDialog}
-            />
-            {/* <ReactCSSTransitionGroup
-           transitionName={'example'}
-           transitionEnterTimeout={500}
-            transitionLeaveTimeout={300}
-            > */}
-            <form className={attachedClasses}>
-              {form}
-            </form>
-          {/* </ReactCSSTransitionGroup> */}
-
-          </>
+        <>
+          <Backdrop
+            show={this.props.show}
+            clicked={this.props.closeMailDialog}
+          />
+          <form className={attachedClasses}>{form}</form>
+        </>
       </>
     );
   }

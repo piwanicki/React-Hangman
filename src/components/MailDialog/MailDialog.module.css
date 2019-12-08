@@ -10,7 +10,7 @@
   z-index: 1000;
   background-color: whitesmoke;
   border-radius: 10px;
-  transition: transform 1.0s, visibility 2s ;
+  transition: transform 1s, visibility 2s;
 }
 
 input {
@@ -78,5 +78,5 @@ textarea {
 }
 
 .Open {
-  transform: translateY(0)
+  transform: translateY(0);
 }

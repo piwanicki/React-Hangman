@@ -123,7 +123,7 @@ class PuzzleWord extends Component {
       this.setState({ gamePlaying: false });
     } else if (puzzles.indexOf("_") === -1) {
       console.log("Koniec");
-    } 
+    }
   };
 
   hintUsedHandler = () => {
@@ -135,8 +135,8 @@ class PuzzleWord extends Component {
 
     puzzles.forEach((el, idx) => (el === "_" ? emptyIdx.push(idx) : null));
     const idx = emptyIdx[Math.floor(Math.random() * emptyIdx.length)];
-    const canUseHint  =  chances === 1 || emptyIdx.length === 1 ? false : true; 
-    this.setState({canUseHint: canUseHint});
+    const canUseHint = chances === 1 || emptyIdx.length === 1 ? false : true;
+    this.setState({ canUseHint: canUseHint });
 
     const letter = word.split("")[idx];
     puzzles[idx] = letter;

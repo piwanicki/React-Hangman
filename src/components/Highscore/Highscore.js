@@ -19,12 +19,13 @@ class HighScore extends Component {
       .get("/highscore.json")
       .then(response => {
         let highscoreJSON = Object.values(response.data);
-        highscoreJSON.sort((a, b) => (a.score < b.score ? 1 : -1))
-          .splice(3)
-          .forEach(el => scoreArr.push(`${el.name} - ${el.score} Pts.`));
+        highscoreJSON.sort((a, b) => (a.score < b.score ? 1 : -1)).splice(3);
+        highscoreJSON.forEach(el =>
+          scoreArr.push(`${el.name} - ${el.score} Pts.`)
+        );
         this.props.fetchDB(highscoreJSON);
         this.props.updateHighscoreBoard(false);
-        
+
         this.setState({
           scoreArr: scoreArr,
           fetching: false
