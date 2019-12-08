@@ -31,6 +31,13 @@
   canvas {
     width: 120px;
   }
+
+  .KonvaDrawer {
+    width: 150px;
+    margin-left: 100px;
+  }
+
+  
 }
 
 
