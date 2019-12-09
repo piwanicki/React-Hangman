@@ -29,6 +29,7 @@ class KonvaDrawer extends Component {
     ],
     stageWidth: 340,
     stageHeight: 340,
+    scale: 1
   };
 
  componentDidMount() {
@@ -38,12 +39,14 @@ class KonvaDrawer extends Component {
  checkSize = () => {
    const width = ReactDOM.findDOMNode(this).offsetWidth;
    const height = ReactDOM.findDOMNode(this).offsetHeight;
+   const scale =  width / 340;
+
    this.setState({
      stageWidth:width,
-     stageHeight: height
-    })
+     stageHeight: height,
+     scale: scale
+    }); 
  }
-
 
   render() {
     let hangmanLines = [];
@@ -70,7 +73,7 @@ class KonvaDrawer extends Component {
 
     return (
       <div className={classes.KonvaDrawer}>
-        <Stage width={this.state.stageWidth} height={this.state.stageHeight} >
+        <Stage width={this.state.stageWidth} height={this.state.stageHeight} scaleX={this.state.scale}>
           <Layer>
             <Line
               points={hangmanLines}

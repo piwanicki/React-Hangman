@@ -11,23 +11,12 @@
 
 @media only screen and (min-width:1300px) and (max-width: 1600px) {
   .KonvaDrawer {
-    width: 150px;
-    top: 0;
-    margin-left: 100px;
-  }
-
-  canvas {
     width: 200px;
+    margin-left: 100px;
   }
 }
 
-
 @media only screen and (min-width: 992px) and (max-width:1300px)  {
-
-  canvas {
-    width: 180px;
-  }
-
   .KonvaDrawer {
     width: 150px;
     margin-left: 50px;
@@ -44,10 +33,6 @@
 }
 /* tablets/desktops and up ———– */
 @media (min-width: 992px) and (max-width: 1199px) {
-
-  canvas {
-    width:20px;
-  }
 }
 /* large desktops and up ———– */
 @media screen and (min-width: 1200px) {
