@@ -1,20 +1,9 @@
 .PuzzleWord {
   height: 60px;
-  padding-right: 200px;
   z-index: 50;
-  margin: 150px 200px;
-}
-
-@media (min-width: 1081px) {
-  .PuzzleWord {
-    width: 900px;
-  }
-}
-
-@media (max-width: 1441px) {
-  .PuzzleWord {
-    margin-left: 50px;
-  }
+  margin: 150px;
+  margin-left: 250px;
+  padding-right: 200px;
 }
 
 .newWordBtn {

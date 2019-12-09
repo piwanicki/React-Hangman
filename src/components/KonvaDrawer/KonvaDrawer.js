@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Stage, Layer, Line, Circle } from "react-konva";
 import classes from "./KonvaDrawer.module.css";
+import ReactDOM from 'react-dom';
 
 class KonvaDrawer extends Component {
   state = {
@@ -25,8 +26,24 @@ class KonvaDrawer extends Component {
       -100,
       50,
       -60
-    ]
+    ],
+    stageWidth: 340,
+    stageHeight: 340,
   };
+
+ componentDidMount() {
+   window.addEventListener('resize', this.checkSize);
+ }
+
+ checkSize = () => {
+   const width = ReactDOM.findDOMNode(this).offsetWidth;
+   const height = ReactDOM.findDOMNode(this).offsetHeight;
+   this.setState({
+     stageWidth:width,
+     stageHeight: height
+    })
+ }
+
 
   render() {
     let hangmanLines = [];
@@ -53,7 +70,7 @@ class KonvaDrawer extends Component {
 
     return (
       <div className={classes.KonvaDrawer}>
-        <Stage width={320} height={340} id={classes.stage} >
+        <Stage width={this.state.stageWidth} height={this.state.stageHeight} >
           <Layer>
             <Line
               points={hangmanLines}
