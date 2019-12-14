@@ -22,3 +22,18 @@ p {
       height: 30px;
   }
 }
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .PuzzleLetter {
+        width: 15px;
+        height: 20px;
+    }
+  }
+
+  @media (min-width: 600) and (max-width: 768px) {
+    .PuzzleLetter {
+        width: 10px;
+        height: 15px;
+    }
+  }

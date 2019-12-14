@@ -99,3 +99,9 @@ h4 {
     margin-left: 40%;
   }
 }
+
+@media only screen and (min-width: 600px) and (max-width:768px)  {
+  .InfoSection {
+    margin-left: 30%;
+  }
+}

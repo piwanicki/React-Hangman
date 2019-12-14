@@ -12,7 +12,7 @@
 }
 
 
-@media (min-width: 550px) {
+@media (min-width: 768px) {
     .MobileMenuBtn {
         display:none;
     }
