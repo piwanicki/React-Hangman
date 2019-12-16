@@ -2,8 +2,7 @@
   height: 60px;
   z-index: 50;
   margin: 150px;
-  margin-left: 120px;
-  /* padding-right: 200px; */
+  padding-right: 200px;
 }
 
 .newWordBtn {
