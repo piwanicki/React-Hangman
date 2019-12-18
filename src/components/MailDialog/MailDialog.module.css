@@ -80,3 +80,26 @@ textarea {
 .Open {
   transform: translateY(0);
 }
+
+
+.MailDialog {
+  height: 350px;
+  width: 500px;
+  position: fixed;
+  top: 30%;
+  left: 35%;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  z-index: 1000;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  transition: transform 1s, visibility 2s;
+}
+
+
+@media only screen and (min-width: 600px) and (max-width:768px)  {
+  .MailDialog {
+    left: 15%;
+  }
+}
