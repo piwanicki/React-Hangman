@@ -32,9 +32,15 @@
 
 @media only screen and (min-width: 600px) and (max-width:992px) {
   .PuzzleWord {
-    margin-left: 70px;
-    padding-right: 30px;
+    margin-left: 60px;
+    padding-right: 20px;
   }
 }
 
 
+@media screen and (min-width: 400px) and  (max-width: 599px) {
+  .PuzzleWord {
+    margin-left: 60px;
+    padding-right: 20px;
+  }
+}

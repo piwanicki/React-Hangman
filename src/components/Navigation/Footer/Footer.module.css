@@ -105,3 +105,21 @@ h4 {
     margin-left: 20%;
   }
 }
+
+
+@media only screen and (min-width: 400px) and (max-width:599px)  {
+  .InfoSection {
+    margin-left: 0%;
+
+  }
+  .Footer li {
+    height: 20px;
+    margin: 10px 0px;
+  }
+
+  .YandexAdnotation {
+    font-size: 10px;
+    /* height: auto;
+    width: auto; */
+  }
+}
