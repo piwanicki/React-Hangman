@@ -5,3 +5,13 @@
 .HighScore {
   display: inline-block;
 }
+
+@media (max-width: 769px) {
+    .HighScore {
+    width: 100%;
+    }
+
+    .GameSelector {
+      width: 100%;
+    }
+}

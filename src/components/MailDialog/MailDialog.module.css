@@ -3,7 +3,7 @@
   width: 500px;
   position: fixed;
   top: 30%;
-  left: 35%;
+  left: 35%; 
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
@@ -11,6 +11,7 @@
   background-color: whitesmoke;
   border-radius: 10px;
   transition: transform 1s, visibility 2s;
+
 }
 
 input {
@@ -28,11 +29,11 @@ textarea {
 }
 
 .SubmitButton {
-  display: inline-block;
+  /* display: inline-block; */
   color: green;
   position: relative;
   bottom: 5px;
-  left: 230px;
+  left: 210px;
   font-size: 20px;
   width: 70px;
   border: none;
@@ -82,24 +83,43 @@ textarea {
 }
 
 
-.MailDialog {
-  height: 350px;
-  width: 500px;
-  position: fixed;
-  top: 30%;
-  left: 35%;
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  z-index: 1000;
-  background-color: whitesmoke;
-  border-radius: 10px;
-  transition: transform 1s, visibility 2s;
+
+
+@media only screen and  (min-width: 400px) and (max-width: 599px) {
+  .MailDialog {
+    left:3vw;
+    max-width:380px;
+  }
+
+  input {
+    width:130px
+  }
+
+  textarea {
+    width:80%;
+  }
+
+  .SubmitButton {
+    left: 130px;
+  }
 }
 
 
-@media only screen and (min-width: 600px) and (max-width:768px)  {
+@media only screen and  (min-width: 998px) and (max-width: 1300px) {
   .MailDialog {
-    left: 15%;
+    left:30%;
+  }
+}
+
+@media only screen and  (min-width: 768px) and (max-width: 998px) {
+  .MailDialog {
+    left:20%;
+  }
+}
+
+
+@media only screen and  (min-width: 600px) and (max-width: 768px) {
+  .MailDialog {
+    left:10%;
   }
 }
