@@ -30,18 +30,21 @@ class Footer extends Component {
 
   render() {
 
-    const attachedFooterClasses = this.state.mobileFooterShow ? [classes.Footer,classes.Close].join(' ') : [classes.Footer, classes.Open].join(' ');
+    const footerArrowIcon = !this.state.mobileFooterShow ? faChevronUp : faChevronDown;
+    const classesFooter = !this.state.mobileFooterShow ? [classes.Footer,classes.Hidden].join(' ') : classes.Footer;
+    const classesFooterCont = !this.state.mobileFooterShow ? classes.FooterContainer : [classes.FooterContainer, classes.Open].join(' ');
+
 
     const footer = (
-      <div className={classes.FooterContainer}>
+      <div className={classesFooterCont}>
       <div>
       <FontAwesomeIcon
-            icon={faChevronUp}
+            icon={footerArrowIcon}
             className={classes.OpenFooter}
             onClick={this.openFooterHandler}
           />
       </div>
-      <footer className={attachedFooterClasses}>
+      <footer className={classesFooter}>
         <span className={classes.YandexAdnotation}>Powered by Yandex API</span>
         <div className={classes.InfoSection}>
           <h4>Info</h4>

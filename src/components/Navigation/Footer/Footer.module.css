@@ -6,6 +6,7 @@
   padding: 0;
   display: block;
   left:0;
+  transition: transform 1s, visibility 2s;
 }
 
 .Footer div {
@@ -88,6 +89,9 @@ h4 {
   text-align: center;
 }
 
+.Hidden {
+  visibility: hidden;
+}
 
 .Close {
   transform: translateY(50vh);
@@ -95,7 +99,7 @@ h4 {
 }
 
 .Open {
-  transform: translateY(0);
+  transform: translateY(-30vh);
 }
 
 .OpenFooter {
@@ -103,7 +107,7 @@ h4 {
   text-align: center;
   color: grey;  
   margin-left:80vw;
-  margin-bottom: 30px;
+  margin-bottom: 28px;
 }
 
 
