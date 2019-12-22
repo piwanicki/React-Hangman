@@ -16,35 +16,26 @@ import { connect } from "react-redux";
 import Media from "react-media";
 
 class Footer extends Component {
-
   state = {
     mobileFooterShow: false
-  }
-
+  };
 
   openFooterHandler = () => {
-    const footerShow = this.state.mobileFooterShow
-    this.setState({mobileFooterShow: !footerShow})
-    console.log(footerShow)
+    const footerShow = this.state.mobileFooterShow;
+    this.setState({ mobileFooterShow: !footerShow });
+    console.log(footerShow);
   };
 
   render() {
-
-    const footerArrowIcon = !this.state.mobileFooterShow ? faChevronUp : faChevronDown;
-    const classesFooter = !this.state.mobileFooterShow ? [classes.Footer,classes.Hidden].join(' ') : classes.Footer;
-    const classesFooterCont = !this.state.mobileFooterShow ? classes.FooterContainer : [classes.FooterContainer, classes.Open].join(' ');
-
+    const footerArrowIcon = !this.state.mobileFooterShow
+      ? faChevronUp
+      : faChevronDown;
+    const classesFooterCont = !this.state.mobileFooterShow
+      ? classes.FooterContainer
+      : [classes.FooterContainer, classes.Open].join(" ");
 
     const footer = (
-      <div className={classesFooterCont}>
-      <div>
-      <FontAwesomeIcon
-            icon={footerArrowIcon}
-            className={classes.OpenFooter}
-            onClick={this.openFooterHandler}
-          />
-      </div>
-      <footer className={classesFooter}>
+      <footer className={classes.Footer}>
         <span className={classes.YandexAdnotation}>Powered by Yandex API</span>
         <div className={classes.InfoSection}>
           <h4>Info</h4>
@@ -90,13 +81,22 @@ class Footer extends Component {
           </ul>
         </div>
       </footer>
-      </div>
     );
 
     return (
-        footer
-    )
-}
+      <div className={classesFooterCont}>
+        <div>
+          <FontAwesomeIcon
+            icon={footerArrowIcon}
+            className={classes.OpenFooter}
+            onClick={this.openFooterHandler}
+          />
+        </div>
+        {footer}
+        {/* { !this.state.mobileFooterShow ? footer : null } */}
+      </div>
+    );
+  }
 }
 
 // export default Footer;
