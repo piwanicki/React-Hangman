@@ -18,3 +18,9 @@
     }
 }
 
+@media (max-width: 769px) {
+    .MobileMenuBtn {
+        margin: 0px 40px;
+    }
+}
+

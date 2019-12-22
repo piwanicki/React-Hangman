@@ -26,4 +26,8 @@
   .DesktopOnly {
     display: none;
   }
+
+  .NavigationBar {
+    height: 70px;
+  }
 }

@@ -25,11 +25,23 @@ class Footer extends Component {
   openFooterHandler = () => {
     const footerShow = this.state.mobileFooterShow
     this.setState({mobileFooterShow: !footerShow})
+    console.log(footerShow)
   };
 
   render() {
+
+    const attachedFooterClasses = this.state.mobileFooterShow ? [classes.Footer,classes.Close].join(' ') : [classes.Footer, classes.Open].join(' ');
+
     const footer = (
-      <footer className={classes.Footer}>
+      <div className={classes.FooterContainer}>
+      <div>
+      <FontAwesomeIcon
+            icon={faChevronUp}
+            className={classes.OpenFooter}
+            onClick={this.openFooterHandler}
+          />
+      </div>
+      <footer className={attachedFooterClasses}>
         <span className={classes.YandexAdnotation}>Powered by Yandex API</span>
         <div className={classes.InfoSection}>
           <h4>Info</h4>
@@ -75,20 +87,11 @@ class Footer extends Component {
           </ul>
         </div>
       </footer>
+      </div>
     );
 
     return (
-        <Auxiliary>
-        <div className={classes.FooterMobile}>
-        <FontAwesomeIcon
-              icon={faChevronUp}
-              className={classes.OpenFooter}
-              onClick={this.openFooterHandler}
-            />
-         
-        </div>
-        {footer}
-        </Auxiliary>
+        footer
     )
 }
 }
