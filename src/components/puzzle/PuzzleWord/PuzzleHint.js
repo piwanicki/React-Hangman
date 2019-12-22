@@ -11,6 +11,7 @@ import ReactHover from "react-hover";
 import axios from "axios";
 import optionsCursorHover from "../../../componentOptions/ReactHoverOptions";
 import { LightTooltip, HintTooltip } from "./HintTooltip/HintTooltip";
+import Media from 'react-media';
 
 class PuzzleHint extends Component {
   state = {
@@ -137,7 +138,8 @@ class PuzzleHint extends Component {
           <ReactHover.Hover type="hover">{hoverHints}</ReactHover.Hover>
         </ReactHover>
 
-        <div style={{ height: "250px" }}>
+
+        <div className={classes.Break}>
           {this.state.hintsShow ? hoverHints : null}
         </div>
 

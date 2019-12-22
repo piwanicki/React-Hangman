@@ -88,6 +88,29 @@ h4 {
 }
 
 
+.Close {
+  transform: translateY(100vh);
+  visibility: hidden;
+}
+
+.Open {
+  transform: translateY(0);
+}
+
+.OpenFooter {
+  font-size: 50px;
+  text-align: center;
+  color: grey;
+  
+}
+
+@media only screen and (max-width:400px) {
+  .Footer {
+    display: none;
+  }
+}
+
+
 @media only screen and (min-width: 992px) and (max-width:1300px)  {
   .InfoSection {
     margin-left: 50%;
@@ -120,3 +143,4 @@ h4 {
     font-size: 10px;
   }
 }
+

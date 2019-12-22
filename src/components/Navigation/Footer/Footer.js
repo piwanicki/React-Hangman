@@ -1,18 +1,23 @@
 import React, { Component } from "react";
 import classes from "./Footer.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faHome } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faHome, faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import hangmanLogo from "../../../assets/img/hangTransparent.png";
 import ticTacToeLogo from "../../../assets/img/tictactoe-icon2.png";
 import { Link } from "react-router-dom";
 import Auxiliary from "../../../hoc/Auxiliary";
 import {connect} from 'react-redux';
+import Media from 'react-media';
 
 class Footer extends Component {
   render() {
     return (
       <Auxiliary>
+          <Media query='(max-width: 400px)'>
+          {matches =>  matches ? <FontAwesomeIcon icon={faChevronUp} className={classes.OpenFooter}/> : null}
+        </Media>
+
         <footer className={classes.Footer}>
           <span className={classes.YandexAdnotation}>
             Powered by Yandex API
@@ -61,6 +66,8 @@ class Footer extends Component {
             </ul>
           </div>
         </footer>
+
+    
       </Auxiliary>
     );
   }
