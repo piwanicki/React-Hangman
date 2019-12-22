@@ -2,9 +2,11 @@
   color: antiquewhite;
   background-color: #020e3b;
   height: 190px;
-  width: 100%;
+  width: 100vw;
   padding: 0;
   display: block;
+  position: absolute;
+  left:0;
 }
 
 .Footer div {
@@ -101,14 +103,27 @@ h4 {
   font-size: 50px;
   text-align: center;
   color: grey;
-  
+  margin-left:45%;
 }
 
+.FooterMobile {
+  position:relative;
+  top:20vmax;
+}
+
+@media only screen and (min-width:401px) {
+  .OpenFooter {
+    display:none;
+  }
+}
+
+
+/* 
 @media only screen and (max-width:400px) {
   .Footer {
     display: none;
   }
-}
+} */
 
 
 @media only screen and (min-width: 992px) and (max-width:1300px)  {
@@ -144,3 +159,23 @@ h4 {
   }
 }
 
+@media only screen and (max-width: 400px) {
+  .InfoSection {
+    margin-left: 0%;
+
+  }
+  .Footer li {
+    height: 20px;
+    margin: 10px 0px;
+  }
+
+  .YandexAdnotation {
+    font-size: 10px;
+    width:50px;
+    text-align: center;
+  }
+
+  .QuickNav {
+    margin-left: 10px;
+  }
+}
