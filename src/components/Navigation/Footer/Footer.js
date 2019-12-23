@@ -69,7 +69,7 @@ class Footer extends Component {
               <div>
                 {/* <Link to="/tictactoe"> */}
                 <a
-                href="https://github.com/piwanicki/"
+                href="http://kolkoikrzyzyk.000webhostapp.com/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
