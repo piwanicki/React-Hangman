@@ -67,10 +67,16 @@ class Footer extends Component {
             </li>
             <li>
               <div>
-                <Link to="/tictactoe">
+                {/* <Link to="/tictactoe"> */}
+                <a
+                href="https://github.com/piwanicki/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                   <img src={ticTacToeLogo} alt="tictactoe logo" />{" "}
                   <p>TicTacToe</p>
-                </Link>
+                {/* </Link> */}
+                </a>
               </div>
             </li>
             <li>
