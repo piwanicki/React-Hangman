@@ -93,7 +93,6 @@ class Footer extends Component {
           />
         </div>
         {footer}
-        {/* { !this.state.mobileFooterShow ? footer : null } */}
       </div>
     );
   }

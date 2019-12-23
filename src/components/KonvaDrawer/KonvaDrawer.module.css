@@ -51,7 +51,7 @@
   .KonvaDrawer {
     width: 120px;
     height: 120px;
-    margin-left: 20px;
+    margin-left: 0px;
     margin-top: 50px;
   }
 }
