@@ -73,7 +73,7 @@ class Footer extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                  <img src={ticTacToeLogo} alt="tictactoe logo" />{" "}
+                  <img src={ticTacToeLogo} alt="tictactoe logo" />
                   <p>TicTacToe</p>
                 {/* </Link> */}
                 </a>

@@ -11,6 +11,13 @@ import { connect } from "react-redux";
 import HighscoreDialog from "../../Highscore/HighscoreDialog/HighscoreDialog";
 
 class PuzzleWord extends Component {
+
+
+  constructor () {
+    super()
+    this.inRef = React.createRef();
+  }
+
   state = {
     word: "",
     guessedLetters: [],
@@ -95,7 +102,6 @@ class PuzzleWord extends Component {
     const word = this.state.word;
     let scoreStrike = this.state.scoreStrike;
     const chances = this.state.chances;
-    console.log(`czek win ${chances}`);
 
     if (this.state.chances > 0 && puzzles.indexOf("_") === -1) {
       this.setState({
@@ -121,8 +127,6 @@ class PuzzleWord extends Component {
       });
       console.log(`The word is : ${this.state.word}`);
       this.setState({ gamePlaying: false });
-    } else if (puzzles.indexOf("_") === -1) {
-      console.log("Koniec");
     }
   };
 
@@ -148,8 +152,17 @@ class PuzzleWord extends Component {
     }
   };
 
+  showMobileKeyboard = () => {
+    this.inRef.current.focus();
+    this.inRef.current.click();
+  }
+
   componentDidMount() {
     this.getPuzzle();
+  }
+
+  test = () => {
+    console.log(`input clicked`);
   }
 
   render() {
@@ -199,7 +212,8 @@ class PuzzleWord extends Component {
           onKeyEvent={(key, e) => this.guessedLetterHandler(e.key)}
           isDisabled={this.props.mailOpened}
         ></KeyboardEventHandler>
-        <div className={classes.PuzzleWord}>{letters}</div>
+        <div className={classes.PuzzleWord} onClick={this.showMobileKeyboard} >{letters}</div>
+        <input className={classes.InputRef} type='text' ref={this.inRef} onClick={this.test}/>
         <KonvaDrawer chances={this.state.chances} />
       </Auxiliary>
     );
