@@ -3,6 +3,7 @@
   z-index: 50;
   margin: 150px;
   padding-right: 200px;
+  overflow: hidden;
 }
 
 .newWordBtn {
@@ -23,8 +24,11 @@
 }
 
 .InputRef {
-  visibility: hidden;
+  /* visibility: hidden; */
+  transition: transform;
+  transform: translateY(-200vh);
 }
+
 
 @media only screen and (min-width: 992px) and (max-width:1300px) {
   .PuzzleWord {

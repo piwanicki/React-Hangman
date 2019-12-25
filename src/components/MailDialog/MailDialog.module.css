@@ -87,12 +87,12 @@ textarea {
 
 @media only screen and  (min-width: 400px) and (max-width: 599px) {
   .MailDialog {
-    left:3vw;
-    max-width:380px;
+    width: 100%;
+    left:0;
   }
 
   input {
-    width:130px
+    width:130px;
   }
 
   textarea {
@@ -100,8 +100,30 @@ textarea {
   }
 
   .SubmitButton {
-    left: 130px;
+    left: 40%;
   }
+}
+
+@media only screen and (max-width: 400px) {
+  .MailDialog {
+    width:100vw;
+    left:0;
+  }
+
+  input {
+    width: 35%;
+  }
+
+  textarea {
+    width: 80%;
+    height: 50%;
+  }
+
+  .SubmitButton {
+    left: 40%;
+  }
+
+
 }
 
 
