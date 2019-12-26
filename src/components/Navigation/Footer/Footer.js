@@ -31,7 +31,7 @@ class Footer extends Component {
       ? faChevronUp
       : faChevronDown;
     const classesFooterCont = !this.state.mobileFooterShow
-      ? classes.FooterContainer
+      ? [classes.FooterContainer,classes.Close].join(' ')
       : [classes.FooterContainer, classes.Open].join(" ");
 
     const footer = (

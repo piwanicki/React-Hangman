@@ -161,10 +161,6 @@ class PuzzleWord extends Component {
     this.getPuzzle();
   }
 
-  test = () => {
-    console.log(`input clicked`);
-  }
-
   render() {
     let downloadBtnString = "Nowe Hasło";
     if (this.props.lang === "en") {
@@ -213,7 +209,7 @@ class PuzzleWord extends Component {
           isDisabled={this.props.mailOpened}
         ></KeyboardEventHandler>
         <div className={classes.PuzzleWord} onClick={this.showMobileKeyboard} >{letters}</div>
-        <input className={classes.InputRef} type='text' ref={this.inRef} onClick={this.test}/>
+        {/* <input className={classes.InputRef} type='text' ref={this.inRef}/> */}
         <KonvaDrawer chances={this.state.chances} />
       </Auxiliary>
     );

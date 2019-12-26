@@ -94,12 +94,12 @@ h4 {
 }
 
 .Close {
-  transform: translateY(50vh);
-  visibility: hidden;
+  transform: translateY(35vh);
+  /* visibility: hidden; */
 }
 
 .Open {
-  transform: translateY(-38vh);
+  transform: translateY(0);
 }
 
 .OpenFooter {
@@ -181,7 +181,7 @@ h4 {
   }
 
   .FooterContainer {
-    top: 90vh;
+    top: 52vh;
   }
 
   .Footer {
