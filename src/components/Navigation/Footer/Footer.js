@@ -11,9 +11,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import hangmanLogo from "../../../assets/img/hangTransparent.png";
 import ticTacToeLogo from "../../../assets/img/tictactoe-icon2.png";
 import { Link } from "react-router-dom";
-import Auxiliary from "../../../hoc/Auxiliary";
 import { connect } from "react-redux";
-import Media from "react-media";
 
 class Footer extends Component {
   state = {
@@ -23,7 +21,6 @@ class Footer extends Component {
   openFooterHandler = () => {
     const footerShow = this.state.mobileFooterShow;
     this.setState({ mobileFooterShow: !footerShow });
-    console.log(footerShow);
   };
 
   render() {
@@ -31,7 +28,7 @@ class Footer extends Component {
       ? faChevronUp
       : faChevronDown;
     const classesFooterCont = !this.state.mobileFooterShow
-      ? [classes.FooterContainer,classes.Close].join(' ')
+      ? classes.FooterContainer
       : [classes.FooterContainer, classes.Open].join(" ");
 
     const footer = (

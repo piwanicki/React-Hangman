@@ -99,7 +99,7 @@ h4 {
 }
 
 .Open {
-  transform: translateY(0);
+  transform: translateY(-38vh);
 }
 
 .OpenFooter {
@@ -181,7 +181,7 @@ h4 {
   }
 
   .FooterContainer {
-    top: 52vh;
+    top: 90vh;
   }
 
   .Footer {
