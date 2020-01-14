@@ -9,12 +9,33 @@ import PuzzleHint from "./PuzzleHint";
 import KeyboardEventHandler from "react-keyboard-event-handler";
 import { connect } from "react-redux";
 import HighscoreDialog from "../../Highscore/HighscoreDialog/HighscoreDialog";
+import Keyboard from "react-simple-keyboard";
+import "react-simple-keyboard/build/css/index.css";
+
+
+
+const layout = {
+  'default': [
+    ' q w e r t y u i o p [ ] \\',
+    'a s d f g h j k l ; \' {enter}',
+    'z x c v b n m , . / {shift}',
+
+  ],
+  'shift': [
+    '~ ! @ # $ % ^ & * ( ) _ + {bksp}',
+    '{tab} Q W E R T Y U I O P { } |',
+    '{lock} A S D F G H J K L : " {enter}',
+    '{shift} Z X C V B N M < > ? {shift}',
+    '.com @ {space}'
+  ]
+}
+
+
+
 
 class PuzzleWord extends Component {
-
-
-  constructor () {
-    super()
+  constructor() {
+    super();
     this.inRef = React.createRef();
   }
 
@@ -58,6 +79,8 @@ class PuzzleWord extends Component {
   };
 
   guessedLetterHandler = key => {
+    console.log(key);
+    // const key = e.key;
     if (this.state.chances > 0 && this.state.gamePlaying) {
       const puzzles = [...this.state.puzzle];
       const wordArray = [...this.state.word.split("")];
@@ -152,10 +175,10 @@ class PuzzleWord extends Component {
     }
   };
 
-  showMobileKeyboard = () => {
-    this.inRef.current.focus();
-    this.inRef.current.click();
-  }
+  // showMobileKeyboard = () => {
+  //   this.inRef.current.focus();
+  //   this.inRef.current.click();
+  // }
 
   componentDidMount() {
     this.getPuzzle();
@@ -207,9 +230,29 @@ class PuzzleWord extends Component {
           handleEventType={"keydown"}
           onKeyEvent={(key, e) => this.guessedLetterHandler(e.key)}
           isDisabled={this.props.mailOpened}
+          // isExclusive={true}
+          // handleFocusableElements={true}
         ></KeyboardEventHandler>
-        <div className={classes.PuzzleWord} onClick={this.showMobileKeyboard} >{letters}</div>
-        {/* <input className={classes.InputRef} type='text' ref={this.inRef}/> */}
+        <div className={classes.PuzzleWord} onClick={this.showMobileKeyboard}>
+          {letters}
+        </div>
+
+        {this.props.showVirtualKeyboard ? (
+          <Keyboard
+            onKeyPress={button => this.guessedLetterHandler(button)}
+            useTouchEvents={true}
+            baseClass={classes.VirtualKeyboard}
+            layout={{
+  'default': [
+    'q w e r t y u i o p',
+    'a s d f g h j k l',
+    'z x c v b n m',
+  ]
+}}
+            layoutName={'default'}
+          />
+        ) : null}
+
         <KonvaDrawer chances={this.state.chances} />
       </Auxiliary>
     );
@@ -218,7 +261,8 @@ class PuzzleWord extends Component {
 
 const mapStateToProps = state => {
   return {
-    highscore: state.highscore
+    highscore: state.highscore,
+    showVirtualKeyboard: state.showVirtualKeyboard
   };
 };
 

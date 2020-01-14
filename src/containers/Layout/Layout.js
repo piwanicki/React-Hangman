@@ -32,7 +32,7 @@ class Layout extends Component {
 
   render() {
     return (
-      <Auxiliary>
+      <Auxiliary >
         <div className={classes.Layout}>
           <MobileMenu
             close={this.closeMobileMenuHandler}

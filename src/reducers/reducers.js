@@ -2,6 +2,7 @@ const initialState = {
   fetching: false,
   showMailDialog: false,
   showHighscoreDialog: false,
+  showVirtualKeyboard: false
 };
 
 const reducers = (state = initialState, action) => {
@@ -10,6 +11,13 @@ const reducers = (state = initialState, action) => {
       return {
         ...state,
         showMailDialog: !state.showMailDialog
+      };
+    }
+
+    case "SHOW_VIRTUAL_KEYBOARD": {
+      return {
+        ...state,
+        showVirtualKeyboard: !state.showVirtualKeyboard
       };
     }
 

@@ -6,7 +6,7 @@
   display: inline-block;
 }
 
-@media (max-width: 769px) {
+@media (max-width: 768px) {
     .HighScore {
     width: 100%;
     }

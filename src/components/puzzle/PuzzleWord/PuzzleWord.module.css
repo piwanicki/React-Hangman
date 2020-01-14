@@ -28,6 +28,13 @@
   transform: translateY(-200vh);
 }
 
+.VirtualKeyboard {
+  position : fixed;
+  bottom:0;
+  z-index: 200;
+  /* transform: translateY(-100vh); */
+}
+
 
 @media only screen and (min-width: 992px) and (max-width:1300px) {
   .PuzzleWord {

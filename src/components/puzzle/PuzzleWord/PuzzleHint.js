@@ -5,20 +5,29 @@ import {
   faInfoCircle,
   faChevronRight,
   faChevronLeft,
-  faQuestion
+  faQuestion,
+  faKeyboard
 } from "@fortawesome/free-solid-svg-icons";
 import ReactHover from "react-hover";
 import axios from "axios";
 import optionsCursorHover from "../../../componentOptions/ReactHoverOptions";
 import { LightTooltip, HintTooltip } from "./HintTooltip/HintTooltip";
 import Media from 'react-media';
+import {connect} from 'react-redux';
 
 class PuzzleHint extends Component {
   state = {
     definitions: [],
     hintIndex: 0,
-    hintsShow: false
+    hintsShow: false,
+    showVirtualKeyboard: false
   };
+
+  showVirtualKeyboard = () => {
+    const visible = this.state.showVirtualKeyboard;
+    this.setState({showVirtualKeyboard: !visible});
+  }
+
 
   getDefinitions = () => {
     axios
@@ -127,6 +136,7 @@ class PuzzleHint extends Component {
 
     return (
       <div className={classes.PuzzleHintContainer}>
+       <FontAwesomeIcon icon={faKeyboard} onClick={this.props.showVirtualKeyboard} className={classes.VirtualKeyboard}/>
         <ReactHover options={optionsCursorHover}>
           <ReactHover.Trigger type="trigger">
             <FontAwesomeIcon
@@ -137,12 +147,13 @@ class PuzzleHint extends Component {
           </ReactHover.Trigger>
           <ReactHover.Hover type="hover">{hoverHints}</ReactHover.Hover>
         </ReactHover>
-
-
+       
+      
         <div className={classes.Break}>
           {this.state.hintsShow ? hoverHints : null}
         </div>
-
+       
+  
         <LightTooltip
           title={toolTipTitle}
           placement="right-end"
@@ -155,4 +166,16 @@ class PuzzleHint extends Component {
   }
 }
 
-export default PuzzleHint;
+const mapStateToProps = (state) => {
+  return {
+    showVirtualKeyboard: state.showVirtualKeyboard
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showVirtualKeyboard: () => dispatch({type: 'SHOW_VIRTUAL_KEYBOARD'})
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(PuzzleHint);

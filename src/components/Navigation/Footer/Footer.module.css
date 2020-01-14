@@ -113,7 +113,7 @@ h4 {
 
 .FooterContainer {
   position:absolute;
-  top: 970px;
+  /* top: 970px; */
   left:0;
 }
 
