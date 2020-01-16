@@ -8,9 +8,7 @@ import {
   faChevronDown
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import hangmanLogo from "../../../assets/img/hangTransparent.png";
 import ticTacToeLogo from "../../../assets/img/tictactoe-icon2.png";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class Footer extends Component {

@@ -12,7 +12,6 @@ import ReactHover from "react-hover";
 import axios from "axios";
 import optionsCursorHover from "../../../componentOptions/ReactHoverOptions";
 import { LightTooltip, HintTooltip } from "./HintTooltip/HintTooltip";
-import Media from 'react-media';
 import {connect} from 'react-redux';
 
 class PuzzleHint extends Component {

@@ -4,7 +4,7 @@ import classes from "./NavigationItem.module.css";
 const NavigationItem = props => {
   return (
     <li className={classes.NavigationItem}>
-      <a href="/"></a>
+      <p></p>
       {props.children}
     </li>
   );

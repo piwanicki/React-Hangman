@@ -197,8 +197,6 @@ class PuzzleWord extends Component {
       downloadBtnString = "Neues Wort";
     }
 
-    const layoutName = this.props.lang === "pl" ? "altPL" : "altDE";
-
     let letters = <LoadingSpinner />;
 
     if (!this.state.loading) {
