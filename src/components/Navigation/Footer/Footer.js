@@ -58,29 +58,33 @@ class Footer extends Component {
           <h4>Quick Nav</h4>
           <ul>
             <li>
-              <Link to="/home">
+              <a
+                href="http://paweliwanickiportfolio.dx.am/pl"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FontAwesomeIcon icon={faHome} /> <p>Home</p>
-              </Link>
+              </a>
             </li>
             <li>
               <div>
                 {/* <Link to="/tictactoe"> */}
                 <a
-                href="http://kolkoikrzyzyk.000webhostapp.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+                  href="http://kolkoikrzyzyk.000webhostapp.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img src={ticTacToeLogo} alt="tictactoe logo" />
                   <p>TicTacToe</p>
-                {/* </Link> */}
+                  {/* </Link> */}
                 </a>
               </div>
             </li>
-            <li>
+            {/* <li>
               <Link to="/">
                 <img src={hangmanLogo} alt="hangman logo" /> <p>Hangman</p>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </footer>
@@ -88,7 +92,7 @@ class Footer extends Component {
 
     return (
       <div className={classesFooterCont}>
-        <div>
+        <div className={classes.FooterArrowCont}>
           <FontAwesomeIcon
             icon={footerArrowIcon}
             className={classes.OpenFooter}

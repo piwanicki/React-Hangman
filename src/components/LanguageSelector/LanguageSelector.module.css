@@ -5,6 +5,11 @@
   margin: 10px 20px;
 }
 
+.FlagImg {
+  width: auto;
+  height: auto;
+}
+
 .LanguageSelector:hover {
   transform: scale(1.15);
   transition: scale 0.5s;
@@ -14,5 +19,23 @@
   .LanguageSelector {
     height: auto;
     margin: 10px 15px;
+  }
+}
+
+@media (max-width: 500px) {
+  .FlagImg {
+    width: 50px;
+  }
+  .LanguageSelector {
+    margin: 10px 10px;
+  }
+}
+
+@media (max-width: 355px) {
+  .FlagImg {
+    width: 45px;
+  }
+  .LanguageSelector {
+    margin: 10px 5px;
   }
 }

@@ -12,26 +12,20 @@ import HighscoreDialog from "../../Highscore/HighscoreDialog/HighscoreDialog";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 
-
-
-const layout = {
-  'default': [
-    ' q w e r t y u i o p [ ] \\',
-    'a s d f g h j k l ; \' {enter}',
-    'z x c v b n m , . / {shift}',
-
-  ],
-  'shift': [
-    '~ ! @ # $ % ^ & * ( ) _ + {bksp}',
-    '{tab} Q W E R T Y U I O P { } |',
-    '{lock} A S D F G H J K L : " {enter}',
-    '{shift} Z X C V B N M < > ? {shift}',
-    '.com @ {space}'
-  ]
-}
-
-
-
+// const layout = {
+//   default: [
+//     " q w e r t y u i o p [ ] \\",
+//     "a s d f g h j k l ; ' {enter}",
+//     "z x c v b n m , . / {shift}"
+//   ],
+//   shift: [
+//     "~ ! @ # $ % ^ & * ( ) _ + {bksp}",
+//     "{tab} Q W E R T Y U I O P { } |",
+//     '{lock} A S D F G H J K L : " {enter}',
+//     "{shift} Z X C V B N M < > ? {shift}",
+//     ".com @ {space}"
+//   ]
+// };
 
 class PuzzleWord extends Component {
   constructor() {
@@ -50,7 +44,8 @@ class PuzzleWord extends Component {
     wordEng: "",
     scoreStrike: 0,
     showHighscoreDialog: true,
-    canUseHint: true
+    canUseHint: true,
+    keyboardLayout: "default"
   };
 
   componentDidUpdate(prevProps) {
@@ -63,9 +58,12 @@ class PuzzleWord extends Component {
     this.setState({ loading: true });
     axios.get(`http://puzzle.mead.io/puzzle?wordCount=1`).then(response => {
       this.setupPuzzle(response.data.puzzle.toLowerCase());
-      this.setState({ wordEng: response.data.puzzle.toLowerCase() });
+      this.setState({
+        wordEng: response.data.puzzle.toLowerCase()
+      });
       console.log(`wordEng: ${this.state.wordEng}`);
       if (this.props.lang !== "en") {
+        this.setState({ keyboardLayout: "default" });
         axios
           .get(
             `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190729T200219Z.af5b237995a37b64.de861d375a64ea3d5d51764c8f5aa22d42d59972&text=${this.state.word}&lang=en-${this.props.lang}`
@@ -79,8 +77,19 @@ class PuzzleWord extends Component {
   };
 
   guessedLetterHandler = key => {
+    if (key === "alt") {
+      const currentAltKeyboard = this.state.keyboardLayout;
+      if (currentAltKeyboard === "altPL" || currentAltKeyboard === "altDE") {
+        this.setState({ keyboardLayout: "default" });
+      } else if (this.props.lang !== "en") {
+        const altKeyboard = this.props.lang === "pl" ? "altPL" : "altDE";
+        this.setState({ keyboardLayout: altKeyboard });
+      }
+      console.log(this.state.keyboardLayout);
+      return null;
+    }
+
     console.log(key);
-    // const key = e.key;
     if (this.state.chances > 0 && this.state.gamePlaying) {
       const puzzles = [...this.state.puzzle];
       const wordArray = [...this.state.word.split("")];
@@ -175,11 +184,6 @@ class PuzzleWord extends Component {
     }
   };
 
-  // showMobileKeyboard = () => {
-  //   this.inRef.current.focus();
-  //   this.inRef.current.click();
-  // }
-
   componentDidMount() {
     this.getPuzzle();
   }
@@ -192,6 +196,8 @@ class PuzzleWord extends Component {
     if (this.props.lang === "de") {
       downloadBtnString = "Neues Wort";
     }
+
+    const layoutName = this.props.lang === "pl" ? "altPL" : "altDE";
 
     let letters = <LoadingSpinner />;
 
@@ -243,13 +249,23 @@ class PuzzleWord extends Component {
             useTouchEvents={true}
             baseClass={classes.VirtualKeyboard}
             layout={{
-  'default': [
-    'q w e r t y u i o p',
-    'a s d f g h j k l',
-    'z x c v b n m',
-  ]
-}}
-            layoutName={'default'}
+              default: [
+                "q w e r t y u i o p",
+                "a s d f g h j k l",
+                "z x c v b n m alt"
+              ],
+              altPL: [
+                "q w ę r t y u i ó p",
+                "ą ś d f g h j k ł",
+                "ż ź ć v b n m alt"
+              ],
+              altDE: [
+                "q w e r t y u i o p ü",
+                "a s d f g h j k l ö ä",
+                "z x c v b n m alt"
+              ]
+            }}
+            layoutName={this.state.keyboardLayout}
           />
         ) : null}
 
@@ -262,7 +278,8 @@ class PuzzleWord extends Component {
 const mapStateToProps = state => {
   return {
     highscore: state.highscore,
-    showVirtualKeyboard: state.showVirtualKeyboard
+    showVirtualKeyboard: state.showVirtualKeyboard,
+    lang: state.lang
   };
 };
 

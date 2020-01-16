@@ -2,7 +2,8 @@ const initialState = {
   fetching: false,
   showMailDialog: false,
   showHighscoreDialog: false,
-  showVirtualKeyboard: false
+  showVirtualKeyboard: false,
+  lang: "en"
 };
 
 const reducers = (state = initialState, action) => {
@@ -35,11 +36,18 @@ const reducers = (state = initialState, action) => {
       };
     }
 
-    case 'FETCH_DB_SCORES' : {
+    case "FETCH_DB_SCORES": {
       return {
         ...state,
         highscores: action.scores
-      }
+      };
+    }
+
+    case "CHANGE_LANGUAGE": {
+      return {
+        ...state,
+        lang: action.lang
+      };
     }
 
     default: {
