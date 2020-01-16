@@ -6,6 +6,7 @@
   box-sizing: border-box;
   font-family: "Indie Flower", cursive;
   font-size: 30px;
+  color: whitesmoke;
 }
 
 .NavigationItem:hover {

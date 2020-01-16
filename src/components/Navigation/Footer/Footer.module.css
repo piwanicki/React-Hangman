@@ -1,12 +1,14 @@
 .Footer {
   color: antiquewhite;
-  background-color: #020e3b;
+  /* background-color: #020e3b; */
+  /* background-color: #3e4444; */
   height: 190px;
   width: 100vw;
   padding: 0;
   display: block;
   left: 0;
   transition: transform 1s, visibility 2s;
+  background-image: linear-gradient(grey, black);
 }
 
 .Footer div {
@@ -18,7 +20,7 @@
 .YandexAdnotation {
   float: left;
   padding-top: 150px;
-  color: grey;
+  color: whitesmoke;
   margin-left: 20px;
 }
 
@@ -84,7 +86,7 @@ a:hover {
 
 h4 {
   margin: 8px 10px;
-  color: grey;
+  color: rgba(245, 245, 245, 0.795);
   font-family: "Dosis", sans-serif;
   text-align: center;
 }
