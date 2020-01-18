@@ -3,7 +3,8 @@ const initialState = {
   showMailDialog: false,
   showHighscoreDialog: false,
   showVirtualKeyboard: false,
-  lang: "en"
+  lang: "en",
+  highscores: []
 };
 
 const reducers = (state = initialState, action) => {

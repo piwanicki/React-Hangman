@@ -11,21 +11,7 @@ import { connect } from "react-redux";
 import HighscoreDialog from "../../Highscore/HighscoreDialog/HighscoreDialog";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
-
-// const layout = {
-//   default: [
-//     " q w e r t y u i o p [ ] \\",
-//     "a s d f g h j k l ; ' {enter}",
-//     "z x c v b n m , . / {shift}"
-//   ],
-//   shift: [
-//     "~ ! @ # $ % ^ & * ( ) _ + {bksp}",
-//     "{tab} Q W E R T Y U I O P { } |",
-//     '{lock} A S D F G H J K L : " {enter}',
-//     "{shift} Z X C V B N M < > ? {shift}",
-//     ".com @ {space}"
-//   ]
-// };
+import ScoreInfo from "./ScoreInfo/ScoreInfo";
 
 class PuzzleWord extends Component {
   constructor() {
@@ -45,7 +31,8 @@ class PuzzleWord extends Component {
     scoreStrike: 0,
     showHighscoreDialog: true,
     canUseHint: true,
-    keyboardLayout: "default"
+    keyboardLayout: "default",
+    showScoreInfo: false
   };
 
   componentDidUpdate(prevProps) {
@@ -85,11 +72,8 @@ class PuzzleWord extends Component {
         const altKeyboard = this.props.lang === "pl" ? "altPL" : "altDE";
         this.setState({ keyboardLayout: altKeyboard });
       }
-      console.log(this.state.keyboardLayout);
       return null;
     }
-
-    console.log(key);
     if (this.state.chances > 0 && this.state.gamePlaying) {
       const puzzles = [...this.state.puzzle];
       const wordArray = [...this.state.word.split("")];
@@ -134,15 +118,22 @@ class PuzzleWord extends Component {
     const word = this.state.word;
     let scoreStrike = this.state.scoreStrike;
     const chances = this.state.chances;
+    let minScoreInDB = this.props.highscore;
 
     if (this.state.chances > 0 && puzzles.indexOf("_") === -1) {
       this.setState({
         gamePlaying: false,
-        scoreStrike: scoreStrike + 1
+        scoreStrike: scoreStrike + 1,
+        showScoreInfo: true
       });
-      console.log(`You have ${this.state.scoreStrike} points!! keep going!!`);
+
+      setTimeout(() => {
+        this.setState({
+          showScoreInfo: false
+        });
+      }, 1500);
     } else if (chances === 0) {
-      let minScoreInDB = this.props.highscore;
+      
       let minScore =
         minScoreInDB !== undefined
           ? minScoreInDB
@@ -155,7 +146,8 @@ class PuzzleWord extends Component {
       puzzles = word.split("").map(el => el);
       this.setState({
         puzzle: puzzles,
-        gamePlaying: false
+        gamePlaying: false,
+        scoreStrike: 0
       });
       console.log(`The word is : ${this.state.word}`);
       this.setState({ gamePlaying: false });
@@ -219,6 +211,9 @@ class PuzzleWord extends Component {
         <div onClick={this.getPuzzle} className={classes.newWordBtn}>
           {downloadBtnString}
         </div>
+        {this.state.showScoreInfo ? (
+          <ScoreInfo scoreStrike={this.state.scoreStrike} />
+        ) : null}
         <KeyboardEventHandler
           handleKeys={[
             "alphabetic",

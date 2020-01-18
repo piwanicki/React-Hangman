@@ -13,6 +13,7 @@
 .LanguageSelector:hover {
   transform: scale(1.15);
   transition: scale 0.5s;
+  cursor: pointer;
 }
 
 @media (max-width: 769px) {
