@@ -16,12 +16,12 @@
 }
 
 .hover {
-  background-color: papayawhip;
+  background-color: #D3D5D4;
   width: 300px;
   height: auto;
   border: 2px black solid;
   border-radius: 10px;
-  border-color: rgb(161, 75, 13);
+  border-color:#03120E;
   z-index: 300;
 }
 
