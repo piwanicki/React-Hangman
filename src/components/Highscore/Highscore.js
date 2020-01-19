@@ -37,6 +37,7 @@ class HighScore extends Component {
           fetching: false
         });
       });
+      console.log(scoreArr)
   };
 
   componentDidMount() {
@@ -45,7 +46,6 @@ class HighScore extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.fetching !== this.state.fetching) {
-      console.log(`zaktualizuj haj`);
       this.getDBHighscores();
     }
   }
@@ -60,18 +60,18 @@ class HighScore extends Component {
         ) : (
           <Auxiliary>
             <p style={{ fontSize: "0.85em" }}>
-              <FontAwesomeIcon icon={faTrophy} className={classes.FirstPlace} />{" "}
+              <FontAwesomeIcon icon={faTrophy} className={classes.FirstPlace} />
               {scoreArr[0]}
             </p>
             <p style={{ fontSize: "0.75em" }}>
               <FontAwesomeIcon
                 icon={faTrophy}
                 className={classes.SecondPlace}
-              />{" "}
+              />
               {scoreArr[1]}
             </p>
             <p style={{ fontSize: "0.65em" }}>
-              <FontAwesomeIcon icon={faTrophy} className={classes.ThirdPlace} />{" "}
+              <FontAwesomeIcon icon={faTrophy} className={classes.ThirdPlace} />
               {scoreArr[2]}
             </p>
             <div className={classes.Refresh} onClick={this.getDBHighscores}>

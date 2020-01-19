@@ -6,15 +6,18 @@ import { connect } from "react-redux";
 
 const scoreInfo = props => {
   const scoreArr = props.highscores;
-  const scores = [];
-  scoreArr.forEach(el => scores.push(el.score));
+  const scores = scoreArr.map(el => el.score);
   let trophyColor;
-  if (scoreArr !== undefined) {
-    if (props.scoreStrike > scores[2]) {
+  if (scoreArr.length > 0) {
+    if (props.scoreStrike >= scores[2] && 
+        props.scoreStrike < scores[1]) {
       trophyColor = "#a5682a";
-    } else if (props.scoreStrike > scores[1] || (props.scoreStrike > 0 && scores.length === 1 )) {
+    } else if (
+      props.scoreStrike >= scores[1] &&
+      props.scoreStrike < scores[0]
+    ) {
       trophyColor = "#c0c0c0";
-    } else if (props.scoreStrike > scores[0]) {
+    } else if (props.scoreStrike >= scores[0]) {
       trophyColor = "#ffbf00";
     } else {
       trophyColor = "#ffffff00";
@@ -26,7 +29,7 @@ const scoreInfo = props => {
   return (
     <div className={classes.ScoreInfo}>
       <p>
-        Your score :{" "}
+        Your score :
         <span style={{ fontWeight: "bold", fontSize: "1.05em" }}>
           {props.scoreStrike}
         </span>
@@ -40,8 +43,6 @@ const scoreInfo = props => {
     </div>
   );
 };
-
-// export default scoreInfo;
 
 const mapPropsToState = state => {
   return {

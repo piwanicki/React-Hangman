@@ -1,14 +1,13 @@
-import React, {Component} from 'react';
-import classes from './HighscoreDialog.module.css';
-import {connect} from 'react-redux';
-import Backdrop from '../../../UI/Backdrop/Backdrop';
-import highscoreInstance from '../../../axios-highscore';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faThumbsUp} from '@fortawesome/free-regular-svg-icons';
-import Auxiliary from '../../../hoc/Auxiliary';
+import React, { Component } from "react";
+import classes from "./HighscoreDialog.module.css";
+import { connect } from "react-redux";
+import Backdrop from "../../../UI/Backdrop/Backdrop";
+import highscoreInstance from "../../../axios-highscore";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
+import Auxiliary from "../../../hoc/Auxiliary";
 
-class HighscoreDialog extends Component  {
-
+class HighscoreDialog extends Component {
   constructor(props) {
     super(props);
     this.inputRef = React.createRef();
@@ -18,7 +17,7 @@ class HighscoreDialog extends Component  {
     const input = this.inputRef.current;
     const highscore = {
       name: input.value,
-      score: this.props.score
+      score: this.props.scoreStrike
     };
     highscoreInstance
       .post("/highscore.json", highscore)
@@ -28,45 +27,55 @@ class HighscoreDialog extends Component  {
         this.props.closeHighscoreDialog();
       })
       .catch(error => console.log(error));
-   };
-
+  };
 
   render() {
-
     return (
       <>
-      { this.props.show ?  
-      <Auxiliary>
-      <Backdrop show={true} clicked={this.props.closeHighscoreDialog} />
-        <div className={classes.HighscoreDialog} >
-          <p className={classes.ScoreInfo}>Congrats! You scored {this.props.score} points!</p>
-          <FontAwesomeIcon icon={faThumbsUp} className={[classes.Like,classes.ScaleInCenter].join(" ")}/>
-          <input type='text' placeholder='Type you name...' ref={this.inputRef} maxLength={5}></input>
-          <p className={classes.SendBtn}  onClick={this.sendHighscoreToDB}>SEND</p>
-        </div> 
-        </Auxiliary>
-        : null
-      }
+        {this.props.show ? (
+          <Auxiliary>
+            <Backdrop show={true} clicked={this.props.closeHighscoreDialog} />
+            <div className={classes.HighscoreDialog}>
+              <p className={classes.ScoreInfo}>
+                Congrats! You scored {this.props.scoreStrike} points!
+              </p>
+              <FontAwesomeIcon
+                icon={faThumbsUp}
+                className={[classes.Like, classes.ScaleInCenter].join(" ")}
+              />
+              <input
+                type="text"
+                placeholder="Type you name..."
+                ref={this.inputRef}
+                maxLength={5}
+              ></input>
+              <p
+                className={classes.SendBtn}
+                onClick={this.sendHighscoreToDB}
+                onClickCapture={this.props.resetScoreStrike}
+              >
+                SEND
+              </p>
+            </div>
+          </Auxiliary>
+        ) : null}
       </>
-      )
-   }
+    );
+  }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    show: state.showHighscoreDialog,
+    show: state.showHighscoreDialog
     // score: state.score
-  }
-}
+  };
+};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    closeHighscoreDialog: () => dispatch({type: 'SHOW_HIGHSCORE_DIALOG'}),
-    fetchHighscoreBoard: () => dispatch({type: 'UPDATE_HS_BOARD'}),
-  }
-}
+    closeHighscoreDialog: () => dispatch({ type: "SHOW_HIGHSCORE_DIALOG" }),
+    fetchHighscoreBoard: () => dispatch({ type: "UPDATE_HS_BOARD" })
+  };
+};
 
-
-export default connect(mapStateToProps,mapDispatchToProps)(HighscoreDialog);
-
- 
+export default connect(mapStateToProps, mapDispatchToProps)(HighscoreDialog);

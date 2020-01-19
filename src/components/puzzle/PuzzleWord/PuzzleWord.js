@@ -147,12 +147,17 @@ class PuzzleWord extends Component {
       this.setState({
         puzzle: puzzles,
         gamePlaying: false,
-        scoreStrike: 0
       });
       console.log(`The word is : ${this.state.word}`);
       this.setState({ gamePlaying: false });
     }
   };
+
+  highscoreSendedHandler = () => {
+    setTimeout(() => {
+      this.setState({ scoreStrike: 0 });
+    },500)
+  }
 
   hintUsedHandler = () => {
     const chances = this.state.chances;
@@ -201,7 +206,8 @@ class PuzzleWord extends Component {
       <Auxiliary>
         <HighscoreDialog
           show={this.props.show}
-          score={this.state.scoreStrike}
+          scoreStrike={this.state.scoreStrike}
+          resetScoreStrike={this.highscoreSendedHandler}
         />
         <PuzzleHint
           word={this.state.wordEng}
@@ -229,8 +235,6 @@ class PuzzleWord extends Component {
           handleEventType={"keydown"}
           onKeyEvent={(key, e) => this.guessedLetterHandler(e.key)}
           isDisabled={this.props.mailOpened}
-          // isExclusive={true}
-          // handleFocusableElements={true}
         ></KeyboardEventHandler>
         <div className={classes.PuzzleWord} onClick={this.showMobileKeyboard}>
           {letters}
@@ -272,13 +276,15 @@ const mapStateToProps = state => {
   return {
     highscore: state.highscore,
     showVirtualKeyboard: state.showVirtualKeyboard,
-    lang: state.lang
+    lang: state.lang,
+    // score: state.score
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    showHighscoreDialog: () => dispatch({ type: "SHOW_HIGHSCORE_DIALOG" })
+    showHighscoreDialog: () => dispatch({ type: "SHOW_HIGHSCORE_DIALOG" }),
+    // updateScore: () => dispatch({type: 'UPDATE_SCORE'})
   };
 };
 

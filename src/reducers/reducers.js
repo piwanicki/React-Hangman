@@ -4,7 +4,8 @@ const initialState = {
   showHighscoreDialog: false,
   showVirtualKeyboard: false,
   lang: "en",
-  highscores: []
+  highscores: [],
+  score: 0
 };
 
 const reducers = (state = initialState, action) => {
@@ -29,6 +30,13 @@ const reducers = (state = initialState, action) => {
         showHighscoreDialog: !state.showHighscoreDialog
       };
     }
+
+    // case "UPDATE_SCORE": {
+    //   return {
+    //     ...state,
+    //     score: action.score
+    //   }
+    // }
 
     case "UPDATE_HS_BOARD": {
       return {
