@@ -38,10 +38,10 @@ class Layout extends Component {
             close={this.closeMobileMenuHandler}
             show={this.state.showMobileMenu}
           />
-          <NavigationBar
+          {/* <NavigationBar
             showSideMenu={this.openMobileMenuHandler}
             languageChanger={e => this.changeLanguageHandler(e)}
-          />
+          /> */}
           <PuzzleContainer
             language={this.state.language}
             showMailDialog={this.state.showMailDialog}
@@ -49,7 +49,7 @@ class Layout extends Component {
           <main className={classes.Content}>{this.props.children}</main>
         </div>
         <MailDialog />
-        <Footer />
+        {/* <Footer /> */}
       </Auxiliary>
     );
   }

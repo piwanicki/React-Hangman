@@ -105,7 +105,7 @@ class KonvaDrawer extends Component {
               ]}
               offsetX={-90}
               offsetY={-120}
-              stroke="brown"
+              stroke="#4d3e3e"
               strokeWidth={5}
             />
           </Layer>

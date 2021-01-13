@@ -186,13 +186,7 @@ class PuzzleWord extends Component {
   }
 
   render() {
-    let downloadBtnString = "Nowe Hasło";
-    if (this.props.lang === "en") {
-      downloadBtnString = "New Word";
-    }
-    if (this.props.lang === "de") {
-      downloadBtnString = "Neues Wort";
-    }
+
 
     let letters = <LoadingSpinner />;
 
@@ -209,14 +203,8 @@ class PuzzleWord extends Component {
           scoreStrike={this.state.scoreStrike}
           resetScoreStrike={this.highscoreSendedHandler}
         />
-        <PuzzleHint
-          word={this.state.wordEng}
-          hintUsed={this.hintUsedHandler}
-          canUseHint={this.state.canUseHint}
-        />
-        <div onClick={this.getPuzzle} className={classes.newWordBtn}>
-          {downloadBtnString}
-        </div>
+
+
         {this.state.showScoreInfo ? (
           <ScoreInfo scoreStrike={this.state.scoreStrike} />
         ) : null}

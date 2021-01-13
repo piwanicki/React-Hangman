@@ -1,10 +1,11 @@
 .Layout {
-  min-height: 970px;
+  height: 100vh;
   /* min-height: 100vh; */
   width: 100vw;
-  background-image: url("../../assets/img/background3.jpg");
-  background-size: cover;
-
+  /* background-image: url("../../assets/img/background3.jpg");
+  background-size: cover; */
+  background-color: #686d76;
+  color: #1b1c25;
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */

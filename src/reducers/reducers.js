@@ -31,13 +31,6 @@ const reducers = (state = initialState, action) => {
       };
     }
 
-    // case "UPDATE_SCORE": {
-    //   return {
-    //     ...state,
-    //     score: action.score
-    //   }
-    // }
-
     case "UPDATE_HS_BOARD": {
       return {
         ...state,

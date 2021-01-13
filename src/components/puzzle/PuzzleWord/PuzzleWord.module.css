@@ -2,25 +2,11 @@
   height: 60px;
   z-index: 50;
   margin: 150px;
-  padding-right: 200px;
+  margin-bottom: 50px;
+  /* padding-right: 200px; */
 }
 
-.newWordBtn {
-  font-family: "Indie Flower", cursive;
-  background-color: transparent;
-  font-weight: bold;
-  display: inline-block;
-  cursor: pointer;
-  color: #03067e;
-  font-size: 45px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #ffffff;
-}
 
-.newWordBtn:active {
-  position: relative;
-  top: 1px;
-}
 
 .InputRef {
   /* visibility: hidden; */

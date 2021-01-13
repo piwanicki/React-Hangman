@@ -1,65 +1,63 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import classes from "./PuzzleHint.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
   faInfoCircle,
   faChevronRight,
   faChevronLeft,
-  faQuestion,
-  faKeyboard
+  faKeyboard,
 } from "@fortawesome/free-solid-svg-icons";
 import ReactHover from "react-hover";
 import axios from "axios";
 import optionsCursorHover from "../../../componentOptions/ReactHoverOptions";
-import { LightTooltip, HintTooltip } from "./HintTooltip/HintTooltip";
-import {connect} from 'react-redux';
+
+import {connect} from "react-redux";
 
 class PuzzleHint extends Component {
   state = {
     definitions: [],
     hintIndex: 0,
     hintsShow: false,
-    showVirtualKeyboard: false
+    showVirtualKeyboard: false,
   };
 
   showVirtualKeyboard = () => {
     const visible = this.state.showVirtualKeyboard;
     this.setState({showVirtualKeyboard: !visible});
-  }
-
+  };
 
   getDefinitions = () => {
     axios
       .get(`https://api.datamuse.com/words?ml=${this.props.word}&md=d&max=1`)
-      .then(response => {
+      .then((response) => {
         let hints = response.data[0].defs;
         this.setState({
           definitions: hints,
-          hintIndex: 0
+          hintIndex: 0,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({
-          definitions: ["No definitions is available"]
+          definitions: ["No definitions is available"],
         });
       });
   };
 
   nextHint = () => {
     const currentIndex = this.state.hintIndex;
-    this.setState({ hintIndex: currentIndex + 1 });
+    this.setState({hintIndex: currentIndex + 1});
   };
 
   previousHint = () => {
     const currentIndex = this.state.hintIndex;
-    this.setState({ hintIndex: currentIndex - 1 });
+    this.setState({hintIndex: currentIndex - 1});
   };
 
   componentDidMount() {
     this.getDefinitions();
-    window.addEventListener("click", event => {
+    window.addEventListener("click", (event) => {
       if (!(event.target.className instanceof SVGAnimatedString)) {
-        this.setState({ hintsShow: false });
+        this.setState({hintsShow: false});
       }
     });
   }
@@ -72,7 +70,7 @@ class PuzzleHint extends Component {
 
   lockHints = () => {
     const clicked = this.state.hintsShow;
-    this.setState({ hintsShow: !clicked });
+    this.setState({hintsShow: !clicked});
   };
 
   render() {
@@ -121,21 +119,13 @@ class PuzzleHint extends Component {
       </div>
     );
 
-    const useHintBtn = (
-      <FontAwesomeIcon
-        icon={faQuestion}
-        onClick={this.props.hintUsed}
-        className={classes.UseHint}
-      />
-    );
-
-    const toolTipTitle = this.props.canUseHint
-      ? "Use hint? You'll loose one chance."
-      : "You can't use more hint.";
-
     return (
       <div className={classes.PuzzleHintContainer}>
-       <FontAwesomeIcon icon={faKeyboard} onClick={this.props.showVirtualKeyboard} className={classes.VirtualKeyboard}/>
+        <FontAwesomeIcon
+          icon={faKeyboard}
+          onClick={this.props.showVirtualKeyboard}
+          className={classes.VirtualKeyboard}
+        />
         <ReactHover options={optionsCursorHover}>
           <ReactHover.Trigger type="trigger">
             <FontAwesomeIcon
@@ -146,20 +136,6 @@ class PuzzleHint extends Component {
           </ReactHover.Trigger>
           <ReactHover.Hover type="hover">{hoverHints}</ReactHover.Hover>
         </ReactHover>
-       
-      
-        <div className={classes.Break}>
-          {this.state.hintsShow ? hoverHints : null}
-        </div>
-       
-  
-        <LightTooltip
-          title={toolTipTitle}
-          placement="right-end"
-          className={classes.HintTooltip}
-        >
-          <HintTooltip>{useHintBtn}</HintTooltip>
-        </LightTooltip>
       </div>
     );
   }
@@ -167,14 +143,14 @@ class PuzzleHint extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    showVirtualKeyboard: state.showVirtualKeyboard
-  }
-}
+    showVirtualKeyboard: state.showVirtualKeyboard,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    showVirtualKeyboard: () => dispatch({type: 'SHOW_VIRTUAL_KEYBOARD'})
-  }
-}
+    showVirtualKeyboard: () => dispatch({type: "SHOW_VIRTUAL_KEYBOARD"}),
+  };
+};
 
-export default connect(mapStateToProps,mapDispatchToProps)(PuzzleHint);
+export default connect(mapStateToProps, mapDispatchToProps)(PuzzleHint);
