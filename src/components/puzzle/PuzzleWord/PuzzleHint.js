@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import classes from "./PuzzleHint.module.css";
+import classes from "./PuzzleHint.module.scss";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
   faInfoCircle,

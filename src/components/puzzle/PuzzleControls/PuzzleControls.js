@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./PuzzleControls.module.css";
+import classes from "./PuzzleControls.module.scss";
 import PuzzleHint from "../PuzzleWord/PuzzleHint";
 import {connect} from "react-redux";
 import {LightTooltip, HintTooltip} from "../PuzzleWord/HintTooltip/HintTooltip";
@@ -17,8 +17,8 @@ const PuzzleControls = (props) => {
 
   const canUsehint = true;
   const toolTipTitle = canUsehint
-  ? "Use hint? You'll loose one chance."
-  : "You can't use more hint.";
+    ? "Use hint? You'll loose one chance."
+    : "You can't use more hint.";
 
   const useHintBtn = (
     <FontAwesomeIcon
@@ -29,15 +29,14 @@ const PuzzleControls = (props) => {
   );
 
   return (
-    <div class={classes.PuzzleControls}>
+    <div className={classes.PuzzleControls}>
       <PuzzleHint
       // word={this.state.wordEng}
       // hintUsed={this.hintUsedHandler}
       // canUseHint={this.state.canUseHint}
       />
 
-      <div className={classes.newWordBtn}>
-        {/*onClick={this.getPuzzle} */}
+      <div className={classes.newWordBtn} onClick={props.getWord}>
         {downloadBtnString}
       </div>
 

@@ -7,47 +7,37 @@
   margin: 0px 10px;
   font-family: "Indie Flower", cursive;
   font-weight: bold;
-}
 
-p {
-  width: 30px;
-  display: inline-block;
-}
+  p {
+    width: 30px;
+    display: inline-block;
+  }
 
-@media only screen and (min-width: 992px) and (max-width: 1300px) {
-  .PuzzleLetter {
+  @media only screen and (min-width: 992px) and (max-width: 1300px) {
     width: 20px;
     height: 30px;
   }
-}
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  .PuzzleLetter {
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
     width: 15px;
     height: 20px;
   }
-}
 
-@media only screen and (min-width: 600px) and (max-width: 768px) {
-  .PuzzleLetter {
+  @media only screen and (min-width: 600px) and (max-width: 768px) {
     font-size: 25px;
     width: 25px;
     height: 25px;
     margin: 0px;
   }
-}
 
-@media only screen and (min-width: 400px) and (max-width: 599px) {
-  .PuzzleLetter {
+  @media only screen and (min-width: 400px) and (max-width: 599px) {
     font-size: 25px;
     width: 20px;
     height: 20px;
     margin: 0px;
   }
-}
 
-@media only screen and (max-width: 400px) {
-  .PuzzleLetter {
+  @media only screen and (max-width: 400px) {
     font-size: 25px;
     width: 18px;
     height: 20px;

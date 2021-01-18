@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import classes from "./Highscore.module.css";
+import classes from "./Highscore.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrophy, faSync } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";

@@ -1,0 +1,73 @@
+.PuzzleHintContainer {
+  .quote {
+    font-size: 16px;
+    font-family: "India Flower", cursive;
+    text-align: left;
+  }
+
+  .NavArrow {
+    display: inline-block;
+    color: black;
+    padding: 0px 20px;
+    margin: 0px 20px;
+    width: 30%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    font-size: 40px;
+
+    &:disabled {
+      color: grey;
+      opacity: 0.9;
+    }
+
+    &:hover {
+      color: rgb(80, 80, 80);
+    }
+  }
+
+  .UseHint {
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+      transition: transform 0.5s;
+    }
+  }
+
+  .HintIcon {
+    &:hover {
+      transform: scale(1.1);
+      transition: transform 0.5s;
+      cursor: pointer;
+    }
+  }
+
+  .hover {
+    background-color: #d3d5d4;
+    width: 300px;
+    height: auto;
+    border: 2px black solid;
+    border-radius: 10px;
+    border-color: #03120e;
+    z-index: 300;
+  }
+
+  @media only screen and (min-width: 600px) and (max-width: 768px) {
+    font-size: 30px;
+  }
+
+  @media only screen and (min-width: 401px) and (max-width: 599px) {
+    font-size: 30px;
+  }
+
+  @media only screen and (max-width: 401px) {
+    margin-top: 100px;
+    height: auto;
+    font-size: 45px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .VirtualKeyboard {
+    display: none;
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './PuzzleLetter.module.css';
+import classes from './PuzzleLetter.module.scss';
 import Auxiliary from '../../../../hoc/Auxiliary';
 
 const PuzzleLetter = (props) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./LanguageSelector.module.css";
+import classes from "./LanguageSelector.module.scss";
 import { connect } from "react-redux";
 
 const LanguageSelector = props => {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import classes from "./MailDialog.module.css";
+import classes from "./MailDialog.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import LoadingSpinner from "../../UI/LoadingSpinner/LoadingSpinner";

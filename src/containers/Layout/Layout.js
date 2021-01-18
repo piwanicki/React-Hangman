@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import classes from "./Layout.module.css";
+import classes from "./Layout.module.scss";
 import NavigationBar from "../../components/Navigation/NavigationBar/NavigationBar";
 import MobileMenu from "../../components/Navigation/MobileMenu/MobileMenu";
 import PuzzleContainer from "../PuzzleContainer/PuzzleContainer";

@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./StatusMail.module.css";
+import classes from "./StatusMail.module.scss";
 
 const StatusMail = props => {
   const attachedClasses = [classes.Red, classes.Green];

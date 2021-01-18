@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Stage, Layer, Line, Circle } from "react-konva";
-import classes from "./KonvaDrawer.module.css";
+import classes from "./KonvaDrawer.module.scss";
 import ReactDOM from 'react-dom';
 
 class KonvaDrawer extends Component {

@@ -1,0 +1,38 @@
+.LanguageSelector {
+  width: auto;
+  display: inline-block;
+  padding: 0px;
+  margin: 10px 20px;
+
+  &:hover {
+    transform: scale(1.15);
+    transition: scale 0.5s;
+    cursor: pointer;
+  }
+
+  @media (max-width: 769px) {
+    height: auto;
+    margin: 10px 15px;
+  }
+
+  @media (max-width: 500px) {
+    margin: 10px 10px;
+  }
+
+  @media (max-width: 355px) {
+    margin: 10px 5px;
+  }
+}
+
+.FlagImg {
+  width: auto;
+  height: auto;
+
+  @media (max-width: 500px) {
+    width: 50px;
+  }
+
+  @media (max-width: 355px) {
+    width: 45px;
+  }
+}

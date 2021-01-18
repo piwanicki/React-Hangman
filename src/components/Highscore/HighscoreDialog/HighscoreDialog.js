@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import classes from "./HighscoreDialog.module.css";
+import classes from "./HighscoreDialog.module.scss";
 import { connect } from "react-redux";
 import Backdrop from "../../../UI/Backdrop/Backdrop";
 import highscoreInstance from "../../../axios-highscore";

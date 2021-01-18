@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import classes from "./PuzzleWord.module.css";
+import classes from "./PuzzleWord.module.scss";
 import PuzzleLetter from "./PuzzleLetter/PuzzleLetter";
 import axios from "axios";
 import Auxiliary from "../../../hoc/Auxiliary";
@@ -24,7 +24,7 @@ class PuzzleWord extends Component {
     guessedLetters: [],
     chances: 6,
     puzzle: [],
-    loading: false,
+    //loading: true,
     gamePlaying: false,
     hint: "",
     wordEng: "",
@@ -37,31 +37,31 @@ class PuzzleWord extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.lang !== prevProps.lang) {
-      this.getPuzzle();
+      this.props.getWord();
     }
   }
 
-  getPuzzle = () => {
-    this.setState({ loading: true });
-    axios.get(`http://puzzle.mead.io/puzzle?wordCount=1`).then(response => {
-      this.setupPuzzle(response.data.puzzle.toLowerCase());
-      this.setState({
-        wordEng: response.data.puzzle.toLowerCase()
-      });
-      console.log(`wordEng: ${this.state.wordEng}`);
-      if (this.props.lang !== "en") {
-        this.setState({ keyboardLayout: "default" });
-        axios
-          .get(
-            `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190729T200219Z.af5b237995a37b64.de861d375a64ea3d5d51764c8f5aa22d42d59972&text=${this.state.word}&lang=en-${this.props.lang}`
-          )
-          .then(response => {
-            this.setupPuzzle(response.data.text.join("").toLowerCase());
-          });
-      }
-      console.log(this.state.word);
-    });
-  };
+  // getPuzzle = () => {
+  //   this.setState({ loading: true });
+  //   axios.get(`http://puzzle.mead.io/puzzle?wordCount=1`).then(response => {
+  //     this.setupPuzzle(response.data.puzzle.toLowerCase());
+  //     this.setState({
+  //       wordEng: response.data.puzzle.toLowerCase()
+  //     });
+  //     console.log(`wordEng: ${this.state.wordEng}`);
+  //     if (this.props.lang !== "en") {
+  //       this.setState({ keyboardLayout: "default" });
+  //       axios
+  //         .get(
+  //           `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190729T200219Z.af5b237995a37b64.de861d375a64ea3d5d51764c8f5aa22d42d59972&text=${this.state.word}&lang=en-${this.props.lang}`
+  //         )
+  //         .then(response => {
+  //           this.setupPuzzle(response.data.text.join("").toLowerCase());
+  //         });
+  //     }
+  //     console.log(this.state.word);
+  //   });
+  // };
 
   guessedLetterHandler = key => {
     if (key === "alt") {
@@ -99,6 +99,7 @@ class PuzzleWord extends Component {
   };
 
   setupPuzzle = word => {
+    if(!word) return
     const wordArr = word.split("");
     const puzzles = wordArr.map(el => (el !== " " ? (el = "_") : el));
     this.setState({
@@ -181,16 +182,9 @@ class PuzzleWord extends Component {
     }
   };
 
-  componentDidMount() {
-    this.getPuzzle();
-  }
-
   render() {
-
-
     let letters = <LoadingSpinner />;
-
-    if (!this.state.loading) {
+    if (!this.props.fetching) {
       letters = this.state.puzzle.map((el, idx) => (
         <PuzzleLetter key={idx} letter={el} />
       ));
@@ -203,7 +197,6 @@ class PuzzleWord extends Component {
           scoreStrike={this.state.scoreStrike}
           resetScoreStrike={this.highscoreSendedHandler}
         />
-
 
         {this.state.showScoreInfo ? (
           <ScoreInfo scoreStrike={this.state.scoreStrike} />
