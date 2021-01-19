@@ -1,0 +1,35 @@
+.ScoreInfo {
+  height: 100px;
+  width: 150px;
+  background-color: #d3d5d4;
+  border: #03120e solid 2px;
+  text-align: center;
+  border-radius: 10px;
+  margin-left: 44%;
+  position: absolute;
+  z-index: 3000;
+}
+
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-leave.fade-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+.ScaleInCenter {
+  -webkit-animation: ScaleInCenter 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: ScaleInCenter 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}

@@ -15,7 +15,7 @@ const PuzzleControls = (props) => {
     downloadBtnString = "Neues Wort";
   }
 
-  const canUsehint = true;
+  const canUsehint = props.canUseHint;
   const toolTipTitle = canUsehint
     ? "Use hint? You'll loose one chance."
     : "You can't use more hint.";
@@ -23,7 +23,7 @@ const PuzzleControls = (props) => {
   const useHintBtn = (
     <FontAwesomeIcon
       icon={faQuestion}
-      //onClick={this.props.hintUsed}
+      onClick={props.hintUsed}
       className={classes.UseHint}
     />
   );

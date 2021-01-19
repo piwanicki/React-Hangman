@@ -39,29 +39,16 @@ class PuzzleWord extends Component {
     if (this.props.lang !== prevProps.lang) {
       this.props.getWord();
     }
-  }
 
-  // getPuzzle = () => {
-  //   this.setState({ loading: true });
-  //   axios.get(`http://puzzle.mead.io/puzzle?wordCount=1`).then(response => {
-  //     this.setupPuzzle(response.data.puzzle.toLowerCase());
-  //     this.setState({
-  //       wordEng: response.data.puzzle.toLowerCase()
-  //     });
-  //     console.log(`wordEng: ${this.state.wordEng}`);
-  //     if (this.props.lang !== "en") {
-  //       this.setState({ keyboardLayout: "default" });
-  //       axios
-  //         .get(
-  //           `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190729T200219Z.af5b237995a37b64.de861d375a64ea3d5d51764c8f5aa22d42d59972&text=${this.state.word}&lang=en-${this.props.lang}`
-  //         )
-  //         .then(response => {
-  //           this.setupPuzzle(response.data.text.join("").toLowerCase());
-  //         });
-  //     }
-  //     console.log(this.state.word);
-  //   });
-  // };
+    if (this.props.word !== prevProps.word) {
+      this.setupPuzzle(this.props.word);
+    }
+
+    if(this.props.hintsUsed !== prevProps.hintsUsed) {
+      const canUseHint = this.hintUsedHandler();
+      console.log(canUseHint);
+    }
+  }
 
   guessedLetterHandler = key => {
     if (key === "alt") {
@@ -99,6 +86,7 @@ class PuzzleWord extends Component {
   };
 
   setupPuzzle = word => {
+    console.log(word);
     if(!word) return
     const wordArr = word.split("");
     const puzzles = wordArr.map(el => (el !== " " ? (el = "_") : el));
@@ -180,6 +168,7 @@ class PuzzleWord extends Component {
         chances: chances - 1
       });
     }
+    return canUseHint;
   };
 
   render() {

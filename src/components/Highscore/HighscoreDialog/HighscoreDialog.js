@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import classes from "./HighscoreDialog.module.scss";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import Backdrop from "../../../UI/Backdrop/Backdrop";
 import highscoreInstance from "../../../axios-highscore";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faThumbsUp} from "@fortawesome/free-regular-svg-icons";
 import Auxiliary from "../../../hoc/Auxiliary";
 
 class HighscoreDialog extends Component {
@@ -17,16 +17,16 @@ class HighscoreDialog extends Component {
     const input = this.inputRef.current;
     const highscore = {
       name: input.value,
-      score: this.props.scoreStrike
+      score: this.props.scoreStrike,
     };
     highscoreInstance
       .post("/highscore.json", highscore)
-      .then(response => {
+      .then((response) => {
         console.log(response);
         this.props.fetchHighscoreBoard();
         this.props.closeHighscoreDialog();
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   };
 
   render() {
@@ -49,13 +49,13 @@ class HighscoreDialog extends Component {
                 ref={this.inputRef}
                 maxLength={5}
               ></input>
-              <p
+              <button
                 className={classes.SendBtn}
                 onClick={this.sendHighscoreToDB}
                 onClickCapture={this.props.resetScoreStrike}
               >
                 SEND
-              </p>
+              </button>
             </div>
           </Auxiliary>
         ) : null}
@@ -64,17 +64,17 @@ class HighscoreDialog extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    show: state.showHighscoreDialog
+    show: state.showHighscoreDialog,
     // score: state.score
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    closeHighscoreDialog: () => dispatch({ type: "SHOW_HIGHSCORE_DIALOG" }),
-    fetchHighscoreBoard: () => dispatch({ type: "UPDATE_HS_BOARD" })
+    closeHighscoreDialog: () => dispatch({type: "SHOW_HIGHSCORE_DIALOG"}),
+    fetchHighscoreBoard: () => dispatch({type: "UPDATE_HS_BOARD"}),
   };
 };
 

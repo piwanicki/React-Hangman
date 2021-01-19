@@ -78,12 +78,12 @@ class KonvaDrawer extends Component {
           <Layer>
             <Line
               points={hangmanLines}
-              stroke="black"
+              stroke="#eae0d5"
               offsetY={-250}
               offsetX={-60}
             />
             {this.props.chances === 0 ? (
-              <Circle radius={20} x={90} y={125} stroke="black" />
+              <Circle radius={20} x={90} y={125} stroke="#eae0d5" />
             ) : null}
             <Line
               points={[
@@ -105,7 +105,7 @@ class KonvaDrawer extends Component {
               ]}
               offsetX={-90}
               offsetY={-120}
-              stroke="#4d3e3e"
+              stroke="#5e503f"
               strokeWidth={5}
             />
           </Layer>
