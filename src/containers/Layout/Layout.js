@@ -1,58 +1,34 @@
-import React, { Component } from "react";
+import React from "react";
 import classes from "./Layout.module.scss";
 import NavigationBar from "../../components/Navigation/NavigationBar/NavigationBar";
-import MobileMenu from "../../components/Navigation/MobileMenu/MobileMenu";
 import PuzzleContainer from "../PuzzleContainer/PuzzleContainer";
 import Footer from "../../components/Navigation/Footer/Footer";
 import Auxiliary from "../../hoc/Auxiliary";
-import MailDialog from "../../components/MailDialog/MailDialog";
+import ContactForm  from '../../components/MailDialog/ContactForm' ;
+import {connect} from "react-redux";
 
-class Layout extends Component {
-  state = {
-    showMobileMenu: false,
-    language: "en"
+const Layout = (props) => {
+  console.log(props.darkMode);
+
+  const layoutModeClass = props.darkMode ? [classes.Layout, classes.LayoutDark].join(" ") : classes.Layout;
+
+  return (
+    <Auxiliary>
+      <div className={layoutModeClass}>
+        <NavigationBar />
+        <PuzzleContainer />
+        <main className={classes.Content}>{props.children}</main>
+        <Footer />
+      </div>
+      <ContactForm />
+    </Auxiliary>
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    darkMode: state.darkMode,
   };
+};
 
-  openMobileMenuHandler = () => {
-    this.setState({ showMobileMenu: true });
-    console.log("open");
-  };
-
-  closeMobileMenuHandler = () => {
-    this.setState({ showMobileMenu: false });
-    console.log("closed");
-  };
-
-  changeLanguageHandler = e => {
-    if (e.target.id === "gb") {
-      e.target.id = "en";
-    }
-    this.setState({ language: e.target.id });
-  };
-
-  render() {
-    return (
-      <Auxiliary >
-        <div className={classes.Layout}>
-          <MobileMenu
-            close={this.closeMobileMenuHandler}
-            show={this.state.showMobileMenu}
-          />
-          {/* <NavigationBar
-            showSideMenu={this.openMobileMenuHandler}
-            languageChanger={e => this.changeLanguageHandler(e)}
-          /> */}
-          <PuzzleContainer
-            language={this.state.language}
-            showMailDialog={this.state.showMailDialog}
-          />
-          <main className={classes.Content}>{this.props.children}</main>
-        </div>
-        <MailDialog />
-        {/* <Footer /> */}
-      </Auxiliary>
-    );
-  }
-}
-
-export default Layout;
+export default connect(mapStateToProps, null)(Layout);

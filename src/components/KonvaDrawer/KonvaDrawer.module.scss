@@ -1,12 +1,16 @@
 .KonvaDrawer {
-  width: 340px;
-  height: 340px;
-  display: inline-block;
+  width: 280px;
+  height: 290px;
+  display: block;
+  margin: auto;
 
   @media screen and (max-width: 400px) {
-    width: 120px;
-    height: 120px;
-    margin-left: 0px;
-    margin-top: 50px;
+    width: 220px;
+    height: 220px;
+  }
+ 
+  @media screen and (min-width:770px) and (max-height:670px) {
+    width: 150px;
+    height:140px;
   }
 }

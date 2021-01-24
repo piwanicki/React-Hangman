@@ -4,7 +4,7 @@
   align-items: center;
   width: 60%;
   height: 80px;
-  margin: 0 20%;
+  margin: 3% 20% 0 20%;
   font-size: 30px;
 
   .newWordBtn {
@@ -20,5 +20,34 @@
       position: relative;
       top: 1px;
     }
+
+
+    @media (max-width: 365px) {
+      font-size: 30px;
+    }
+  }
+
+  .UseHint {
+    transition: transform 0.5s;
+    &:hover {
+      transform: scale(1.1);
+      transition: transform 0.5s;
+      cursor: pointer;
+    }
+  }
+  @media (min-width: 500px) and (max-width: 768px) {
+    margin: 0 auto;
+    width: 90%;
+    height: auto;
+  }
+
+  @media (max-width: 500px) {
+    margin: 3% auto;
+    width: 90%;
+    height: auto;
+  }
+
+  @media (max-width: 365px) {
+    margin-top: 8%;
   }
 }

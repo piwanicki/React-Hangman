@@ -9,7 +9,6 @@ const PuzzleContainer = (props) => {
   const [word, setWord] = useState();
   const [fetching, setFetching] = useState(false);
   const [hintsUsed, setHintsUsed] = useState(0);
-  const [canUseHint, setCanUseHint] = useState(null);
 
   const getWord = () => {
     setFetching(true);
@@ -48,7 +47,6 @@ const PuzzleContainer = (props) => {
         getWord={getWord}
         hintUsed={hintUsedHandler}
         canUseHintHandler={canUseHintHandler}
-        canUseHint={canUseHint}
       />
       <PuzzleWord
         lang={props.language}

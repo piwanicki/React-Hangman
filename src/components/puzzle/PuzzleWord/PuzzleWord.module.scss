@@ -1,25 +1,29 @@
 .PuzzleWord {
   height: 60px;
   z-index: 50;
-  margin: 150px;
+  margin: 120px 0;
   margin-bottom: 50px;
 
-  .InputRef {
-    transition: transform;
-    transform: translateY(-200vh);
-  }
-
-  .VirtualKeyboard {
-    position: fixed;
-    bottom: 0;
-    z-index: 999999999;
-  }
+  // .InputRef {
+  //   transition: transform;
+  //   transform: translateY(-200vh);
+  // }
 
   @media only screen and (max-width: 400px) {
     margin-top: 32vh;
   }
 
   @media only screen and (max-height: 600px) {
-    margin-top: 25vh;
+    margin-top: 90px;
   }
+
+  @media only screen and (max-width: 769px) {
+    margin-top: 75px;
+  }
+}
+
+.VirtualKeyboard {
+  position: absolute;
+  z-index: 20;
+  bottom: 0;
 }

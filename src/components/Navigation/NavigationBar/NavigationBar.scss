@@ -1,0 +1,50 @@
+.NavigationBar {
+  width: 90%;
+  margin: 0 5%;
+  height: 50px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+label.MuiFormControlLabel-root {
+  margin: 0;
+}
+
+span.Component-switchBase-2.Component-checked-5 + .Component-track-4 {
+  background-color: #415a77;
+}
+
+span.Component-switchBase-2.Component-checked-5 {
+  color: #adadad;
+}
+
+span.MuiSwitch-switchBase {
+  color: #adadad;
+}
+
+.NavigationMenu {
+  margin-top: 0;
+  list-style: none;
+  float: right;
+  padding: 15px 20px;
+}
+
+.NavigationMenu li {
+  text-decoration: none;
+  display: inline-block;
+  margin: 0px 40px;
+}
+
+@media (max-width: 768px) {
+  .DesktopOnly {
+    display: none;
+  }
+
+  .NavigationBar {
+    height: 70px;
+  }
+}

@@ -1,0 +1,17 @@
+.MobileBtn {
+  position: absolute;
+  top: 23px;
+  right: 32px;
+  display: none;
+  color: inherit;
+  svg {
+    font-size: 1.3em;
+    &:hover {
+      color: white;
+    }
+  }
+
+  @media (max-width: 769px) {
+    display: block;
+  }
+}

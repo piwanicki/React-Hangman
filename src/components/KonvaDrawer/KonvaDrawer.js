@@ -27,12 +27,13 @@ class KonvaDrawer extends Component {
       50,
       -60
     ],
-    stageWidth: 340,
-    stageHeight: 340,
+    stageWidth: 260,
+    stageHeight: 290,
   };
 
  componentDidMount() {
    window.addEventListener('resize', this.checkSize);
+   this.checkSize();
  }
 
  checkSize = () => {

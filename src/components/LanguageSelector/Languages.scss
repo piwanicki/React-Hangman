@@ -1,0 +1,26 @@
+.LanguageBox {
+  display: inline-flex;
+  width: 100%;
+  align-self: flex-end;
+  justify-content: space-between;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+
+  .LangBtn {
+    text-align: center;
+    padding: 0 5px;
+
+    img {
+      border-radius: 50%;
+      -webkit-box-shadow: 0px 10px 13px -7px #000000,
+        5px 5px 15px 5px rgba(0, 0, 0, 0);
+      box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    }
+    &:active {
+      transition: transform 0.7s;
+      transform: scale(1.15);
+    }
+  }
+}

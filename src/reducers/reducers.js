@@ -1,3 +1,7 @@
+import {TOGGLE_DARKMODE} from '../actions/setStyleMode';
+
+
+
 const initialState = {
   fetching: false,
   showMailDialog: false,
@@ -5,7 +9,8 @@ const initialState = {
   showVirtualKeyboard: false,
   lang: "en",
   highscores: [],
-  score: 0
+  score: 0,
+  darkMode: true
 };
 
 const reducers = (state = initialState, action) => {
@@ -50,6 +55,20 @@ const reducers = (state = initialState, action) => {
         ...state,
         lang: action.lang
       };
+    }
+
+    case TOGGLE_DARKMODE : {
+      return {
+        ...state,
+        darkMode: !state.darkMode
+      }
+    }
+
+    case "SET_CHANCES" : {
+      return {
+        ...state,
+        chances : action.chances
+      }
     }
 
     default: {

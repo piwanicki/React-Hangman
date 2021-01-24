@@ -15,8 +15,7 @@ const PuzzleControls = (props) => {
     downloadBtnString = "Neues Wort";
   }
 
-  const canUsehint = props.canUseHint;
-  const toolTipTitle = canUsehint
+  const toolTipTitle = props.chances > 1
     ? "Use hint? You'll loose one chance."
     : "You can't use more hint.";
 
@@ -42,7 +41,7 @@ const PuzzleControls = (props) => {
 
       <LightTooltip
         title={toolTipTitle}
-        placement="right-end"
+        placement="bottom-center"
         className={classes.HintTooltip}
       >
         <HintTooltip>{useHintBtn}</HintTooltip>
@@ -56,6 +55,7 @@ const mapStateToProps = (state) => {
     highscore: state.highscore,
     showVirtualKeyboard: state.showVirtualKeyboard,
     lang: state.lang,
+    chances: state.chances
     // score: state.score
   };
 };

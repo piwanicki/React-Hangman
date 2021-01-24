@@ -25,15 +25,9 @@
     }
   }
 
-  .UseHint {
-    &:hover {
-      cursor: pointer;
-      transform: scale(1.1);
-      transition: transform 0.5s;
-    }
-  }
-
   .HintIcon {
+    transition: transform 0.5s;
+
     &:hover {
       transform: scale(1.1);
       transition: transform 0.5s;
@@ -60,9 +54,13 @@
   }
 
   @media only screen and (max-width: 401px) {
-    margin-top: 100px;
     height: auto;
-    font-size: 45px;
+    font-size: 35px;
+  }
+
+  @media only screen and (max-width: 365px) {
+    height: auto;
+    font-size: 25px;
   }
 }
 
