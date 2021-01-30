@@ -1,6 +1,8 @@
 import {TOGGLE_DARKMODE} from '../actions/setStyleMode';
 
 
+const  darkModeOn = localStorage.getItem('darkModeOn');
+console.log(darkModeOn);
 
 const initialState = {
   fetching: false,
@@ -10,7 +12,7 @@ const initialState = {
   lang: "en",
   highscores: [],
   score: 0,
-  darkMode: true
+  darkMode: darkModeOn === 'fasle' ? false : true,
 };
 
 const reducers = (state = initialState, action) => {
@@ -58,6 +60,7 @@ const reducers = (state = initialState, action) => {
     }
 
     case TOGGLE_DARKMODE : {
+      localStorage.setItem('darkModeOn',!state.darkMode);
       return {
         ...state,
         darkMode: !state.darkMode

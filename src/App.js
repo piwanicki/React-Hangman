@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.module.scss';
+import './App.scss';
 import Layout from '../src/containers/Layout/Layout'
 import {BrowserRouter} from 'react-router-dom';
 

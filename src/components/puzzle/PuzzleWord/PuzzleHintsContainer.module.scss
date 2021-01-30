@@ -1,0 +1,43 @@
+.MuiTypography-root .MuiTypography-body1 {
+  margin-top: 10px;
+}
+
+
+.PuzzleHintsContainer {
+  background-color: #adadad;
+  width: 300px;
+  height: auto;
+  z-index: 300;
+  padding: 10px;
+  margin-top: 10px;
+
+
+  .HintControlsBox {
+    margin: auto;
+    text-align: center;
+    display: block;
+
+    .NavArrow {
+
+
+      width: 30%;
+      border: none;
+      background-color: rgba(255, 255, 255, 0);
+      font-size: 40px;
+
+      &:disabled {
+        color: grey;
+        opacity: 0.9;
+      }
+
+      &:hover {
+        color: rgb(80, 80, 80);
+      }
+    }
+  }
+
+  .HintText {
+    display:block;
+  }
+
+}

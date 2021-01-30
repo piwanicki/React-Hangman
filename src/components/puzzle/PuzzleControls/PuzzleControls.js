@@ -1,10 +1,13 @@
 import React from "react";
 import classes from "./PuzzleControls.module.scss";
 import PuzzleHint from "../PuzzleWord/PuzzleHint";
-import {connect} from "react-redux";
-import {LightTooltip, HintTooltip} from "../PuzzleWord/HintTooltip/HintTooltip";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faQuestion} from "@fortawesome/free-solid-svg-icons";
+import { connect } from "react-redux";
+import {
+  LightTooltip,
+  HintTooltip,
+} from "../PuzzleWord/HintTooltip/HintTooltip";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 
 const PuzzleControls = (props) => {
   let downloadBtnString = "Nowe Hasło";
@@ -15,9 +18,10 @@ const PuzzleControls = (props) => {
     downloadBtnString = "Neues Wort";
   }
 
-  const toolTipTitle = props.chances > 1
-    ? "Use hint? You'll loose one chance."
-    : "You can't use more hint.";
+  const toolTipTitle =
+    props.chances > 1
+      ? "Use hint? You'll loose one chance."
+      : "You can't use more hint.";
 
   const useHintBtn = (
     <FontAwesomeIcon
@@ -29,11 +33,7 @@ const PuzzleControls = (props) => {
 
   return (
     <div className={classes.PuzzleControls}>
-      <PuzzleHint
-      // word={this.state.wordEng}
-      // hintUsed={this.hintUsedHandler}
-      // canUseHint={this.state.canUseHint}
-      />
+      <PuzzleHint definitions={props.definitions} />
 
       <div className={classes.newWordBtn} onClick={props.getWord}>
         {downloadBtnString}
@@ -41,7 +41,7 @@ const PuzzleControls = (props) => {
 
       <LightTooltip
         title={toolTipTitle}
-        placement="bottom-center"
+        placement={"bottom"}
         className={classes.HintTooltip}
       >
         <HintTooltip>{useHintBtn}</HintTooltip>
@@ -55,14 +55,14 @@ const mapStateToProps = (state) => {
     highscore: state.highscore,
     showVirtualKeyboard: state.showVirtualKeyboard,
     lang: state.lang,
-    chances: state.chances
+    chances: state.chances,
     // score: state.score
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    showHighscoreDialog: () => dispatch({type: "SHOW_HIGHSCORE_DIALOG"}),
+    showHighscoreDialog: () => dispatch({ type: "SHOW_HIGHSCORE_DIALOG" }),
     // updateScore: () => dispatch({type: 'UPDATE_SCORE'})
   };
 };

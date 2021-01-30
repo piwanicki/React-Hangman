@@ -5,25 +5,7 @@
     text-align: left;
   }
 
-  .NavArrow {
-    display: inline-block;
-    color: black;
-    padding: 0px 20px;
-    margin: 0px 20px;
-    width: 30%;
-    border: none;
-    background-color: rgba(255, 255, 255, 0);
-    font-size: 40px;
 
-    &:disabled {
-      color: grey;
-      opacity: 0.9;
-    }
-
-    &:hover {
-      color: rgb(80, 80, 80);
-    }
-  }
 
   .HintIcon {
     transition: transform 0.5s;

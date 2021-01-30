@@ -6,14 +6,17 @@ import axios from "axios";
 import {connect} from "react-redux";
 
 const PuzzleContainer = (props) => {
-  const [word, setWord] = useState();
+  const [word, setWord] = useState(null);
+  const [definitions, setDefitions] = useState([]);
   const [fetching, setFetching] = useState(false);
   const [hintsUsed, setHintsUsed] = useState(0);
 
   const getWord = () => {
     setFetching(true);
     axios.get(`http://puzzle.mead.io/puzzle?wordCount=1`).then((response) => {
-      setWord(response.data.puzzle.toLowerCase());
+      const word = response.data.puzzle.toLowerCase();
+      setWord(word)
+      getDefinitions(word);
       if (props.lang !== "en") {
         axios
           .get(
@@ -28,6 +31,19 @@ const PuzzleContainer = (props) => {
     });
   };
 
+  const getDefinitions = (word) => {
+    axios
+      .get(`https://api.datamuse.com/words?ml=${word}&md=d&max=1`)
+      .then((response) => {
+        console.log(response)
+        let hints = response.data[0].defs;
+        setDefitions(hints)
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  };
+
   // ComponentDidMount
   useEffect(() => {
     getWord();
@@ -37,16 +53,12 @@ const PuzzleContainer = (props) => {
     setHintsUsed(hintsUsed + 1);
   };
 
-  const canUseHintHandler = (canUseHandler) => {
-    console.log(canUseHandler);
-  };
-
   return (
     <div className={classes.PuzzleContainer}>
       <PuzzleControls
         getWord={getWord}
         hintUsed={hintUsedHandler}
-        canUseHintHandler={canUseHintHandler}
+        definitions={definitions}
       />
       <PuzzleWord
         lang={props.language}
