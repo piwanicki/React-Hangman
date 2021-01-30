@@ -8,20 +8,12 @@ import {
 } from "../PuzzleWord/HintTooltip/HintTooltip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
+import { textContent } from "../../../textContent/textContent";
 
 const PuzzleControls = (props) => {
-  let downloadBtnString = "Nowe Hasło";
-  if (props.lang === "en") {
-    downloadBtnString = "New Word";
-  }
-  if (props.lang === "de") {
-    downloadBtnString = "Neues Wort";
-  }
-
+  const text = textContent[props.lang];
   const toolTipTitle =
-    props.chances > 1
-      ? "Use hint? You'll loose one chance."
-      : "You can't use more hint.";
+    props.chances > 1 ? text.useHintInfo : text.cantUseMoreHint;
 
   const useHintBtn = (
     <FontAwesomeIcon
@@ -36,7 +28,7 @@ const PuzzleControls = (props) => {
       <PuzzleHint definitions={props.definitions} />
 
       <div className={classes.newWordBtn} onClick={props.getWord}>
-        {downloadBtnString}
+        {text.newBtn}
       </div>
 
       <LightTooltip

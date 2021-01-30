@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Popover from "@material-ui/core/Popover";
 import Typography from "@material-ui/core/Typography";
 import classes from "./PuzzleHintsContainer.module.scss";
@@ -13,21 +13,19 @@ export default function SimplePopover(props) {
   const id = open ? "simple-popover" : undefined;
   let hint = "";
 
-  //const [hint, setHint] = useState(null)
+let  nextHintBtnDis = false; 
+let  prevHintBtnDis = false; 
 
   const disableClickClosing = (e) => {
     e.stopPropagation();
   };
 
-  // useEffect(() => {
-  //   console.log("definitions");
-  //   // Zaktualizuj tytuł dokumentu korzystając z interfejsu API przeglądarki
-  // }, [props.definitions]);
-  console.log(props.definitions);
+
   if (props.definitions) {
     if (props.definitions.length > 0) {
       hint = props.definitions[props.hintIndex];
-
+      prevHintBtnDis = props.hintIndex === 0 
+      nextHintBtnDis = props.hintIndex === props.definitions.length - 1
       if (hint) {
         if (hint.startsWith("n")) {
           hint = hint.replace("n	", "noun / ");
@@ -40,17 +38,16 @@ export default function SimplePopover(props) {
         }
       }
     }
-    //setHint(hint)
   } else {
-    hint = "No hints available ;<";
+    hint = "No hints available ;<"; 
   }
-
 
   return (
     <Popover
       id={id}
       open={open}
       anchorEl={props.anchorE1}
+      onClose={props.onAway}
       anchorOrigin={{
         vertical: "bottom",
         horizontal: "center",
@@ -68,14 +65,14 @@ export default function SimplePopover(props) {
         <span className={classes.HintControlsBox}>
           <button
             className={classes.NavArrow}
-            disabled={props.hintIndex === 0}
+            disabled={prevHintBtnDis}
             onClick={props.previousHintHandler}
           >
             <FontAwesomeIcon icon={faChevronLeft} />
           </button>
           <button
             className={classes.NavArrow}
-            disabled={props.hintIndex === props.hintsNum - 1}
+            disabled={nextHintBtnDis}
             onClick={props.nextHintHandler}
           >
             <FontAwesomeIcon icon={faChevronRight} />

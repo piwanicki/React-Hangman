@@ -74,7 +74,6 @@ class PuzzleWord extends Component {
       } else if (this.state.guessedLetters.indexOf(key) > -1) {
         console.log("You typed this char : " + key);
       } else {
-        //this.setState({ chances: chances - 1 });
         this.props.setChances(chances - 1);
         console.log(`Left chances:  ${this.props.chances}`);
       }

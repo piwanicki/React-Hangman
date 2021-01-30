@@ -10,13 +10,13 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHome, faEnvelope} from "@fortawesome/free-solid-svg-icons";
 import {faGithub, faLinkedin} from "@fortawesome/free-brands-svg-icons";
 import {connect} from "react-redux";
-//import textContent from "../textContent/textContent"
+import {textContent} from "../../../textContent/textContent"
 import "./Drawer.scss";
 import {faTimesCircle} from "@fortawesome/free-regular-svg-icons";
 import Languages from "../../LanguageSelector/Languages";
 
 const MobileDrawer = (props) => {
-  // const text = textContent[props.lang]
+  const text = textContent[props.lang]
 
   return (
     <Drawer
@@ -36,7 +36,7 @@ const MobileDrawer = (props) => {
               <ListItemIcon>
                 <FontAwesomeIcon icon={faHome} />
               </ListItemIcon>
-              <ListItemText primary="Portfolio" />
+              <ListItemText primary={text.portfolio} />
             </ListItem>
           </Link>
           <Divider />
@@ -45,7 +45,7 @@ const MobileDrawer = (props) => {
               <ListItemIcon>
                 <FontAwesomeIcon icon={faTimesCircle} />
               </ListItemIcon>
-              <ListItemText primary="TicTacToe" />
+              <ListItemText primary={text.tictactoe} />
             </ListItem>
           </Link>
           <Divider />
@@ -59,7 +59,7 @@ const MobileDrawer = (props) => {
               <ListItemIcon>
                 <FontAwesomeIcon icon={faGithub} />
               </ListItemIcon>
-              <ListItemText primary={"Github"} />
+              <ListItemText primary={text.github} />
             </ListItem>
           </a>
           <Divider />
@@ -73,7 +73,7 @@ const MobileDrawer = (props) => {
               <ListItemIcon>
                 <FontAwesomeIcon icon={faLinkedin} />
               </ListItemIcon>
-              <ListItemText primary={"Linkedin"} />
+              <ListItemText primary={text.linkedin} />
             </ListItem>
           </a>
           <Divider />
@@ -81,7 +81,7 @@ const MobileDrawer = (props) => {
             <ListItemIcon>
               <FontAwesomeIcon icon={faEnvelope} />
             </ListItemIcon>
-            <ListItemText primary="Contact" />
+            <ListItemText primary={text.contact} />
           </ListItem>
         </List>
       </div>

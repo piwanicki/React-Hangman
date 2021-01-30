@@ -35,12 +35,11 @@ const PuzzleContainer = (props) => {
     axios
       .get(`https://api.datamuse.com/words?ml=${word}&md=d&max=1`)
       .then((response) => {
-        console.log(response)
         let hints = response.data[0].defs;
         setDefitions(hints)
       })
       .catch((error) => {
-        console.log(error)
+       
       });
   };
 

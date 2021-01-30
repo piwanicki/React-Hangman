@@ -47,7 +47,6 @@ class PuzzleHint extends Component {
 
   render() {
     const index = this.state.hintIndex;
-    console.log(this.props.definitions)
     return (
       <div className={classes.PuzzleHintContainer}>
         <FontAwesomeIcon
@@ -69,7 +68,6 @@ class PuzzleHint extends Component {
           definitions={this.props.definitions}
           hintIndex={this.state.hintIndex}
           onAway={this.hideHintsBox}
-          //handleClose={this.hdieHintsBox}
         />
       </div>
     );
