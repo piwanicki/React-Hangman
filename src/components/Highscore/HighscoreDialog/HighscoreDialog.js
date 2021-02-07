@@ -1,16 +1,17 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import classes from "./HighscoreDialog.module.scss";
-import {connect} from "react-redux";
-import Backdrop from "../../../UI/Backdrop/Backdrop";
+import { connect } from "react-redux";
 import highscoreInstance from "../../../axios-highscore";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faThumbsUp} from "@fortawesome/free-regular-svg-icons";
-import Auxiliary from "../../../hoc/Auxiliary";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
+import { Modal, Form, Button } from "react-bootstrap";
+import { textContent } from "../../../textContent/textContent";
 
 class HighscoreDialog extends Component {
   constructor(props) {
     super(props);
     this.inputRef = React.createRef();
+    this.text = textContent[this.props.lang];
   }
 
   sendHighscoreToDB = () => {
@@ -30,36 +31,48 @@ class HighscoreDialog extends Component {
   };
 
   render() {
+    let modalHeaderClasses = "";
+    let modalBodyClasses = "";
+    let modalFooterClasses = "";
+
+    if (this.props.darkMode) {
+      modalHeaderClasses = classes.DarkModalHeader;
+      modalBodyClasses = classes.GrayBgColor;
+      modalFooterClasses = classes.GrayBgColor;
+    }
+
     return (
-      <>
-        {this.props.show ? (
-          <Auxiliary>
-            <Backdrop show={true} clicked={this.props.closeHighscoreDialog} />
-            <div className={classes.HighscoreDialog}>
-              <p className={classes.ScoreInfo}>
-                Congrats! You scored {this.props.scoreStrike} points!
-              </p>
-              <FontAwesomeIcon
-                icon={faThumbsUp}
-                className={[classes.Like, classes.ScaleInCenter].join(" ")}
-              />
-              <input
-                type="text"
-                placeholder="Type you name..."
-                ref={this.inputRef}
-                maxLength={5}
-              ></input>
-              <button
-                className={classes.SendBtn}
-                onClick={this.sendHighscoreToDB}
-                onClickCapture={this.props.resetScoreStrike}
-              >
-                SEND
-              </button>
-            </div>
-          </Auxiliary>
-        ) : null}
-      </>
+      <Modal
+        show={this.props.show}
+        centered
+        onHide={this.props.closeHighscoreDialog}
+        className={classes.HighscoreModal}
+      >
+        <Modal.Header closeButton className={modalHeaderClasses}>
+          <Modal.Title>{this.text.hsModalTitle}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className={modalBodyClasses}>
+          <p className={classes.ScoreInfo}>
+            {this.text.yourScore} : <strong>{this.props.scoreStrike}</strong>
+          </p>
+          <FontAwesomeIcon icon={faThumbsUp} className={classes.Like} />
+          <p>{this.text.hsModalBody}</p>
+          <Form.Control
+            type="text"
+            placeholder={this.text.name}
+            maxLength={20}
+            className={classes.NameInput}
+          ></Form.Control>
+        </Modal.Body>
+        <Modal.Footer className={modalFooterClasses}>
+          <Button variant="secondary" onClick={this.props.closeHighscoreDialog}>
+            {this.text.closeBtn}
+          </Button>
+          <Button variant="primary" onClick={this.props.closeHighscoreDialog}>
+            {this.text.sendBtn}
+          </Button>
+        </Modal.Footer>
+      </Modal>
     );
   }
 }
@@ -68,13 +81,15 @@ const mapStateToProps = (state) => {
   return {
     show: state.showHighscoreDialog,
     // score: state.score
+    lang: state.lang,
+    darkMode: state.darkMode,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    closeHighscoreDialog: () => dispatch({type: "SHOW_HIGHSCORE_DIALOG"}),
-    fetchHighscoreBoard: () => dispatch({type: "UPDATE_HS_BOARD"}),
+    closeHighscoreDialog: () => dispatch({ type: "SHOW_HIGHSCORE_DIALOG" }),
+    fetchHighscoreBoard: () => dispatch({ type: "UPDATE_HS_BOARD" }),
   };
 };
 

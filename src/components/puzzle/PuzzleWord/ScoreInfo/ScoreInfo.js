@@ -9,25 +9,26 @@ import { textContent } from "../../../../textContent/textContent";
 const scoreInfo = (props) => {
   const scoreArr = props.highscores;
   const scores = scoreArr.map((el) => el.score);
-  let trophyColor;
+  let trophyIconClass;
   const text = textContent[props.lang];
 
   if (scoreArr.length > 0) {
     if (props.scoreStrike >= scores[2] && props.scoreStrike < scores[1]) {
-      trophyColor = "#a5682a";
+      trophyIconClass = classes.TrophyPlace3;
     } else if (
       props.scoreStrike >= scores[1] &&
       props.scoreStrike < scores[0]
     ) {
-      trophyColor = "#c0c0c0";
+      trophyIconClass = classes.TrophyPlace2;
     } else if (props.scoreStrike >= scores[0]) {
-      trophyColor = "#ffbf00";
-    } else {
-      trophyColor = "#ffffff00";
-    }
+      trophyIconClass = classes.TrophyPlace1;
+    } 
   } else {
-    trophyColor = "#ffbf00";
+    trophyIconClass = classes.TrophyPlace1;
   }
+
+  const scoreInfoDivClass = !props.darkMode ? [classes.ScoreInfo,classes.lightMode].join(' ') : classes.ScoreInfo;
+  
 
   return (
     <ReactCSSTransitionGroup
@@ -35,10 +36,10 @@ const scoreInfo = (props) => {
       transitionEnterTimeout={2000}
       transitionLeaveTimeout={1500}
     >
-      <div className={classes.ScoreInfo}>
+      <div className={scoreInfoDivClass}>
         <p>
           {text.yourScore} :
-          <span style={{ fontWeight: "bold", fontSize: "1.05em" }}>
+          <span className={classes.BoldText}>
             {props.scoreStrike}
           </span>
           <br />
@@ -47,7 +48,7 @@ const scoreInfo = (props) => {
         {text.place} :
         <FontAwesomeIcon
           icon={faTrophy}
-          style={{ fontSize: "20px", color: trophyColor }}
+          className={[classes.TrophyIcon,trophyIconClass].join(' ')}
         />
       </div>
     </ReactCSSTransitionGroup>
@@ -56,6 +57,7 @@ const scoreInfo = (props) => {
 
 const mapPropsToState = (state) => {
   return {
+    darkMode: state.darkMode,
     highscores: state.highscores,
     lang: state.lang,
   };

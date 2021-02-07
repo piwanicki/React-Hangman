@@ -14,7 +14,7 @@ export const textContent = {
     newBtn: 'Nowe słowo',
     useHintInfo: 'Czy chcesz użyć podpowiedzi? Stracisz jedną szansę.',
     cantUseMoreHint : 'Nie możesz użyć już więcej podpowiedzi.',
-    noHInts: 'Brak definicji w bazie dla daleng słowa ;(',
+    noHints: 'Brak definicji w bazie dla daleng słowa ;(',
 
     // contact form
     name: 'Imię',
@@ -34,6 +34,9 @@ export const textContent = {
     point: 'Punkt',
     points: 'Punkty',
     points2: 'Punktów',
+    hsModalTitle: 'Gratulacje!',
+    hsModalBody: 'Podaj imię, aby umieścić wynik na tablicy wyników',
+    closeBtn: 'Zamknij'
   },
   en: {
     // Navigation 
@@ -50,7 +53,7 @@ export const textContent = {
     newBtn: 'New puzzle',
     useHintInfo: 'Use a hint? You will loose one chance.',
     cantUseMoreHint : 'You can not use more hint.',
-    noHInts: 'No definitions in database for this word ;(',
+    noHints: 'No definitions in database for this word ;(',
 
     // contact form
     name: 'Name',
@@ -69,6 +72,10 @@ export const textContent = {
     place : 'Place',
     point: 'Pt',
     points: 'Pts',
+    hsModalTitle: 'Congratulations!',
+    hsModalBody: 'Please type your name to put your score on highscore board.',
+    closeBtn: 'Close'
+
   }, 
   de: {
     // Navigation 
@@ -85,7 +92,7 @@ export const textContent = {
     newBtn: 'neues Puzzle',
     useHintInfo: 'Verwenden Sie einen Hinweis? Du wirst eine Chance verlieren',
     cantUseMoreHint : 'Sie können keine Hinweise mehr verwenden',
-    noHInts: 'In der Datenbank gibt es keine Definition für das angegebene Wort;(',
+    noHints: 'In der Datenbank gibt es keine Definition für das angegebene Wort;(',
 
 
     // contact form
@@ -105,5 +112,8 @@ export const textContent = {
     place : 'Platz',
     point: 'Punkt',
     points: 'Punkte',
+    hsModalTitle: 'Herzliche Glückwünsche! ',
+    hsModalBody: 'Geben Sie einen Vornamen ein, um Ihre Punktzahl zu veröffentlichen',
+    closeBtn: 'Schließen'
   }
 }

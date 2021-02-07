@@ -7,25 +7,26 @@ import {
   faChevronRight,
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
+import { connect } from "react-redux";
+import { textContent } from "../../../textContent/textContent";
 
-export default function SimplePopover(props) {
+const SimplePopover = (props) => {
   const open = Boolean(props.show);
   const id = open ? "simple-popover" : undefined;
   let hint = "";
 
-let  nextHintBtnDis = false; 
-let  prevHintBtnDis = false; 
+  let nextHintBtnDis = false;
+  let prevHintBtnDis = false;
 
   const disableClickClosing = (e) => {
     e.stopPropagation();
   };
 
-
   if (props.definitions) {
     if (props.definitions.length > 0) {
       hint = props.definitions[props.hintIndex];
-      prevHintBtnDis = props.hintIndex === 0 
-      nextHintBtnDis = props.hintIndex === props.definitions.length - 1
+      prevHintBtnDis = props.hintIndex === 0;
+      nextHintBtnDis = props.hintIndex === props.definitions.length - 1;
       if (hint) {
         if (hint.startsWith("n")) {
           hint = hint.replace("n	", "noun / ");
@@ -39,9 +40,12 @@ let  prevHintBtnDis = false;
       }
     }
   } else {
-    hint = "No hints available ;<"; 
+    hint = textContent[props.lang].noHints;
   }
 
+  const typographyClass = !props.darkMode
+    ? [classes.PuzzleHintsContainer, classes.lightMode].join(" ")
+    : classes.PuzzleHintsContainer;
   return (
     <Popover
       id={id}
@@ -58,7 +62,7 @@ let  prevHintBtnDis = false;
       }}
     >
       <Typography
-        className={classes.PuzzleHintsContainer}
+        className={typographyClass}
         onMouseLeave={props.onAway}
         onClick={disableClickClosing}
       >
@@ -78,9 +82,17 @@ let  prevHintBtnDis = false;
             <FontAwesomeIcon icon={faChevronRight} />
           </button>
         </span>
-
         <span className={classes.HintText}>{hint}</span>
       </Typography>
     </Popover>
   );
-}
+};
+
+const mapStateToProps = (state) => {
+  return {
+    darkMode: state.darkMode,
+    lang: state.lang,
+  };
+};
+
+export default connect(mapStateToProps, null)(SimplePopover);

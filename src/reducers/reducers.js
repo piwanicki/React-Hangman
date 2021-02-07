@@ -7,12 +7,12 @@ console.log(darkModeOn);
 const initialState = {
   fetching: false,
   showMailDialog: false,
-  showHighscoreDialog: false,
+  showHighscoreDialog: true,
   showVirtualKeyboard: false,
   lang: "en",
   highscores: [],
   score: 0,
-  darkMode: darkModeOn === 'fasle' ? false : true,
+  darkMode: darkModeOn === 'false' ? false : true,
 };
 
 const reducers = (state = initialState, action) => {

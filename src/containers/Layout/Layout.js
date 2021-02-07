@@ -8,8 +8,6 @@ import ContactForm  from '../../components/MailDialog/ContactForm' ;
 import {connect} from "react-redux";
 
 const Layout = (props) => {
-  console.log(props.darkMode);
-
   const layoutModeClass = props.darkMode ? [classes.Layout, classes.LayoutDark].join(" ") : classes.Layout;
 
   return (
