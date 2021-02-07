@@ -6,6 +6,7 @@ import MobileMenuBtn from "./MobileMenuBtn";
 import {TOGGLE_DARKMODE} from "../../../actions/setStyleMode";
 import {withStyles} from "@material-ui/core/styles";
 import LangSelector from "../../../UI/LangSelector/LangSelector";
+import {textContent} from '../../../textContent/textContent';
 
 const IOSSwitch = withStyles((theme) => ({
   root: {
@@ -61,10 +62,11 @@ const IOSSwitch = withStyles((theme) => ({
 });
 
 const NavigationBar = (props) => {
+
   return (
     <header className="NavigationBar">
       <div>
-        <span>Light</span>
+        <span>{textContent[props.lang].light}</span>
         <FormControlLabel
           control={
             // <Switch
@@ -79,7 +81,7 @@ const NavigationBar = (props) => {
             />
           }
         />
-        <span>Dark</span>
+        <span>{textContent[props.lang].dark}</span>
       </div>
       <LangSelector>
       </LangSelector>
@@ -91,6 +93,7 @@ const NavigationBar = (props) => {
 const mapStateToProps = (state) => {
   return {
     darkMode: state.darkMode,
+    lang: state.lang
   };
 };
 

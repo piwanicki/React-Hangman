@@ -33,13 +33,15 @@ const LangButton = props => {
   const text = textContent[props.lang]
   const langs = text.langs
   const lang = langs[props.lang]
+  const langSelectorClass = props.darkMode ? 'lang-selector darkMode' : 'lang-selector';
+  const langDropDClass = props.darkMode ? 'lang-dropdown darkMode' : 'lang-dropdown';
 
   return (
-    <div className='lang-selector'>
+    <div className={langSelectorClass}>
+      <img src={icons[props.lang]} alt={lang} className='current-lang-img'/>
       <NavDropdown
-        title={text.langHeader}
         id="nav-dropdown"
-        className="lang-dropdown"
+        className={langDropDClass}
         onClick={e => langSelectHandler(e)}
         onBlur={rmCLass}
       >
@@ -47,7 +49,7 @@ const LangButton = props => {
           const icon = icons[langID]
           return (
             <NavDropdown.Item data-lang={langID} key={`${langID}_navdrop`}>
-              <img src={icon} alt={lang} />
+              <img src={icon} alt={langID} />
               {langs[langID]}
             </NavDropdown.Item>
           )
@@ -60,6 +62,7 @@ const LangButton = props => {
 const mapStateToProps = state => {
   return {
     lang: state.lang,
+    darkMode : state.darkMode
   }
 }
 
