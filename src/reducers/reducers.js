@@ -2,7 +2,6 @@ import {TOGGLE_DARKMODE} from '../actions/setStyleMode';
 
 
 const  darkModeOn = localStorage.getItem('darkModeOn');
-console.log(darkModeOn);
 
 const initialState = {
   fetching: false,

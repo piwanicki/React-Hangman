@@ -22,7 +22,6 @@ export const textContent = {
     email: 'Adres e-mail',
     msgText : 'Treść wiadomości',
     sendBtn : 'Wyślij',
-
     mailStatusOk : 'Wiadomość została wysłana!',
     mailStatusError : 'Wystąpił błąd przy wysyłaniu wiadomości. Proszę spróbować ponownie.',
 
@@ -36,7 +35,14 @@ export const textContent = {
     points2: 'Punktów',
     hsModalTitle: 'Gratulacje!',
     hsModalBody: 'Podaj imię, aby umieścić wynik na tablicy wyników',
-    closeBtn: 'Zamknij'
+    closeBtn: 'Zamknij',
+
+    langs: {
+      pl: "Polski",
+      en: "Angielski",
+      de: "Niemiecki",
+    },
+    langHeader : 'Język'
   },
   en: {
     // Navigation 
@@ -60,6 +66,7 @@ export const textContent = {
     lastname: 'Lastname',
     email: 'E-mail address',
     msgText : 'Message',
+    msgTextPH : 'Type your message here...',
     sendBtn : 'Send',
 
     mailStatusOk : 'Message was send!',
@@ -74,8 +81,14 @@ export const textContent = {
     points: 'Pts',
     hsModalTitle: 'Congratulations!',
     hsModalBody: 'Please type your name to put your score on highscore board.',
-    closeBtn: 'Close'
+    closeBtn: 'Close',
 
+    langs: {
+      pl: "Polish",
+      en: "English",
+      de: "Germany",
+    },
+    langHeader : 'Language'
   }, 
   de: {
     // Navigation 
@@ -114,6 +127,13 @@ export const textContent = {
     points: 'Punkte',
     hsModalTitle: 'Herzliche Glückwünsche! ',
     hsModalBody: 'Geben Sie einen Vornamen ein, um Ihre Punktzahl zu veröffentlichen',
-    closeBtn: 'Schließen'
+    closeBtn: 'Schließen',
+
+    langs: {
+      pl: "Polnisch ",
+      en: "Englisch",
+      de: "Deutsch",
+    },
+    langHeader : 'Sprache'
   }
 }

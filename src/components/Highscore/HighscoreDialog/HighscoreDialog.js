@@ -38,7 +38,7 @@ class HighscoreDialog extends Component {
     if (this.props.darkMode) {
       modalHeaderClasses = classes.DarkModalHeader;
       modalBodyClasses = classes.GrayBgColor;
-      modalFooterClasses = classes.GrayBgColor;
+      modalFooterClasses = classes.DarkModalFooter;
     }
 
     return (

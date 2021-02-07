@@ -5,6 +5,7 @@ import {FormControlLabel, Switch} from "@material-ui/core";
 import MobileMenuBtn from "./MobileMenuBtn";
 import {TOGGLE_DARKMODE} from "../../../actions/setStyleMode";
 import {withStyles} from "@material-ui/core/styles";
+import LangSelector from "../../../UI/LangSelector/LangSelector";
 
 const IOSSwitch = withStyles((theme) => ({
   root: {
@@ -80,6 +81,8 @@ const NavigationBar = (props) => {
         />
         <span>Dark</span>
       </div>
+      <LangSelector>
+      </LangSelector>
       <MobileMenuBtn clicked={props.showSideMenu} />
     </header>
   );
