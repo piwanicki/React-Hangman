@@ -45,7 +45,7 @@ const MobileDrawer = (props) => {
               <ListItemIcon>
                 <FontAwesomeIcon icon={faTimesCircle} />
               </ListItemIcon>
-              <ListItemText primary={text.tictactoe} />
+              <ListItemText primary={text.ticTacToe} />
             </ListItem>
           </Link>
           <Divider />
@@ -73,7 +73,7 @@ const MobileDrawer = (props) => {
               <ListItemIcon>
                 <FontAwesomeIcon icon={faLinkedin} />
               </ListItemIcon>
-              <ListItemText primary={text.linkedin} />
+              <ListItemText primary={'Linkedin'} />
             </ListItem>
           </a>
           <Divider />

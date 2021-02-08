@@ -44,6 +44,7 @@ const LangButton = props => {
         className={langDropDClass}
         onClick={e => langSelectHandler(e)}
         onBlur={rmCLass}
+        title={''}
       >
         {Object.keys(langs).map(langID => {
           const icon = icons[langID]

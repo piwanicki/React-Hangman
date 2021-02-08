@@ -21,7 +21,9 @@ const Languages = (props) => {
 
   const langSelectHandler = (e) => {
     const lang = e.target.dataset.lang;
-    props.changeLanguage(lang);
+    if(lang !== undefined) {
+      props.changeLanguage(lang);
+    }
   };
 
   return (

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Stage, Layer, Line, Circle } from "react-konva";
 import classes from "./KonvaDrawer.module.scss";
 import ReactDOM from 'react-dom';
+import {connect} from 'react-redux';
 
 class KonvaDrawer extends Component {
   state = {
@@ -73,18 +74,20 @@ class KonvaDrawer extends Component {
       hangmanLines = [...this.state.hangmanLinesPts];
     }
 
+    const lineColor = this.props.darkMode ? 'whitesmoke' : 'black';
+
     return (
       <div className={classes.KonvaDrawer}>
         <Stage width={this.state.stageWidth} height={this.state.stageHeight} scaleX={this.state.scaleW} scaleY={this.state.scaleH}>
           <Layer>
             <Line
               points={hangmanLines}
-              stroke="#eae0d5"
+              stroke={lineColor}
               offsetY={-250}
               offsetX={-60}
             />
             {this.props.chances === 0 ? (
-              <Circle radius={20} x={90} y={125} stroke="#eae0d5" />
+              <Circle radius={20} x={90} y={125} stroke={lineColor} />
             ) : null}
             <Line
               points={[
@@ -116,4 +119,10 @@ class KonvaDrawer extends Component {
   }
 }
 
-export default KonvaDrawer;
+const mapStateToProps = state => {
+  return {
+    darkMode: state.darkMode
+  }
+}
+
+export default connect(mapStateToProps,null)(KonvaDrawer);
