@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import classes from "./PuzzleWord.module.scss";
 import PuzzleLetter from "./PuzzleLetter/PuzzleLetter";
 import axios from "axios";
@@ -6,12 +6,12 @@ import Auxiliary from "../../../hoc/Auxiliary";
 import KonvaDrawer from "../../../components/KonvaDrawer/KonvaDrawer";
 import LoadingSpinner from "../../../UI/LoadingSpinner/LoadingSpinner";
 import KeyboardEventHandler from "react-keyboard-event-handler";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import HighscoreDialog from "../../Highscore/HighscoreDialog/HighscoreDialog";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 import ScoreInfo from "./ScoreInfo/ScoreInfo";
-import Zoom from "@material-ui/core/Zoom";
+import GuessedLetterInfo from './PuzzleLetter/GuessedLetterInfo/GuessedLetterInfo'
 
 class PuzzleWord extends Component {
   constructor() {
@@ -50,10 +50,10 @@ class PuzzleWord extends Component {
     if (key === "alt") {
       const currentAltKeyboard = this.state.keyboardLayout;
       if (currentAltKeyboard === "altPL" || currentAltKeyboard === "altDE") {
-        this.setState({ keyboardLayout: "default" });
+        this.setState({keyboardLayout: "default"});
       } else if (this.props.lang !== "en") {
         const altKeyboard = this.props.lang === "pl" ? "altPL" : "altDE";
-        this.setState({ keyboardLayout: altKeyboard });
+        this.setState({keyboardLayout: altKeyboard});
       }
       return null;
     }
@@ -70,7 +70,7 @@ class PuzzleWord extends Component {
           .map((e, i) => (e === key ? i : ""))
           .filter(String);
         indices.forEach((el) => (puzzles[el] = key));
-        this.setState({ puzzle: puzzles });
+        this.setState({puzzle: puzzles});
       } else if (this.state.guessedLetters.indexOf(key) > -1) {
         console.log("You typed this char : " + key);
       } else {
@@ -133,13 +133,13 @@ class PuzzleWord extends Component {
         gamePlaying: false,
       });
       console.log(`The word is : ${this.state.word}`);
-      this.setState({ gamePlaying: false });
+      this.setState({gamePlaying: false});
     }
   };
 
   highscoreSendedHandler = () => {
     setTimeout(() => {
-      this.setState({ scoreStrike: 0 });
+      this.setState({scoreStrike: 0});
     }, 500);
   };
 
@@ -153,7 +153,7 @@ class PuzzleWord extends Component {
     puzzles.forEach((el, idx) => (el === "_" ? emptyIdx.push(idx) : null));
     const idx = emptyIdx[Math.floor(Math.random() * emptyIdx.length)];
     const canUseHint = chances === 1 || emptyIdx.length === 1 ? false : true;
-    this.setState({ canUseHint: canUseHint });
+    this.setState({canUseHint: canUseHint});
 
     const letter = word.split("")[idx];
     puzzles[idx] = letter;
@@ -202,37 +202,40 @@ class PuzzleWord extends Component {
           onKeyEvent={(key, e) => this.guessedLetterHandler(e.key)}
           isDisabled={this.props.mailOpened}
         ></KeyboardEventHandler>
-        <div className={classes.PuzzleWord} onClick={this.showMobileKeyboard}>
-          {letters}
+        <div className={classes.PuzzleWordKonvaBox}>
+          <div className={classes.PuzzleWord} onClick={this.showMobileKeyboard}>
+            {letters}
+          </div>
+
+          {this.props.showVirtualKeyboard ? (
+            <Keyboard
+              onKeyPress={(button) => this.guessedLetterHandler(button)}
+              useTouchEvents={true}
+              baseClass={classes.VirtualKeyboard}
+              layout={{
+                default: [
+                  "q w e r t y u i o p",
+                  "a s d f g h j k l",
+                  "z x c v b n m alt",
+                ],
+                altPL: [
+                  "q w ę r t y u i ó p",
+                  "ą ś d f g h j k ł",
+                  "ż ź ć v b n m alt",
+                ],
+                altDE: [
+                  "q w e r t y u i o p ü",
+                  "a s d f g h j k l ö ä",
+                  "z x c v b n m alt",
+                ],
+              }}
+              layoutName={this.state.keyboardLayout}
+            />
+          ) : null}
+
+          <KonvaDrawer chances={this.props.chances} />
         </div>
-
-        {this.props.showVirtualKeyboard ? (
-          <Keyboard
-            onKeyPress={(button) => this.guessedLetterHandler(button)}
-            useTouchEvents={true}
-            baseClass={classes.VirtualKeyboard}
-            layout={{
-              default: [
-                "q w e r t y u i o p",
-                "a s d f g h j k l",
-                "z x c v b n m alt",
-              ],
-              altPL: [
-                "q w ę r t y u i ó p",
-                "ą ś d f g h j k ł",
-                "ż ź ć v b n m alt",
-              ],
-              altDE: [
-                "q w e r t y u i o p ü",
-                "a s d f g h j k l ö ä",
-                "z x c v b n m alt",
-              ],
-            }}
-            layoutName={this.state.keyboardLayout}
-          />
-        ) : null}
-
-        <KonvaDrawer chances={this.props.chances} />
+        <GuessedLetterInfo />
       </Auxiliary>
     );
   }
@@ -250,9 +253,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    showHighscoreDialog: () => dispatch({ type: "SHOW_HIGHSCORE_DIALOG" }),
-    setChances: (chances) =>
-      dispatch({ type: "SET_CHANCES", chances: chances }),
+    showHighscoreDialog: () => dispatch({type: "SHOW_HIGHSCORE_DIALOG"}),
+    setChances: (chances) => dispatch({type: "SET_CHANCES", chances: chances}),
     // updateScore: () => dispatch({type: 'UPDATE_SCORE'})
   };
 };

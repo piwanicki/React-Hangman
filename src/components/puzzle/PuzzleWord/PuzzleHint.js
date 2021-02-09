@@ -46,7 +46,6 @@ class PuzzleHint extends Component {
   };
 
   render() {
-    const index = this.state.hintIndex;
     return (
       <div className={classes.PuzzleHintContainer}>
         <FontAwesomeIcon

@@ -1,13 +1,26 @@
+.PuzzleWordKonvaBox {
+  @media (min-width: 769px) and (max-height: 500px) {
+    display: inline-flex;
+    width: 80%;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+  }
+}
+
 .PuzzleWord {
   height: 60px;
   z-index: 50;
   margin: 120px 0;
   margin-bottom: 50px;
 
-  // .InputRef {
-  //   transition: transform;
-  //   transform: translateY(-200vh);
-  // }
+  @media (min-width: 769px) and (max-height: 500px) {
+    margin:0;
+    max-width: 70%;
+  }
 
   @media only screen and (max-width: 400px) {
     margin-top: 32vh;

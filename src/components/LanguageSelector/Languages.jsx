@@ -1,8 +1,5 @@
 import React from "react";
-//import styled from "styled-components"
 import {connect} from "react-redux";
-//import textContent from "../textContent/textContent"
-//import { CHANGE_LANGUAGE } from "../state/actions"
 import './Languages.scss';
 import en from "./images/en.png";
 import pl from "./images/pl.png";
@@ -15,10 +12,6 @@ const icons = {
 };
 
 const Languages = (props) => {
-  //const text = textContent[props.lang];
-  //const langs = text.langs;
-  //const lang = langs[props.lang];
-
   const langSelectHandler = (e) => {
     const lang = e.target.dataset.lang;
     if(lang !== undefined) {

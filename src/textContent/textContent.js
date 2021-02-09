@@ -42,7 +42,8 @@ export const textContent = {
       en: "Angielski",
       de: "Niemiecki",
     },
-    langHeader : 'Język'
+    langHeader : 'Język',
+    typedLetterInfo: 'Podałeś juz literę'
   },
   en: {
     // Navigation 
@@ -88,7 +89,9 @@ export const textContent = {
       en: "English",
       de: "Germany",
     },
-    langHeader : 'Language'
+    langHeader : 'Language',
+
+    typedLetterInfo: 'You already entered the letter'
   }, 
   de: {
     // Navigation 
@@ -134,6 +137,9 @@ export const textContent = {
       en: "Englisch",
       de: "Deutsch",
     },
-    langHeader : 'Sprache'
+    langHeader : 'Sprache',
+    typedLetterInfo :'Sie haben den Brief bereits eingegeben'
+    
+
   }
 }

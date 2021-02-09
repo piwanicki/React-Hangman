@@ -69,11 +69,6 @@ const NavigationBar = (props) => {
         <span>{textContent[props.lang].light}</span>
         <FormControlLabel
           control={
-            // <Switch
-            //   size="medium"
-            //   onChange={props.toggleDarkMode}
-            //   checked={props.darkMode}
-            // />
             <IOSSwitch
               checked={props.darkMode}
               onChange={props.toggleDarkMode}

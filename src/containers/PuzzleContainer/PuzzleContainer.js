@@ -67,6 +67,7 @@ const PuzzleContainer = (props) => {
         fetching={fetching}
         hintsUsed={hintsUsed}
       />
+      
       {props.children}
     </div>
   );

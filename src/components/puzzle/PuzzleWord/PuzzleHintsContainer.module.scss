@@ -26,13 +26,22 @@
       font-size: 40px;
 
       &:disabled {
-        color: grey;
+        color: gray;
         opacity: 0.9;
       }
 
-      &:hover {
-        color: rgb(80, 80, 80);
+      // &:hover {
+      //   color:  gray;
+      // }
+
+      &:active {
+        position:relative;
+        top:1px;
       }
+    }
+
+    @media (max-width:768px) {
+      margin-right: 30px;
     }
   }
 

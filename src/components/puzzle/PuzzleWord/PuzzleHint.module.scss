@@ -15,6 +15,15 @@
     }
   }
 
+  .VirtualKeyboard {
+    display: block;
+    margin-bottom: 20px;
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
   @media only screen and (min-width: 600px) and (max-width: 768px) {
     font-size: 30px;
   }
@@ -31,11 +40,5 @@
   @media only screen and (max-width: 365px) {
     height: auto;
     font-size: 25px;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .VirtualKeyboard {
-    display: none;
   }
 }
