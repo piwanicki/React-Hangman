@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import classes from "./PuzzleWord.module.scss";
 import PuzzleLetter from "./PuzzleLetter/PuzzleLetter";
-import axios from "axios";
 import Auxiliary from "../../../hoc/Auxiliary";
 import KonvaDrawer from "../../../components/KonvaDrawer/KonvaDrawer";
 import LoadingSpinner from "../../../UI/LoadingSpinner/LoadingSpinner";
@@ -11,7 +10,8 @@ import HighscoreDialog from "../../Highscore/HighscoreDialog/HighscoreDialog";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 import ScoreInfo from "./ScoreInfo/ScoreInfo";
-import GuessedLetterInfo from './PuzzleLetter/GuessedLetterInfo/GuessedLetterInfo'
+import {textContent} from "../../../textContent/textContent";
+import TextPopupInfo from "../../../UI/TextPopupInfo/TextPopupInfo";
 
 class PuzzleWord extends Component {
   constructor() {
@@ -30,6 +30,8 @@ class PuzzleWord extends Component {
     canUseHint: true,
     keyboardLayout: "default",
     showScoreInfo: false,
+    guessedLetterInfoShow: false,
+    textPopupString: "",
   };
 
   componentDidUpdate(prevProps) {
@@ -47,6 +49,7 @@ class PuzzleWord extends Component {
   }
 
   guessedLetterHandler = (key) => {
+    this.setState({guessedLetterInfoShow: false});
     if (key === "alt") {
       const currentAltKeyboard = this.state.keyboardLayout;
       if (currentAltKeyboard === "altPL" || currentAltKeyboard === "altDE") {
@@ -72,17 +75,22 @@ class PuzzleWord extends Component {
         indices.forEach((el) => (puzzles[el] = key));
         this.setState({puzzle: puzzles});
       } else if (this.state.guessedLetters.indexOf(key) > -1) {
-        console.log("You typed this char : " + key);
+        this.setState({
+          textPopupString:
+            textContent[this.props.lang].typedLetterInfo + `: ${key}`,
+          guessedLetterInfoShow: true,
+        });
+        setTimeout(() => {
+          this.setState({guessedLetterInfoShow: false});
+        }, 1000);
       } else {
         this.props.setChances(chances - 1);
-        console.log(`Left chances:  ${this.props.chances}`);
       }
       this.checkIfWin();
     }
   };
 
   setupPuzzle = (word) => {
-    console.log(word);
     if (!word) return;
     const wordArr = word.split("");
     const puzzles = wordArr.map((el) => (el !== " " ? (el = "_") : el));
@@ -94,6 +102,7 @@ class PuzzleWord extends Component {
       gamePlaying: true,
       hint: "",
       canUseHint: true,
+      guessedLetterInfoShow: false
     });
     this.props.setChances(6);
   };
@@ -132,8 +141,12 @@ class PuzzleWord extends Component {
         puzzle: puzzles,
         gamePlaying: false,
       });
-      console.log(`The word is : ${this.state.word}`);
-      this.setState({gamePlaying: false});
+      this.setState({
+        textPopupString:
+          textContent[this.props.lang].searchedWord + ` : ${this.state.word}`,
+        guessedLetterInfoShow: true,
+        gamePlaying: false,
+      });
     }
   };
 
@@ -235,7 +248,9 @@ class PuzzleWord extends Component {
 
           <KonvaDrawer chances={this.props.chances} />
         </div>
-        <GuessedLetterInfo />
+        <TextPopupInfo show={this.state.guessedLetterInfoShow}>
+          {this.state.textPopupString}
+        </TextPopupInfo>
       </Auxiliary>
     );
   }

@@ -15,7 +15,7 @@ const PuzzleContainer = (props) => {
     setFetching(true);
     axios.get(`http://puzzle.mead.io/puzzle?wordCount=1`).then((response) => {
       const word = response.data.puzzle.toLowerCase();
-      setWord(word)
+      setWord(word);
       getDefinitions(word);
       if (props.lang !== "en") {
         axios
@@ -36,11 +36,9 @@ const PuzzleContainer = (props) => {
       .get(`https://api.datamuse.com/words?ml=${word}&md=d&max=1`)
       .then((response) => {
         let hints = response.data[0].defs;
-        setDefitions(hints)
+        setDefitions(hints);
       })
-      .catch((error) => {
-       
-      });
+      .catch((error) => {});
   };
 
   // ComponentDidMount
@@ -67,7 +65,7 @@ const PuzzleContainer = (props) => {
         fetching={fetching}
         hintsUsed={hintsUsed}
       />
-      
+
       {props.children}
     </div>
   );

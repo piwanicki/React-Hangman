@@ -43,7 +43,8 @@ export const textContent = {
       de: "Niemiecki",
     },
     langHeader : 'Język',
-    typedLetterInfo: 'Podałeś juz literę'
+    typedLetterInfo: 'Podałeś juz literę',
+    searchedWord: 'Szukane słowo to'
   },
   en: {
     // Navigation 
@@ -91,7 +92,9 @@ export const textContent = {
     },
     langHeader : 'Language',
 
-    typedLetterInfo: 'You already entered the letter'
+    typedLetterInfo: 'You already entered the letter',
+    searchedWord: 'The word you are looking for is'
+
   }, 
   de: {
     // Navigation 
@@ -138,8 +141,8 @@ export const textContent = {
       de: "Deutsch",
     },
     langHeader : 'Sprache',
-    typedLetterInfo :'Sie haben den Brief bereits eingegeben'
-    
-
+    typedLetterInfo :'Sie haben den Brief bereits eingegeben',
+    searchedWord: 'Das Wort, das Sie suchen, ist'
+  
   }
 }
