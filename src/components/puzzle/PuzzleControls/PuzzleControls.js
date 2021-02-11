@@ -7,7 +7,7 @@ import {
   HintTooltip,
 } from "../PuzzleWord/HintTooltip/HintTooltip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faQuestion } from "@fortawesome/free-solid-svg-icons";
+import { faQuestion, faList } from "@fortawesome/free-solid-svg-icons";
 import { textContent } from "../../../textContent/textContent";
 
 const PuzzleControls = (props) => {
@@ -30,7 +30,6 @@ const PuzzleControls = (props) => {
       <div className={classes.newWordBtn} onClick={props.getWord}>
         {text.newBtn}
       </div>
-
       <LightTooltip
         title={toolTipTitle}
         placement={"bottom"}

@@ -2,11 +2,12 @@ import React from "react";
 import {connect} from "react-redux";
 import "./NavigationBar.scss";
 import {FormControlLabel, Switch} from "@material-ui/core";
-import MobileMenuBtn from "./MobileMenuBtn";
+import MobileMenuBtn from "./MobileMenuBtn/MobileMenuBtn";
 import {TOGGLE_DARKMODE} from "../../../actions/setStyleMode";
 import {withStyles} from "@material-ui/core/styles";
 import LangSelector from "../../../UI/LangSelector/LangSelector";
 import {textContent} from '../../../textContent/textContent';
+import LeaderboardBtn from './LeaderboardBtn/LeaderboardBtn'
 
 const IOSSwitch = withStyles((theme) => ({
   root: {
@@ -78,8 +79,8 @@ const NavigationBar = (props) => {
         />
         <span>{textContent[props.lang].dark}</span>
       </div>
-      <LangSelector>
-      </LangSelector>
+      <LeaderboardBtn />
+      <LangSelector />
       <MobileMenuBtn clicked={props.showSideMenu} />
     </header>
   );

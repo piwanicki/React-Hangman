@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEllipsisV} from "@fortawesome/free-solid-svg-icons";
-import Drawer from "../Drawer/Drawer";
+import Drawer from "../../Drawer/Drawer";
 import "./MobileMenuBtn.scss";
 
 
