@@ -1,15 +1,51 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faList} from "@fortawesome/free-solid-svg-icons";
 import "./LeaderboardBtn.scss";
 import {Modal} from "react-bootstrap";
+import {connect} from 'react-redux';
+import highscoreDB from "./axios-highscore";
+
 
 const LeaderboardBtn = (props) => {
   const [open, setOpen] = useState(false);
+  const [highscores, setHighscores] = useState();
+
 
   const openLeaderboardH = () => {
     setOpen(!open);
   };
+
+    
+  const getDBHighscores = () => {
+    let scoreArr = [];
+    highscoreDB
+      .get("/highscore.json")
+      .then(response => {
+        let highscoreJSON = Object.values(response.data);
+        highscoreJSON.sort((a, b) => (a.score < b.score ? 1 : -1)).splice(10);
+        setHighscores(highscoreJSON);
+        // highscoreJSON.forEach(el =>
+        //   scoreArr.push(`${el.name} - ${el.score} Pts.`)
+        // );
+        // props.fetchDB(highscoreJSON);
+        // props.updateHighscoreBoard(false);
+        // this.setState({
+        //   scoreArr: scoreArr,
+        //   fetching: false
+        // });
+      })
+      .catch(error => {
+        props.updateHighscoreBoard(false);
+        // this.setState({
+        //   fetching: false
+        // });
+      });
+  };
+
+  useEffect(() => {
+    getDBHighscores();
+  }, []);
 
   return (
       <div className='LeaderboardBtn'>
@@ -25,20 +61,32 @@ const LeaderboardBtn = (props) => {
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              Modal heading
+              {text.highscoreModalTitle}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Centered Modal</h4>
-            <p>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-              dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-              ac consectetur ac, vestibulum at eros.
-            </p>
+            {highscores.map()}
           </Modal.Body>
         </Modal>
       </div>
   );
 };
 
-export default LeaderboardBtn;
+
+const mapStateToProps = state => {
+  return {
+    score: state.score,
+    fetching: state.fetching
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchDB: scoreArray =>
+      dispatch({ type: "FETCH_DB_SCORES", scores: scoreArray }),
+    updateHighscoreBoard: fetch =>
+      dispatch({ type: "UPDATE_HS_BOARD", fetching: fetch })
+  };
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(LeaderboardBtn);

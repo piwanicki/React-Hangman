@@ -1,4 +1,17 @@
 
+.LeaderboardBtn {
+  position: relative;
+  right:140px;
+  top: 7px;
+  font-size: 1.5em;
+  transition: scale 0.5s;
+  cursor: pointer;
+  &:hover {
+    transition: scale 0.5s;
+    transform: scale(1.2);
+  }
+}
+
 
 .LeaderboardModal {
   .modal-dialog.modal-lg.modal-dialog-centered {

@@ -3,7 +3,7 @@ import classes from "./Highscore.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrophy, faSync } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
-import highscoreDB from "../../axios-highscore";
+import highscoreDB from "../Navigation/NavigationBar/LeaderboardBtn/axios-highscore";
 import LoadingSpinner from "../../UI/LoadingSpinner/LoadingSpinner";
 import Auxiliary from "../../hoc/Auxiliary";
 

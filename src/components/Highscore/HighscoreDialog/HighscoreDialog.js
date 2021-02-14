@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classes from "./HighscoreDialog.module.scss";
 import { connect } from "react-redux";
-import highscoreInstance from "../../../axios-highscore";
+import highscoreInstance from "../../Navigation/NavigationBar/LeaderboardBtn/axios-highscore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { Modal, Form, Button } from "react-bootstrap";

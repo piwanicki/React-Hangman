@@ -1,4 +1,4 @@
-
+import React from 'react';
 import classes from "./TextPopupInfo.module.scss";
 import { connect } from "react-redux";
 
