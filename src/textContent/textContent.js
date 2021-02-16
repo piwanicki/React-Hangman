@@ -44,7 +44,10 @@ export const textContent = {
     },
     langHeader : 'Język',
     typedLetterInfo: 'Podałeś juz literę',
-    searchedWord: 'Szukane słowo to'
+    searchedWord: 'Szukane słowo to',
+    highscoreModalTitle: 'Tablica wyników',
+    highscoreTableName: 'Nick',
+    highscoreTablePoints: 'Wynik'
   },
   en: {
     // Navigation 
@@ -93,8 +96,10 @@ export const textContent = {
     langHeader : 'Language',
 
     typedLetterInfo: 'You already entered the letter',
-    searchedWord: 'The word you are looking for is'
-
+    searchedWord: 'The word you are looking for is',
+    highscoreModalTitle: 'Highscores',
+    highscoreTableName: 'Nick',
+    highscoreTablePoints: 'Score'
   }, 
   de: {
     // Navigation 
@@ -142,7 +147,9 @@ export const textContent = {
     },
     langHeader : 'Sprache',
     typedLetterInfo :'Sie haben den Brief bereits eingegeben',
-    searchedWord: 'Das Wort, das Sie suchen, ist'
-  
+    searchedWord: 'Das Wort, das Sie suchen, ist',
+    highscoreModalTitle: 'Anzeigetafel',
+    highscoreTableName: 'Nick',
+    highscoreTablePoints: 'Punkte'
   }
 }
