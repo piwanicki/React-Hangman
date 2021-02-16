@@ -54,6 +54,8 @@ const LeaderboardBtn = (props) => {
 
   const text = textContent[props.lang];
 
+  const modalClasses = props.darkMode ? 'LeaderboardModal darkMode' : 'LeaderboardModal';
+
   return (
     <div className="LeaderboardBtn">
       <FontAwesomeIcon icon={faList} onClick={openLeaderboardH} />
@@ -61,7 +63,7 @@ const LeaderboardBtn = (props) => {
         centered
         show={open}
         onHide={() => setOpen(false)}
-        className="LeaderboardModal"
+        className={modalClasses}
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
@@ -105,6 +107,7 @@ const mapStateToProps = (state) => {
     score: state.score,
     fetching: state.fetching,
     lang: state.lang,
+    darkMode: state.darkMode
   };
 };
 
