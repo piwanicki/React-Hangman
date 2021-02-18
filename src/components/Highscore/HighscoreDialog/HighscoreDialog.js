@@ -1,11 +1,12 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import classes from "./HighscoreDialog.module.scss";
-import { connect } from "react-redux";
-import highscoreInstance from "../../axios/axios-highscore";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
-import { Modal, Form, Button } from "react-bootstrap";
-import { textContent } from "../../../textContent/textContent";
+import {connect} from "react-redux";
+import highscoreInstance from "../../../axios/axios-highscore";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faThumbsUp} from "@fortawesome/free-regular-svg-icons";
+import {Modal, Form, Button} from "react-bootstrap";
+import {textContent} from "../../../textContent/textContent";
+import {fetchHighscores} from "../../../actions/highscores";
 
 class HighscoreDialog extends Component {
   constructor(props) {
@@ -13,7 +14,6 @@ class HighscoreDialog extends Component {
     this.inputRef = React.createRef();
     this.text = textContent[this.props.lang];
   }
-  
 
   sendHighscoreToDB = () => {
     const input = this.inputRef.current;
@@ -24,8 +24,7 @@ class HighscoreDialog extends Component {
     highscoreInstance
       .post("/highscore.json", highscore)
       .then((response) => {
-        console.log(response);
-        this.props.fetchHighscoreBoard();
+        this.props.fetchDB();
         this.props.closeHighscoreDialog();
       })
       .catch((error) => console.log(error));
@@ -85,14 +84,14 @@ const mapStateToProps = (state) => {
     score: state.score,
     lang: state.lang,
     darkMode: state.darkMode,
-    highscores: state.highscores
+    highscores: state.highscores,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    closeHighscoreDialog: () => dispatch({ type: "SHOW_HIGHSCORE_DIALOG" }),
-    fetchHighscoreBoard: () => dispatch({ type: "UPDATE_HS_BOARD" }),
+    closeHighscoreDialog: () => dispatch({type: "SHOW_HIGHSCORE_DIALOG"}),
+    fetchDB: () => dispatch(fetchHighscores()),
   };
 };
 

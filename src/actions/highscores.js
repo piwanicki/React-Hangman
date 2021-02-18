@@ -2,8 +2,8 @@ import {
   fetchHighscoresPending,
   fetchHighscoresSuccess,
   fetchHighscoresError,
-} from "./highscoresAction";
-import highscoreDB from "../../../axios/axios-highscore";
+} from "./highscoreActions";
+import highscoreDB from "../axios/axios-highscore";
 
 export const fetchHighscores = () => {
   return (dispatch) => {
@@ -11,8 +11,9 @@ export const fetchHighscores = () => {
     return highscoreDB
     .get("/highscore.json")
     .then((response) => {
-        dispatch(fetchHighscoresSuccess(response.data));
-        return response.data;
+        let highscoreJSON = Object.values(response.data);
+        highscoreJSON.sort((a, b) => (a.score < b.score ? 1 : -1)).splice(10);
+        dispatch(fetchHighscoresSuccess(highscoreJSON));
       })
       .catch((error) => {
         dispatch(fetchHighscoresError(error));

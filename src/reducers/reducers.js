@@ -1,8 +1,11 @@
-import {TOGGLE_DARKMODE} from '../actions/setStyleMode';
-import {FETCH_HIGHSCORES_PENDING, FETCH_HIGHSCORES_SUCCESS, FETCH_HIGHSCORES_ERROR} from '../actions/highscoreActions';
+import {TOGGLE_DARKMODE} from "../actions/setStyleMode";
+import {
+  FETCH_HIGHSCORES_PENDING,
+  FETCH_HIGHSCORES_SUCCESS,
+  FETCH_HIGHSCORES_ERROR,
+} from "../actions/highscoreActions";
 
-
-const  darkModeOn = localStorage.getItem('darkModeOn');
+const darkModeOn = localStorage.getItem("darkModeOn");
 
 const initialState = {
   hsFetching: false,
@@ -12,96 +15,83 @@ const initialState = {
   lang: "en",
   highscores: [],
   score: 0,
-  darkMode: darkModeOn === 'false' ? false : true,
+  darkMode: darkModeOn === "false" ? false : true,
   error: null,
 };
 
 const reducers = (state = initialState, action) => {
   switch (action.type) {
-
-    case FETCH_HIGHSCORES_ERROR : {
+    case FETCH_HIGHSCORES_ERROR: {
       return {
         ...state,
         error: action.error,
-      }
+        hsFetching: false,
+      };
     }
 
-    case FETCH_HIGHSCORES_PENDING : {
+    case FETCH_HIGHSCORES_PENDING: {
       return {
         ...state,
         hsFetching: true,
-      }
+      };
     }
 
-    case FETCH_HIGHSCORES_SUCCESS : {
+    case FETCH_HIGHSCORES_SUCCESS: {
       return {
         ...state,
         highscores: action.highscores,
-      }
+        hsFetching: false,
+      };
     }
 
     case "SHOW_MAIL_DIALOG": {
       return {
         ...state,
-        showMailDialog: !state.showMailDialog
+        showMailDialog: !state.showMailDialog,
       };
     }
 
     case "SHOW_VIRTUAL_KEYBOARD": {
       return {
         ...state,
-        showVirtualKeyboard: !state.showVirtualKeyboard
+        showVirtualKeyboard: !state.showVirtualKeyboard,
       };
     }
 
     case "SHOW_HIGHSCORE_DIALOG": {
       return {
         ...state,
-        showHighscoreDialog: !state.showHighscoreDialog
-      };
-    }
-
-    case "UPDATE_HS_BOARD": {
-      return {
-        ...state,
-        fetching: action.fetching
-      };
-    }
-
-    case "FETCH_DB_SCORES": {
-      return {
-        ...state,
-        highscores: action.scores
+        showHighscoreDialog: !state.showHighscoreDialog,
       };
     }
 
     case "CHANGE_LANGUAGE": {
       return {
         ...state,
-        lang: action.lang
+        lang: action.lang,
       };
     }
 
-    case TOGGLE_DARKMODE : {
-      localStorage.setItem('darkModeOn',!state.darkMode);
+    case TOGGLE_DARKMODE: {
+      localStorage.setItem("darkModeOn", !state.darkMode);
       return {
         ...state,
-        darkMode: !state.darkMode
-      }
+        darkMode: !state.darkMode,
+      };
     }
 
-    case "SET_CHANCES" : {
+    case "SET_CHANCES": {
       return {
         ...state,
-        chances : action.chances
-      }
+        chances: action.chances,
+      };
     }
 
-    case "SET_SCORE" : {
+    case "SET_SCORE": {
       return {
         ...state,
-        score : action.score
-      }
+        score: action.score,
+      };
     }
 
     default: {
