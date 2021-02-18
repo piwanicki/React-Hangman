@@ -120,6 +120,7 @@ class PuzzleWord extends Component {
         scoreStrike: scoreStrike + 1,
         showScoreInfo: true,
       });
+      this.props.setScore(scoreStrike + 1);
 
       setTimeout(() => {
         this.setState({
@@ -180,6 +181,7 @@ class PuzzleWord extends Component {
   };
 
   render() {
+    console.log(this.state.word)
     let letters = <LoadingSpinner />;
     if (!this.props.fetching) {
       letters = this.state.puzzle.map((el, idx) => (
@@ -270,7 +272,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     showHighscoreDialog: () => dispatch({type: "SHOW_HIGHSCORE_DIALOG"}),
     setChances: (chances) => dispatch({type: "SET_CHANCES", chances: chances}),
-    // updateScore: () => dispatch({type: 'UPDATE_SCORE'})
+    setScore: (score) => dispatch({type: 'SET_SCORE', score: score})
   };
 };
 

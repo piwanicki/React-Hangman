@@ -1,10 +1,11 @@
 import {TOGGLE_DARKMODE} from '../actions/setStyleMode';
+import {FETCH_HIGHSCORES_PENDING, FETCH_HIGHSCORES_SUCCESS, FETCH_HIGHSCORES_ERROR} from '../actions/highscoreActions';
 
 
 const  darkModeOn = localStorage.getItem('darkModeOn');
 
 const initialState = {
-  fetching: false,
+  hsFetching: false,
   showMailDialog: false,
   showHighscoreDialog: false,
   showVirtualKeyboard: false,
@@ -12,10 +13,33 @@ const initialState = {
   highscores: [],
   score: 0,
   darkMode: darkModeOn === 'false' ? false : true,
+  error: null,
 };
 
 const reducers = (state = initialState, action) => {
   switch (action.type) {
+
+    case FETCH_HIGHSCORES_ERROR : {
+      return {
+        ...state,
+        error: action.error,
+      }
+    }
+
+    case FETCH_HIGHSCORES_PENDING : {
+      return {
+        ...state,
+        hsFetching: true,
+      }
+    }
+
+    case FETCH_HIGHSCORES_SUCCESS : {
+      return {
+        ...state,
+        highscores: action.highscores,
+      }
+    }
+
     case "SHOW_MAIL_DIALOG": {
       return {
         ...state,
@@ -70,6 +94,13 @@ const reducers = (state = initialState, action) => {
       return {
         ...state,
         chances : action.chances
+      }
+    }
+
+    case "SET_SCORE" : {
+      return {
+        ...state,
+        score : action.score
       }
     }
 

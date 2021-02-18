@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classes from "./HighscoreDialog.module.scss";
 import { connect } from "react-redux";
-import highscoreInstance from "../../Navigation/NavigationBar/LeaderboardBtn/axios-highscore";
+import highscoreInstance from "../../axios/axios-highscore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { Modal, Form, Button } from "react-bootstrap";
@@ -13,12 +13,13 @@ class HighscoreDialog extends Component {
     this.inputRef = React.createRef();
     this.text = textContent[this.props.lang];
   }
+  
 
   sendHighscoreToDB = () => {
     const input = this.inputRef.current;
     const highscore = {
       name: input.value,
-      score: this.props.scoreStrike,
+      score: this.props.score,
     };
     highscoreInstance
       .post("/highscore.json", highscore)
@@ -62,13 +63,14 @@ class HighscoreDialog extends Component {
             placeholder={this.text.name}
             maxLength={20}
             className={classes.NameInput}
+            ref={this.inputRef}
           ></Form.Control>
         </Modal.Body>
         <Modal.Footer className={modalFooterClasses}>
           <Button variant="secondary" onClick={this.props.closeHighscoreDialog}>
             {this.text.closeBtn}
           </Button>
-          <Button variant="primary" onClick={this.props.closeHighscoreDialog}>
+          <Button variant="primary" onClick={this.sendHighscoreToDB}>
             {this.text.sendBtn}
           </Button>
         </Modal.Footer>
@@ -80,9 +82,10 @@ class HighscoreDialog extends Component {
 const mapStateToProps = (state) => {
   return {
     show: state.showHighscoreDialog,
-    // score: state.score
+    score: state.score,
     lang: state.lang,
     darkMode: state.darkMode,
+    highscores: state.highscores
   };
 };
 

@@ -99,7 +99,8 @@ export const textContent = {
     searchedWord: 'The word you are looking for is',
     highscoreModalTitle: 'Highscores',
     highscoreTableName: 'Nick',
-    highscoreTablePoints: 'Score'
+    highscoreTablePoints: 'Score',
+    noScores: 'No scores'
   }, 
   de: {
     // Navigation 
@@ -150,6 +151,7 @@ export const textContent = {
     searchedWord: 'Das Wort, das Sie suchen, ist',
     highscoreModalTitle: 'Anzeigetafel',
     highscoreTableName: 'Nick',
-    highscoreTablePoints: 'Punkte'
+    highscoreTablePoints: 'Punkte',
+    noScores: 'Keine Ergebnisse'
   }
 }

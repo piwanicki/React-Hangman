@@ -4,7 +4,7 @@ import {faList} from "@fortawesome/free-solid-svg-icons";
 import "./LeaderboardBtn.scss";
 import {Modal} from "react-bootstrap";
 import {connect} from "react-redux";
-import highscoreDB from "./axios-highscore";
+import highscoreDB from "../../../axios/axios-highscore";
 import {textContent} from "../../../../textContent/textContent";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -15,36 +15,21 @@ import TableRow from "@material-ui/core/TableRow";
 
 const LeaderboardBtn = (props) => {
   const [open, setOpen] = useState(true);
-  const [highscores, setHighscores] = useState();
+  //const [highscores, setHighscores] = useState(props.highscores);
 
   const openLeaderboardH = () => {
     setOpen(!open);
   };
 
   const getDBHighscores = () => {
-    let scoreArr = [];
     highscoreDB
       .get("/highscore.json")
       .then((response) => {
         let highscoreJSON = Object.values(response.data);
         highscoreJSON.sort((a, b) => (a.score < b.score ? 1 : -1)).splice(10);
-        setHighscores(highscoreJSON);
-        // highscoreJSON.forEach(el =>
-        //   scoreArr.push(`${el.name} - ${el.score} Pts.`)
-        // );
-        // props.fetchDB(highscoreJSON);
-        // props.updateHighscoreBoard(false);
-        // this.setState({
-        //   scoreArr: scoreArr,
-        //   fetching: false
-        // });
+        //setHighscores(highscoreJSON);
       })
       .catch((error) => {
-        console.log(error);
-        //props.updateHighscoreBoard(false);
-        // this.setState({
-        //   fetching: false
-        // });
       });
   };
 
@@ -56,7 +41,10 @@ const LeaderboardBtn = (props) => {
 
   const modalClasses = props.darkMode ? 'LeaderboardModal darkMode' : 'LeaderboardModal';
 
+  const highscores = props.highscores;
+  console.log(highscores);
   return (
+
     <div className="LeaderboardBtn">
       <FontAwesomeIcon icon={faList} onClick={openLeaderboardH} />
       <Modal
@@ -64,6 +52,7 @@ const LeaderboardBtn = (props) => {
         show={open}
         onHide={() => setOpen(false)}
         className={modalClasses}
+        scrollable
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
@@ -71,6 +60,7 @@ const LeaderboardBtn = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+                {highscores ?
           <TableContainer>
             <Table aria-label="simple table">
               <TableHead>
@@ -84,8 +74,7 @@ const LeaderboardBtn = (props) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {highscores &&
-                  highscores.map((scoreObj, ix) => (
+                  {highscores.map((scoreObj, ix) => (
                     <TableRow key={scoreObj.name}>
                       <TableCell component="th" scope="row">
                         {scoreObj.name}
@@ -96,6 +85,7 @@ const LeaderboardBtn = (props) => {
               </TableBody>
             </Table>
           </TableContainer>
+          : text.noScores}
         </Modal.Body>
       </Modal>
     </div>
@@ -107,7 +97,8 @@ const mapStateToProps = (state) => {
     score: state.score,
     fetching: state.fetching,
     lang: state.lang,
-    darkMode: state.darkMode
+    darkMode: state.darkMode,
+    highscores: state.highscores
   };
 };
 
