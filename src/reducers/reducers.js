@@ -10,7 +10,7 @@ const darkModeOn = localStorage.getItem("darkModeOn");
 const initialState = {
   hsFetching: false,
   showMailDialog: false,
-  showHighscoreDialog: false,
+  showHighscoreDialog: true,
   showVirtualKeyboard: false,
   lang: "en",
   highscores: [],
@@ -55,6 +55,13 @@ const reducers = (state = initialState, action) => {
       return {
         ...state,
         showVirtualKeyboard: !state.showVirtualKeyboard,
+      };
+    }
+
+    case "HIDE_VIRTUAL_KEYBOARD": {
+      return {
+        ...state,
+        showVirtualKeyboard: false,
       };
     }
 

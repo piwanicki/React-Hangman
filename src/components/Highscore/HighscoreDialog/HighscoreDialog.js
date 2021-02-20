@@ -69,7 +69,7 @@ class HighscoreDialog extends Component {
           <Button variant="secondary" onClick={this.props.closeHighscoreDialog}>
             {this.text.closeBtn}
           </Button>
-          <Button variant="primary" onClick={this.sendHighscoreToDB}>
+          <Button variant="dark" onClick={this.sendHighscoreToDB}>
             {this.text.sendBtn}
           </Button>
         </Modal.Footer>

@@ -1,21 +1,32 @@
 .PuzzleWordKonvaBox {
-  @media (min-width: 769px) and (max-height: 500px) {
+  @media (min-width: 769px) and (max-height: 600px) {
     display: inline-flex;
     width: 80%;
-    //justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
+    // position: absolute;
+    // top:50%;
+    // left:50%;
+    // transform: translate(-50%,-50%);
+
   }
 }
+
+.KeyboardBackdrop {
+  position: fixed;
+  top:0;
+  left:0;
+  min-height:100vh;
+  width:100%;
+}
+
 
 .PuzzleWord {
   height: 60px;
   z-index: 50;
-  margin: 120px 0;
-  margin-bottom: 50px;
+  margin: 80px auto 50px auto;
+  //margin-bottom: 50px;
+  width:80%;
 
   @media (min-width: 769px) and (max-height: 500px) {
     margin:0;
@@ -37,6 +48,8 @@
   @media only screen and (max-width: 769px) {
     margin-top: 75px;
   }
+
+
 }
 
 .VirtualKeyboard {

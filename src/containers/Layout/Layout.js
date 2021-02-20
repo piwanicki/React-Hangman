@@ -10,9 +10,17 @@ import {connect} from "react-redux";
 const Layout = (props) => {
   const layoutModeClass = props.darkMode ? [classes.Layout, classes.LayoutDark].join(" ") : classes.Layout;
 
+
+
+  const hideVirtualKeyboard = () => {
+    console.log('prosadasd');
+    //props.hideKeyboard();
+  }
+
+
   return (
     <Auxiliary>
-      <div className={layoutModeClass}>
+      <div className={layoutModeClass} onClick={hideVirtualKeyboard}>
         <NavigationBar />
         <PuzzleContainer />
         <main className={classes.Content}>{props.children}</main>
@@ -29,4 +37,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(Layout);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    hideKeyboard: () => dispatch({type : 'HIDE_VIRTUAL_KEYBOARD'})
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

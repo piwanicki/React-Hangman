@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faList} from "@fortawesome/free-solid-svg-icons";
+import {faList, faTrophy} from "@fortawesome/free-solid-svg-icons";
 import "./LeaderboardBtn.scss";
 import {Modal} from "react-bootstrap";
 import {connect} from "react-redux";
@@ -34,8 +34,13 @@ const LeaderboardBtn = (props) => {
   const highscores = props.highscores;
   console.log(highscores);
   return (
-    <div className="LeaderboardBtn">
-      <FontAwesomeIcon icon={faList} onClick={openLeaderboardH} />
+    //<div className="LeaderboardBtn">
+    <>
+      <FontAwesomeIcon
+        icon={faList}
+        onClick={openLeaderboardH}
+        className="LeaderboardBtn"
+      />
       <Modal
         centered
         show={open}
@@ -58,7 +63,7 @@ const LeaderboardBtn = (props) => {
                     <TableCell colSpan={2} align="center" component="th">
                       <strong>{text.highscoreTableName}</strong>
                     </TableCell>
-                    <TableCell align="right" component="th"> 
+                    <TableCell align="right" component="th">
                       <strong>{text.highscoreTablePoints}</strong>
                     </TableCell>
                   </TableRow>
@@ -68,6 +73,24 @@ const LeaderboardBtn = (props) => {
                     <TableRow key={scoreObj.name}>
                       <TableCell component="td" scope="row">
                         {ix + 1}.
+                        {ix === 0 && (
+                          <FontAwesomeIcon
+                            icon={faTrophy}
+                            className={"Trophy TrophyPlace1"}
+                          />
+                        )}
+                        {ix === 1 && (
+                          <FontAwesomeIcon
+                            icon={faTrophy}
+                            className={"Trophy TrophyPlace2"}
+                          />
+                        )}
+                        {ix === 2 && (
+                          <FontAwesomeIcon
+                            icon={faTrophy}
+                            className={"Trophy TrophyPlace3"}
+                          />
+                        )}
                       </TableCell>
                       <TableCell component="td" scope="row">
                         {scoreObj.name}
@@ -83,7 +106,8 @@ const LeaderboardBtn = (props) => {
           )}
         </Modal.Body>
       </Modal>
-    </div>
+    </>
+    //</div>
   );
 };
 

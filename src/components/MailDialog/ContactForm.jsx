@@ -145,7 +145,7 @@ const ContactForm = (props) => {
           </Form>
         </Modal.Body>
         <Modal.Footer className={modalFooterClasses}>
-          <Button variant="outline-dark" type="submit" disabled={isSending}>
+          <Button variant="dark" type="submit" disabled={isSending}>
             {text.sendBtn}
           </Button>
           {isSending && (

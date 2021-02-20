@@ -223,6 +223,8 @@ class PuzzleWord extends Component {
           </div>
 
           {this.props.showVirtualKeyboard ? (
+            <>
+            <div className={classes.KeyboardBackdrop} onClick={this.props.hideKeyboard}></div>
             <Keyboard
               onKeyPress={(button) => this.guessedLetterHandler(button)}
               useTouchEvents={true}
@@ -246,6 +248,7 @@ class PuzzleWord extends Component {
               }}
               layoutName={this.state.keyboardLayout}
             />
+            </>
           ) : null}
 
           <KonvaDrawer chances={this.props.chances} />
@@ -272,7 +275,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     showHighscoreDialog: () => dispatch({type: "SHOW_HIGHSCORE_DIALOG"}),
     setChances: (chances) => dispatch({type: "SET_CHANCES", chances: chances}),
-    setScore: (score) => dispatch({type: 'SET_SCORE', score: score})
+    setScore: (score) => dispatch({type: 'SET_SCORE', score: score}),
+    hideKeyboard: () => dispatch({type: 'HIDE_VIRTUAL_KEYBOARD'})
   };
 };
 

@@ -1,6 +1,6 @@
 .LeaderboardBtn {
   position: relative;
-  right: 140px;
+  right: 160px;
   top: 8px;
   font-size: 1.5em;
   transition: transform 0.5s;
@@ -9,12 +9,46 @@
     transform: scale(1.1);
     transition: transform 0.5s;
   }
+
+
+  
+  @media (max-width: 769px) {
+    position:absolute;
+    top:21px;
+    right:100px;
+  }
 }
 
 .LeaderboardModal {
   .modal-dialog.modal-dialog-centered {
     width: 310px;
+
+    th,
+    td {
+
+      &:first-child {
+        padding-right: 0;
+      }
+    }
   }
+
+  .Trophy {
+    font-size: 1.2em;
+    margin-left: 15px;
+  }
+
+  .TrophyPlace1 {
+    color:#ffbf00;
+  }
+  
+  .TrophyPlace2 {
+    color: #c0c0c0;
+  }
+  
+  .TrophyPlace3 {
+    color: #a5682a;
+  }
+
 }
 
 .darkMode {
@@ -29,5 +63,14 @@
   th,
   td {
     border-bottom-color: #000;
+
+    &:first-child {
+      padding-right: 0;
+    }
   }
+
+
+
+
 }
+
