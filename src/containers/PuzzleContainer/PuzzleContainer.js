@@ -13,7 +13,7 @@ const PuzzleContainer = (props) => {
 
   const getWord = () => {
     setFetching(true);
-    axios.get(`http://puzzle.mead.io/puzzle?wordCount=1`).then((response) => {
+    axios.get(`https://puzzle.mead.io/puzzle?wordCount=1`).then((response) => {
       const word = response.data.puzzle.toLowerCase();
       setWord(word);
       getDefinitions(word);

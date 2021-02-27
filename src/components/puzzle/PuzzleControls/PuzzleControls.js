@@ -7,7 +7,7 @@ import {
   HintTooltip,
 } from "../PuzzleWord/HintTooltip/HintTooltip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faQuestion, faList } from "@fortawesome/free-solid-svg-icons";
+import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 import { textContent } from "../../../textContent/textContent";
 
 const PuzzleControls = (props) => {
@@ -47,14 +47,12 @@ const mapStateToProps = (state) => {
     showVirtualKeyboard: state.showVirtualKeyboard,
     lang: state.lang,
     chances: state.chances,
-    // score: state.score
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     showHighscoreDialog: () => dispatch({ type: "SHOW_HIGHSCORE_DIALOG" }),
-    // updateScore: () => dispatch({type: 'UPDATE_SCORE'})
   };
 };
 

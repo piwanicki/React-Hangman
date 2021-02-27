@@ -267,7 +267,6 @@ const mapStateToProps = (state) => {
     showVirtualKeyboard: state.showVirtualKeyboard,
     lang: state.lang,
     chances: state.chances,
-    // score: state.score
   };
 };
 
