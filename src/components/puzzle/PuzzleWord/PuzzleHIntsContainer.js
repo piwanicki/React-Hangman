@@ -10,7 +10,7 @@ import {
 import { connect } from "react-redux";
 import { textContent } from "../../../textContent/textContent";
 
-const SimplePopover = (props) => {
+const HintsPopover = (props) => {
   const open = Boolean(props.show);
   const id = open ? "simple-popover" : undefined;
   let hint = "";
@@ -95,4 +95,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(SimplePopover);
+export default connect(mapStateToProps, null)(HintsPopover);

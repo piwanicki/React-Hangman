@@ -1,22 +1,27 @@
-import React from "react";
-import classes from "./StatusMail.module.scss";
+import React from "react"
+import {textContent} from "../../../textContent/textContent"
+import { connect } from "react-redux"
+import './StatusMail.scss';
 
-const StatusMail = props => {
-  const attachedClasses = [classes.Red, classes.Green];
-  const statusClass = props.status ? attachedClasses[1] : attachedClasses[0];
-  let status;
+const MailStatus = props => {
+  const text = textContent[props.lang]
 
-  if (props.status) {
-    status = "Email send successfully!";
-  } else {
-    status = "Something went wrong with sending email. Please try again... ;( ";
-  }
+  console.log(props.status);
+  const textClassName = props.status ? 'success' : 'error';
 
   return (
-    <div className={[classes.StatusMail, statusClass].join(" ")}>
-      <p>{status}</p>
-    </div>
-  );
-};
+      <div className='status-mail-container'>
+      <p className={textClassName}>
+        {props.status ? text.mailPosStatus : text.mailNegStatus}
+      </p>
+     </div>
+  )
+}
 
-export default StatusMail;
+const mapStateToProps = state => {
+  return {
+    lang: state.lang,
+  }
+}
+
+export default connect(mapStateToProps, null)(MailStatus)

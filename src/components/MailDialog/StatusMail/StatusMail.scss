@@ -1,0 +1,15 @@
+.status-mail-container {
+  width: 100%;
+  font-size: 1.2em;
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+
+  .success {
+    color: #00ff00;
+  }
+
+  .error {
+    color: #ff0000;
+  }
+}

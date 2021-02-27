@@ -15,7 +15,7 @@ import {fetchHighscores} from "../../../../actions/highscores";
 import Hourglass from "../../../../UI/Hourglass/Hourglass";
 
 const LeaderboardBtn = (props) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const openLeaderboardH = () => {
     setOpen(!open);
@@ -34,7 +34,6 @@ const LeaderboardBtn = (props) => {
   const highscores = props.highscores;
   console.log(highscores);
   return (
-    //<div className="LeaderboardBtn">
     <>
       <FontAwesomeIcon
         icon={faList}
@@ -107,7 +106,6 @@ const LeaderboardBtn = (props) => {
         </Modal.Body>
       </Modal>
     </>
-    //</div>
   );
 };
 

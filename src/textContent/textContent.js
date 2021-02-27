@@ -47,7 +47,10 @@ export const textContent = {
     searchedWord: 'Szukane słowo to',
     highscoreModalTitle: 'Tablica wyników',
     highscoreTableName: 'Nick',
-    highscoreTablePoints: 'Wynik'
+    highscoreTablePoints: 'Wynik',
+    mailSendBtn: "Wyślij",
+    mailPosStatus: "Wiadomość wysłana!",
+    mailNegStatus: "Ups! Coś poszło nie tak... Proszę spróbuj ponownie!",
   },
   en: {
     // Navigation 
@@ -100,7 +103,10 @@ export const textContent = {
     highscoreModalTitle: 'Highscores',
     highscoreTableName: 'Nick',
     highscoreTablePoints: 'Score',
-    noScores: 'No scores'
+    noScores: 'No scores',
+    mailSendBtn: "Send",
+    mailPosStatus: "Message sent!",
+    mailNegStatus: "Ups! Something went wrong... Please try again!",
   }, 
   de: {
     // Navigation 
@@ -152,6 +158,9 @@ export const textContent = {
     highscoreModalTitle: 'Anzeigetafel',
     highscoreTableName: 'Nick',
     highscoreTablePoints: 'Punkte',
-    noScores: 'Keine Ergebnisse'
+    noScores: 'Keine Ergebnisse',
+    mailSendBtn: "Senden",
+    mailPosStatus: "Nachricht gesendet!",
+    mailNegStatus: "Ups! Etwas ist schief gelaufen. . . Bitte versuchen Sie es erneut!",
   }
 }

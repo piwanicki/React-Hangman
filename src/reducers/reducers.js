@@ -10,7 +10,7 @@ const darkModeOn = localStorage.getItem("darkModeOn");
 const initialState = {
   hsFetching: false,
   showMailDialog: false,
-  showHighscoreDialog: true,
+  showHighscoreDialog: false,
   showVirtualKeyboard: false,
   lang: "en",
   highscores: [],
