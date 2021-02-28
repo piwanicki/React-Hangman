@@ -54,6 +54,7 @@ class PuzzleHint extends Component {
           icon={faInfoCircle}
           className={classes.HintIcon}
           onMouseEnter={this.showHintsBox}
+          onClick={this.showHintsBox}
         />
 
         <PuzzleHintsContainer
