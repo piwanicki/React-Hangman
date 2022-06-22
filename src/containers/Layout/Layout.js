@@ -24,7 +24,6 @@ const Layout = (props) => {
         <NavigationBar />
         <PuzzleContainer />
         <main className={classes.Content}>{props.children}</main>
-        <Footer />
       </div>
       <ContactForm />
     </Auxiliary>

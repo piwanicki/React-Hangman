@@ -22,7 +22,6 @@ class PuzzleHint extends Component {
     this.setState({ showVirtualKeyboard: !visible });
   };
 
-
   nextHint = () => {
     const currentIndex = this.state.hintIndex;
     this.setState({ hintIndex: currentIndex + 1 });
@@ -32,7 +31,6 @@ class PuzzleHint extends Component {
     const currentIndex = this.state.hintIndex;
     this.setState({ hintIndex: currentIndex - 1 });
   };
-
 
   showHintsBox = (event) => {
     this.setState({ hintsShow: true, anchorE1: event.currentTarget });
