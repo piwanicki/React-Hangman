@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./Layout.module.scss";
 import NavigationBar from "../../components/Navigation/NavigationBar/NavigationBar";
 import PuzzleContainer from "../PuzzleContainer/PuzzleContainer";
-import Footer from "../../components/Navigation/Footer/Footer";
 import Auxiliary from "../../hoc/Auxiliary";
 import ContactForm  from '../../components/MailDialog/ContactForm' ;
 import {connect} from "react-redux";
